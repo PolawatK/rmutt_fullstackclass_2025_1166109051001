@@ -1,0 +1,11 @@
+MovieDB Docker Image
+
+Run database
+docker run -d -p 5440:5432 --name moviedb doridaro/moviedb:1.0
+
+Connect
+psql -h localhost -p 5440 -U admin -d moviedb
+
+Username: admin
+Password: admin123
+Database: moviedb
