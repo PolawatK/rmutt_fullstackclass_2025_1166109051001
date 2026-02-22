@@ -26,6 +26,12 @@ app.get("/health", async (req, res) => {
   }
 });
 
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/api', require('./routes/account.routes'));
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
