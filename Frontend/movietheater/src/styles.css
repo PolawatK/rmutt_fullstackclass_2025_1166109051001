@@ -5,7 +5,7 @@
 /* Variables Style */
 :root {
   --body-font: "Nunito", sans-serif;
-  --main-bg-color: #1c1c1c;
+  --main-bg-color: #010a18;
   --text-color: #fff;
   --highlight-color: #ffa500;
 }
@@ -17,6 +17,8 @@
 
 body {
   font-family: var(--body-font);
+  color: var(--text-color);
+  background-color: var(--main-bg-color);
 }
 a {
   text-decoration: none;
