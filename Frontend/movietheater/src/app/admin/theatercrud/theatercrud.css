@@ -1,0 +1,133 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --body-font: "Nunito", sans-serif;
+  --main-bg-color: #1c1c1c;
+  --text-color: #fff;
+  --highlight-color: #ffa500;
+}
+
+body {
+  background: #05080f;
+  color: white;
+  font-family:
+    Segoe UI,
+    sans-serif;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.text-nav h1 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.text-nav h3 {
+  color: #9aa4b2;
+  font-size: 15px;
+}
+
+.btn-addscreen button {
+  background: #f5b942;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.cinema-card {
+  background: #0b1220;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: 0.25s;
+}
+
+.cinema-card:hover {
+  transform: translateY(-4px);
+}
+
+.screen-icon {
+  width: 42px;
+  height: 42px;
+  background: #1a2235;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--highlight-color);;
+}
+
+.screen-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.location {
+  color: #9aa4b2;
+  font-size: 14px;
+}
+
+.feature {
+  color: #aeb6c2;
+  font-size: 14px;
+}
+
+.divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 14px 0;
+}
+
+.badge-seat {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.badge-normal {
+  background: #1c2538;
+}
+
+.badge-premium {
+  background: #2a1f12;
+  color: var(--highlight-color);
+}
+
+.badge-vip {
+  background: #3a2300;
+  color: var(--highlight-color);
+}
+
+.total-text {
+  color: #aab2bf;
+}
+
+.screen-scroll{
+    max-height: 70vh;     
+    overflow-y: auto;     
+    overflow-x: hidden;
+    padding-right:8px;
+}
+
+/* scrollbar dark theme */
+.screen-scroll::-webkit-scrollbar{
+    width:8px;
+}
+
+.screen-scroll::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+.screen-scroll::-webkit-scrollbar-thumb{
+    background:#1f2a44;
+    border-radius:10px;
+}

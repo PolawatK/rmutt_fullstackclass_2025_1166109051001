@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theatercrud</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="./theatercrud.css" />
+  </head>
+
+  <body>
+    <nav class="nav-bar container">
+      <div class="text-nav">
+        <h1>Theaters & Screens</h1>
+        <h3>Manage screens, seats, and amenities</h3>
+      </div>
+
+      <div class="btn-addscreen">
+        <button>Add screen</button>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-4 px-5">
+      <div class="screen-scroll">
+        <div class="row g-4">
+          <div class="col-lg-6 col-12">
+            <div class="cinema-card">
+              <div class="d-flex gap-3">
+                <div class="screen-icon">
+                  <i class="bi bi-display"></i>
+                </div>
+
+                <div>
+                  <div class="screen-title">Screen 1 - IMAX</div>
+                  <div class="location">
+                    <i class="bi bi-geo-alt"></i> Floor 3, Wing A
+                  </div>
+                </div>
+              </div>
+
+              <div class="feature mt-3">IMAX, Dolby Atmos, Recliner Seats</div>
+              <div class="divider"></div>
+
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="total-text">
+                  <i class="bi bi-couch"></i> Total: 96
+                </span>
+                <span class="badge-seat badge-normal">Normal: 48</span>
+                <span class="badge-seat badge-premium">Premium: 24</span>
+                <span class="badge-seat badge-vip">VIP: 24</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-12">
+            <div class="cinema-card">
+              <div class="d-flex gap-3">
+                <div class="screen-icon">
+                  <i class="bi bi-display"></i>
+                </div>
+
+                <div>
+                  <div class="screen-title">Screen 2 - Standard</div>
+                  <div class="location">
+                    <i class="bi bi-geo-alt"></i> Floor 2, Wing A
+                  </div>
+                </div>
+              </div>
+              <div class="feature mt-3">Dolby Digital, Standard Seats</div>
+              <div class="divider"></div>
+
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="total-text">
+                  <i class="bi bi-couch"></i> Total: 60
+                </span>
+
+                <span class="badge-seat badge-normal">Normal: 20</span>
+                <span class="badge-seat badge-premium">Premium: 20</span>
+                <span class="badge-seat badge-vip">VIP: 20</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-12">
+            <div class="cinema-card">
+              <div class="d-flex gap-3">
+                <div class="screen-icon">
+                  <i class="bi bi-display"></i>
+                </div>
+
+                <div>
+                  <div class="screen-title">Screen 3 - Premium</div>
+                  <div class="location">
+                    <i class="bi bi-geo-alt"></i> Floor 3, Wing B
+                  </div>
+                </div>
+              </div>
+
+              <div class="feature mt-3">
+                4DX, Premium Recliners, Bar Service
+              </div>
+              <div class="divider"></div>
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="total-text">
+                  <i class="bi bi-couch"></i> Total: 48
+                </span>
+                <span class="badge-seat badge-normal">Normal: 16</span>
+                <span class="badge-seat badge-premium">Premium: 16</span>
+                <span class="badge-seat badge-vip">VIP: 16</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-12">
+            <div class="cinema-card">
+              <div class="d-flex gap-3">
+                <div class="screen-icon">
+                  <i class="bi bi-display"></i>
+                </div>
+
+                <div>
+                  <div class="screen-title">Screen 4 - Standard</div>
+                  <div class="location">
+                    <i class="bi bi-geo-alt"></i> Floor 1, Wing B
+                  </div>
+                </div>
+              </div>
+
+              <div class="feature mt-3">Dolby Digital, Standard Seats</div>
+              <div class="divider"></div>
+
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="total-text">
+                  <i class="bi bi-couch"></i> Total: 60
+                </span>
+
+                <span class="badge-seat badge-normal">Normal: 20</span>
+                <span class="badge-seat badge-premium">Premium: 20</span>
+                <span class="badge-seat badge-vip">VIP: 20</span>
+              </div>
+            </div>
+          </div>
+          <!-- ===== เพิ่มโรงใหม่ตรงนี้ ===== -->
+          <div class="col-lg-6 col-12">
+            <div class="cinema-card">
+              <div class="d-flex gap-3">
+                <div class="screen-icon">
+                  <i class="bi bi-display"></i>
+                </div>
+
+                <div>
+                  <div class="screen-title">Screen 5 - IMAX</div>
+                  <div class="location">
+                    <i class="bi bi-geo-alt"></i> Floor 4, Wing C
+                  </div>
+                </div>
+              </div>
+
+              <div class="feature mt-3">IMAX Laser, Dolby Atmos</div>
+
+              <div class="divider"></div>
+
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="total-text">
+                  <i class="bi bi-couch"></i> Total: 120
+                </span>
+
+                <span class="badge-seat badge-normal">Normal: 60</span>
+                <span class="badge-seat badge-premium">Premium: 30</span>
+                <span class="badge-seat badge-vip">VIP: 30</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-12">
+            <div class="cinema-card">
+              <div class="d-flex gap-3">
+                <div class="screen-icon">
+                  <i class="bi bi-display"></i>
+                </div>
+
+                <div>
+                  <div class="screen-title">Screen 5 - IMAX</div>
+                  <div class="location">
+                    <i class="bi bi-geo-alt"></i> Floor 4, Wing C
+                  </div>
+                </div>
+              </div>
+
+              <div class="feature mt-3">IMAX Laser, Dolby Atmos</div>
+
+              <div class="divider"></div>
+
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="total-text">
+                  <i class="bi bi-couch"></i> Total: 120
+                </span>
+
+                <span class="badge-seat badge-normal">Normal: 60</span>
+                <span class="badge-seat badge-premium">Premium: 30</span>
+                <span class="badge-seat badge-vip">VIP: 30</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-12">
+            <div class="cinema-card">
+              <div class="d-flex gap-3">
+                <div class="screen-icon">
+                  <i class="bi bi-display"></i>
+                </div>
+
+                <div>
+                  <div class="screen-title">Screen 5 - IMAX</div>
+                  <div class="location">
+                    <i class="bi bi-geo-alt"></i> Floor 4, Wing C
+                  </div>
+                </div>
+              </div>
+
+              <div class="feature mt-3">IMAX Laser, Dolby Atmos</div>
+
+              <div class="divider"></div>
+
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="total-text">
+                  <i class="bi bi-couch"></i> Total: 120
+                </span>
+
+                <span class="badge-seat badge-normal">Normal: 60</span>
+                <span class="badge-seat badge-premium">Premium: 30</span>
+                <span class="badge-seat badge-vip">VIP: 30</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-12">
+            <div class="cinema-card">
+              <div class="d-flex gap-3">
+                <div class="screen-icon">
+                  <i class="bi bi-display"></i>
+                </div>
+
+                <div>
+                  <div class="screen-title">Screen 5 - IMAX</div>
+                  <div class="location">
+                    <i class="bi bi-geo-alt"></i> Floor 4, Wing C
+                  </div>
+                </div>
+              </div>
+
+              <div class="feature mt-3">IMAX Laser, Dolby Atmos</div>
+
+              <div class="divider"></div>
+
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="total-text">
+                  <i class="bi bi-couch"></i> Total: 120
+                </span>
+
+                <span class="badge-seat badge-normal">Normal: 60</span>
+                <span class="badge-seat badge-premium">Premium: 30</span>
+                <span class="badge-seat badge-vip">VIP: 30</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-12">
+            <div class="cinema-card">
+              <div class="d-flex gap-3">
+                <div class="screen-icon">
+                  <i class="bi bi-display"></i>
+                </div>
+
+                <div>
+                  <div class="screen-title">Screen 5 - IMAX</div>
+                  <div class="location">
+                    <i class="bi bi-geo-alt"></i> Floor 4, Wing C
+                  </div>
+                </div>
+              </div>
+
+              <div class="feature mt-3">IMAX Laser, Dolby Atmos</div>
+
+              <div class="divider"></div>
+
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="total-text">
+                  <i class="bi bi-couch"></i> Total: 120
+                </span>
+
+                <span class="badge-seat badge-normal">Normal: 60</span>
+                <span class="badge-seat badge-premium">Premium: 30</span>
+                <span class="badge-seat badge-vip">VIP: 30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
