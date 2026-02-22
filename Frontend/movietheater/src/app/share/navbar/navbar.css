@@ -2,8 +2,7 @@
 header {
     background-color: #000000;
     border-bottom: 1px solid rgb(255, 255, 255);
-    padding: 10px 20px;
-    margin: 0; 
+    padding: 0px 30px;
 }
 
 .nav-wrapper {
@@ -117,10 +116,18 @@ header {
 
 
 @media (max-width: 768px) {
+    
+    header {
+    height: 75px;
+  }
+
+    .nav-wrapper {
+    height: 75px;
+  }
 
     .desktop-menu {
         position: fixed;
-        top: 60px;
+        top: 75px;
         right: -100%;
         width: 50%;
         height: 100vh;
