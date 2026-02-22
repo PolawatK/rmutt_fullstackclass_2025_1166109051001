@@ -14,7 +14,6 @@ export const routes: Routes = [
         component: AdminLayout,
         children: [
         { path: 'dashboard', component: Dashboard},
-        { path: 'review', component: ReviewComponent}
         ],
     },
     {
