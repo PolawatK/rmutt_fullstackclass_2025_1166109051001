@@ -1,0 +1,75 @@
+.wrapper {
+  display: flex;
+}
+
+#sidebar {
+  width: 90px;
+  min-width: 90px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0b0f17, #0d111a);
+  transition: all 0.25s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 10px;
+}
+
+#sidebar.expand {
+  width: 260px;
+  min-width: 260px;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.sidebar-header h4 {
+  color: white;
+  font-weight: 600;
+  margin: 0;
+}
+
+.toggle-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 18px;
+  color: #a0a0a0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.menu li i {
+  font-size: 20px;
+}
+
+.menu li:hover {
+  background: rgba(255, 165, 0, 0.08);
+  color: #ffa500;
+}
+
+.menu li.active {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 165, 0, 0.2),
+    rgba(255, 165, 0, 0.05)
+  );
+  color: #ffa500;
+}
