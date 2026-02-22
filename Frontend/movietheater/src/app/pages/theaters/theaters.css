@@ -1,0 +1,49 @@
+/* Card ใหญ่ (แต่ละ Screen) */
+.theater-card {
+  background: var(--card-color);
+  border: 1px solid #1f2937;
+  border-radius: 14px;
+}
+
+/* Header */
+.theater-header {
+  border-bottom: 1px solid #1f2937;
+  padding: 1.25rem;
+}
+
+/* Showtime card */
+.show-card {
+  background-color: #000000;
+  border: 1px solid #1f2937;
+  border-radius: 15px;
+  padding: 10px;
+  transition: 0.2s ease;
+}
+
+.show-card:hover {
+  border-color: #facc15;
+  transform: translateY(-3px);
+}
+
+/* Text styles */
+.text-muted-custom {
+  color: #9ca3af;
+}
+
+.price {
+  color: #facc15;
+  font-weight: 600;
+}
+
+/* icon box */
+.icon-box {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 166, 0, 0.226);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #facc15;
+  margin-right: 12px;
+}
