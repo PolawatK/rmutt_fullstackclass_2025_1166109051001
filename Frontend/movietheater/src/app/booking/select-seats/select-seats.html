@@ -1,1 +1,31 @@
-<p>select-seats works!</p>
+<div class="container py-5">
+    @if (showtime) {
+    <h2>{{ showtime.movie_title }}</h2>
+    <p>
+        {{ showtime.screen_name }} |
+        {{ showtime.start_time | date:'shortTime' }}
+    </p>
+    <div class="seat-grid-wrapper">
+        @for (group of groupedSeats; track group.row) {
+        <div class="seat-row">
+            <div class="row-label">
+                {{ group.row }}
+            </div>
+            @for (seat of group.seats; track seat.id) {
+            <div class="seat" (click)="toggleSeat(seat)" [class.booked]="isBooked(seat.id)"
+                [class.selected]="isSelected(seat.id)">
+                {{ seat.seat_number }}
+            </div>
+            }
+        </div>
+        }
+    </div>
+
+    <div class="summary mt-4">
+        <p>Selected: {{ selectedSeats.length }}</p>
+        <p>Total: {{ getTotal() }} THB</p>
+    </div>
+
+    }
+
+</div>
