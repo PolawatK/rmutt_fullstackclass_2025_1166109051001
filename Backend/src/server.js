@@ -15,6 +15,7 @@ const pool = new Pool({
 
 app.use('/api/dashboard', dashboardRoutes);
 
+
 pool.query("SELECT 1")
   .then(() => console.log("✅ Database connected"))
   .catch(err => console.error("❌ DB Error:", err.message));

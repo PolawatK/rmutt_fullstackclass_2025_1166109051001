@@ -15,4 +15,8 @@ export const routes: Routes = [
         { path: 'dashboard', component: Dashboard},
         ],
     },
-];
+    {
+        path: 'booking', 
+        loadChildren: () => import('./booking/booking-module').then(m => m.BookingModule)
+    },
+    ];
