@@ -1,0 +1,60 @@
+<div class="wrapper">
+    <aside id="sidebar" [class.expand]="isExpanded">
+
+        <div class="sidebar-header">
+
+            @if (isExpanded) {
+            <h4>Admin Panel</h4>
+            }
+
+            <button class="toggle-btn" (click)="toggleSidebar()">
+                <i class="bx" [ngClass]="isExpanded ? 'bx-chevrons-left' : 'bx-chevrons-right'">
+                </i>
+            </button>
+
+        </div>
+
+        <ul class="menu">
+            <li class="active">
+                <i class="bx bx-grid-alt"></i>
+                @if (isExpanded) { <span>Overview</span> }
+            </li>
+
+            <li>
+                <i class="bx bx-movie-play"></i>
+                @if (isExpanded) { <span>Movies</span> }
+            </li>
+
+            <li>
+                <i class="bx bx-desktop"></i>
+                @if (isExpanded) { <span>Theaters</span> }
+            </li>
+
+            <li>
+                <i class="bx bx-time-five"></i>
+                @if (isExpanded) { <span>Showtimes</span> }
+            </li>
+
+            <li>
+                <i class="bx bx-user"></i>
+                @if (isExpanded) { <span>Customers</span> }
+            </li>
+
+            <li>
+                <i class="bx bx-receipt"></i>
+                @if (isExpanded) { <span>Bookings</span> }
+            </li>
+
+            <li>
+                <i class="bx bx-credit-card"></i>
+                @if (isExpanded) { <span>Payments</span> }
+            </li>
+
+            <li>
+                <i class="bx bx-star"></i>
+                @if (isExpanded) { <span>Reviews</span> }
+            </li>
+        </ul>
+
+    </aside>
+</div>

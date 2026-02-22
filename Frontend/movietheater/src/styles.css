@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+/* Font */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+/* Variables Style */
+:root {
+  --body-font: "Nunito", sans-serif;
+  --main-bg-color: #010a18;
+  --text-color: #fff;
+  --highlight-color: #ffa500;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  color: var(--text-color);
+  background-color: var(--main-bg-color);
+}
+a {
+  text-decoration: none;
+}
+button {
+  all: unset;
+}
+li {
+  list-style: none;
+}

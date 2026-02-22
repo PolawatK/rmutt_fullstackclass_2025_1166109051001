@@ -1,13 +1,20 @@
 require("dotenv").config();
 const express = require("express");
 const { Pool } = require("pg");
-
+const dashboardRoutes = require('./routes/dashboard-routes');
 const app = express();
-const port = 3000;
+const cors = require('cors');
+
+app.use(cors());
+app.use(express.json());
+const port = process.env.PORT || 5050;
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
+
+app.use('/api/dashboard', dashboardRoutes);
+
 
 pool.query("SELECT 1")
   .then(() => console.log("✅ Database connected"))
