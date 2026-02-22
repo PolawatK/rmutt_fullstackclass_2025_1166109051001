@@ -13,6 +13,7 @@ export const routes: Routes = [
         component: AdminLayout,
         children: [
         { path: 'dashboard', component: Dashboard},
+        { path: 'movie', component: Dashboard}
         ],
     },
     {

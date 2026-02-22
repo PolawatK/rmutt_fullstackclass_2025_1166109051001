@@ -1,4 +1,30 @@
 .main {
   flex: 1;
-  background-color: #f4f6f9;
+}
+.card {
+  background: linear-gradient(180deg, #0b0f17, #0d111a);
+  border-radius: 20px;
+  border: 1px solid rgba(81, 81, 81, 0.539);
+  transition: 0.5s ease;
+}
+.icon-box {
+  border-radius: 15px;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  background: rgba(255, 166, 0, 0.226);
+  margin-bottom: 10px;
+}
+.icon-box i {
+  font-size: 30px;
+  color: #ffa500;
+}
+.card-title {
+  color: rgb(109, 109, 109);
+}
+.card:hover {
+  border: 1px solid #ffa6008c;
+}
+.text-title {
+  color: rgb(109, 109, 109);
 }
