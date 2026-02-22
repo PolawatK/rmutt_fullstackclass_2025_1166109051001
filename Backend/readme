@@ -9,3 +9,15 @@ psql -h localhost -p 5440 -U admin -d moviedb
 Username: admin
 Password: admin123
 Database: moviedb
+
+Host: localhost
+
+Port: 5440
+
+User: admin
+
+Password: admin123
+
+Database: moviedb
+DATABASE_URL=postgres://admin:admin123@localhost:5440/moviedb
+PORT=5000

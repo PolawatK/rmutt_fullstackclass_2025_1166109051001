@@ -8,5 +8,8 @@ import { Navbar } from '../../share/navbar/navbar';
   styleUrl: './home.css',
 })
 export class Home {
+  movies: any[] = [];
+
+  constructor() {}
 
 }
