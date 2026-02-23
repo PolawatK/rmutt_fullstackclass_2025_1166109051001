@@ -1,7 +1,121 @@
 <app-navbar></app-navbar>
 
-<section class="landing-page mt-4 bg-dark">
-    
+<section class="landing-page align-items-center d-flex mt-4 bg-dark">
+    <div class="overlay"></div>
+
+    <div class="container text-center text-light position-relative">
+
+        <span class="badge bg-warning px-3 py-2 mb-4">
+            welcome
+        </span>
+
+        <h1 class="fw-bold display-1">
+            cinema
+        </h1>
+        <h2 class="fw-bold display-3">
+            Cinema description
+        </h2>
+
+        <p class="lead mt-4 mb-5">
+            Browse the latest movies, pick your perfect seats,
+            and book tickets instantly.
+        </p>
+
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#" class="btn btn-warning btn-lg px-4">
+                Browse Movies
+            </a>
+
+            <a href="#" class="btn btn-outline-light btn-lg px-4">
+                View Theaters
+            </a>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- card ongoing movie  -->
+<section class="py-4 position-relative">
+
+    <div class="container-fluid px-4">
+
+        <h4 class="mb-3 text-light">Now Showing</h4>
+        <span></span>
+
+
+
+        <!-- Scroll Container -->
+        <div #scrollContainer class="container movie-wrapper">
+
+            @for (item of items1; track $index) {
+            <div class="movie-card card ">
+                <img [src]="item.image" class="card-img-top">
+
+                <div class="card-body">
+                    <h6>{{ item.title }}</h6>
+                    <a [href]="" class="btn btn-sm btn-dark">
+                        Detail
+                    </a>
+                </div>
+            </div>
+            }
+
+        </div>
+
+
+    </div>
+
+</section>
+
+<!-- card coming soon  -->
+<section class="py-4 position-relative">
+
+    <div class="container-fluid px-4">
+
+        <h4 class="mb-3 text-light">coming soon</h4>
+        <span></span>
+
+
+
+        <!-- Scroll Container -->
+        <div #scrollContainer class="container movie-wrapper">
+
+            @for (item of items1; track $index) {
+            <div class="movie-card card ">
+                <img [src]="item.image" class="card-img-top">
+
+                <div class="card-body">
+                    <h6>{{ item.title }}</h6>
+                    <a [href]="" class="btn btn-sm btn-dark">
+                        Detail
+                    </a>
+                </div>
+            </div>
+            }
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+
+<!-- card cinema -->
+<section class="d-flex align-items-center">
+    <div class="container-fluid mt-2 px-2 mt-4">
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Major</h5>
+                <p class="card-text">A brief description of the cinema.</p>
+                <a href="#" class="btn btn-dark">View Details</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <app-footer></app-footer>

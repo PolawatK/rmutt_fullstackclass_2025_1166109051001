@@ -1,0 +1,19 @@
+.landing-page {
+  min-height: 100vh;
+  background: url('https://img.freepik.com/premium-photo/many-rows-red-seats-cinema_161149-2461.jpg') center/cover no-repeat;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.7),
+      rgba(0,0,0,0.9)
+  );
+}
+
+.landing-page .container {
+  z-index: 2;
+}
