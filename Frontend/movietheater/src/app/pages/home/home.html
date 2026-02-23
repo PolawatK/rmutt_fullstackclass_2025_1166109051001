@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<section class="landing-page align-items-center d-flex mt-4 bg-dark">
+<section class="landing-page align-items-center d-flex bg-dark">
     <div class="overlay"></div>
 
     <div class="container text-center text-light position-relative">
@@ -36,21 +36,24 @@
 
 
 <!-- card ongoing movie  -->
-<section class="py-4 position-relative">
+<section class="py-4 position-relative bg-dark slider-section">
 
-    <div class="container-fluid px-4">
+    <div class="container-fluid px-4 position-relative">
 
         <h4 class="mb-3 text-light">Now Showing</h4>
         <span></span>
 
 
 
-        <!-- Scroll Container -->
-        <div #scrollContainer class="container movie-wrapper">
+        <!-- buttonScroll Container -->
+        <button class="scroll-btn left" (click)="scrollLeft(scrollContainer1)">‹</button>
+
+
+        <div #scrollContainer1 class="movie-wrapper">
 
             @for (item of items1; track $index) {
-            <div class="movie-card card ">
-                <img [src]="item.image" class="card-img-top">
+            <div class="movie-card card">
+                <img [src]="item.image" class="poster">
 
                 <div class="card-body">
                     <h6>{{ item.title }}</h6>
@@ -63,30 +66,31 @@
 
         </div>
 
+        <button class="scroll-btn right" (click)="scrollRight(scrollContainer1)">›</button>
 
     </div>
 
 </section>
 
 <!-- card coming soon  -->
-<section class="py-4 position-relative">
+<section class="py-4 position-relative bg-dark">
 
-    <div class="container-fluid px-4">
+    <div class="container-fluid px-4 position-relative">
 
-        <h4 class="mb-3 text-light">coming soon</h4>
-        <span></span>
-
-
+        <h4 class="mb-3 text-light">Coming soon</h4>
 
         <!-- Scroll Container -->
-        <div #scrollContainer class="container movie-wrapper">
+        <button class="scroll-btn left" (click)="scrollLeft(scrollContainer2)">‹</button>
+
+        <div #scrollContainer2 class="movie-wrapper">
+
 
             @for (item of items1; track $index) {
             <div class="movie-card card ">
-                <img [src]="item.image" class="card-img-top">
+                <img [src]="item.image" class="poster">
 
                 <div class="card-body">
-                    <h6>{{ item.title }}</h6>
+                    <h6 class="text-light">{{ item.title }}</h6>
                     <a [href]="" class="btn btn-sm btn-dark">
                         Detail
                     </a>
@@ -95,7 +99,7 @@
             }
 
         </div>
-
+        <button class="scroll-btn right" (click)="scrollRight(scrollContainer2)">›</button>
 
     </div>
 
@@ -104,18 +108,39 @@
 
 
 
-<!-- card cinema -->
-<section class="d-flex align-items-center">
-    <div class="container-fluid mt-2 px-2 mt-4">
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top">
+<!-- card theater -->
+<section class="py-5 bg-dark">
+  <div class="container-fluid">
+
+    <h3 class="text-light mb-4">Theaters</h3>
+
+    <div class="row g-4">
+
+      @for (item of theater; track $index) {
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm">
+
+            <img 
+              src="https://endlessicons.com/wp-content/uploads/2012/11/image-holder-icon-614x460.png"
+              class="card-img-top"
+            >
+
             <div class="card-body">
-                <h5 class="card-title">Major</h5>
-                <p class="card-text">A brief description of the cinema.</p>
-                <a href="#" class="btn btn-dark">View Details</a>
+              <h5 class="card-title text-dark">
+                {{ item.name }}
+              </h5>
+
+              <a href="#" class="btn btn-dark">
+                View Details
+              </a>
             </div>
+
+          </div>
         </div>
+      }
+
     </div>
+  </div>
 </section>
 
 <app-footer></app-footer>
