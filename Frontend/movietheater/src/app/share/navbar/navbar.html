@@ -1,1 +1,40 @@
-<p>navbar works!</p>
+<header>
+  <div class="container-fluid px-0">
+    <div class="nav-wrapper">
+      <div class="logo-section">
+        <img src="https://cdn-icons-png.freepik.com/512/9357/9357566.png" class="logo-icon" alt="Logo">
+        Cine<span class="logo-name">Vault</span> 
+      </div>
+      <div class="desktop-menu" [class.mobile-open]="menuValue">
+        <ul>
+          <li class="mobile-profile">
+      <div class="mobile-profile-box">
+        <img src="https://i.pravatar.cc/100"
+             alt="Profile"
+             class="profile-img">
+        <span class="profile-name">Fulke น้อง</span>
+      </div>
+    </li>
+          <li><a routerLink="/home">Home</a></li>
+          <li><a routerLink="/movies">Movies</a></li>
+          <li><a routerLink="/theaters">Theaters</a></li>
+          <li><a routerLink="/mybook">My Bookings</a></li>
+        </ul>
+      </div>
+
+      <div class="profile-section">
+        <div class="profile-link">
+          <div class="grid-icon"></div>
+          <span class="profile-name">Fulke น้อง</span>
+          <img src="https://i.pravatar.cc/100" alt="Profile" class="profile-img">
+        </div>
+
+        <div class="menu" (click)="toggle()">
+          ☰
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</header>

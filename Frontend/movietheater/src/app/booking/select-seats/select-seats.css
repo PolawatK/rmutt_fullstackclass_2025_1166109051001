@@ -1,0 +1,32 @@
+.seat-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.row-label {
+  width: 20px;
+  color: white;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  background: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+}
+
+.seat.selected {
+  background: #f59e0b;
+}
+
+.seat.booked {
+  background: #374151;
+  cursor: not-allowed;
+}
