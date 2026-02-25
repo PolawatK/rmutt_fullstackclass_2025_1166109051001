@@ -15,11 +15,7 @@ export const routes: Routes = [
     },
     {
         path: 'admin',
-        component: AdminLayout,
-        children: [
-        { path: 'dashboard', component: Dashboard},
-        { path: 'movie', component: Dashboard}
-        ],
+        loadChildren: () => import('./admin/admin-module').then(m => m.AdminModule)
     },
     {
         path: 'booking/:id', 
