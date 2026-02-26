@@ -1,16 +1,9 @@
 body{
-  color:#fff;
-  background-color: #010a18;
-  margin: 0;
+  background-color:#010a18;
 }
-.review{
-    font-weight: 700;
+.bgcard{
+  background-color:#010a18;
 }
-.head{
-    padding-left: 20px;
-    padding-top: 20px;
-}
-.review-container{
-    max-height: 100vh;
-  overflow-y: auto;
+.border{
+  border-radius: 16px solid #ffffff;
 }
