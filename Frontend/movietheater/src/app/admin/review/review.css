@@ -1,8 +1,16 @@
 body{
   color:#fff;
-  background-color: #080702;
-  
+  background-color: #010a18;
+  margin: 0;
 }
 .review{
     font-weight: 700;
+}
+.head{
+    padding-left: 20px;
+    padding-top: 20px;
+}
+.review-container{
+    max-height: 100vh;
+  overflow-y: auto;
 }
