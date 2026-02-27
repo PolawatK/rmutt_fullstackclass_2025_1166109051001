@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 export interface Review {
-  id: number;
-  user_name: string;
-  movie_name: string;
+  id: string;
+  user_id: string;
+  movie_id: string;
   rating: number;
   comment: string;
 }

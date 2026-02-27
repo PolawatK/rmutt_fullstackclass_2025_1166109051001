@@ -19,6 +19,7 @@ export class ReviewComponent implements OnInit {
     this.reviewService.getReviews().subscribe({
       next: (data) => {
         this.reviews = data;
+        console.log(this.reviews);
       },
       error: (err) => {
         console.error(err);

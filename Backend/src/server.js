@@ -7,7 +7,7 @@ const app = express();
 const cors = require('cors');
 const showtimeRoutes = require('./routes/showtime.routes');
 const screenRoutes = require('./routes/screen.routes');
-
+const reviewRoutes = require('./routes/review.routes');
 app.use(cors());
 app.use(express.json());
 const port = process.env.PORT || 5050;
@@ -20,6 +20,7 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/theaters', theaterRoutes);
 app.use('/api/showtimes', showtimeRoutes);
 app.use('/api/screens', screenRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 
 pool.query("SELECT 1")

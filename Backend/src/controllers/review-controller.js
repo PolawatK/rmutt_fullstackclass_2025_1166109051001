@@ -1,13 +1,10 @@
-const pool = require('../config/db');
+const reviewModel = require('../models/review.model');
 
 exports.getReviewData = async (req, res) => {
   try {
-    const { rows } = await pool.query(`
-      SELECT *
-      FROM reviews
-    `);
+    const data = await reviewModel.getReviewData(req, res);
 
-    res.json(rows);
+    res.json(data);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Load data failed' });
