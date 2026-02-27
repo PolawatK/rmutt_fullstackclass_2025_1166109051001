@@ -13,6 +13,13 @@ export interface showtimes {
   start_time:Date;
   price:number;
 }
+export interface ScreenWithShowtimes {
+  screen_id: string;
+  name: string;
+  location: string;
+  amenities: string;
+  showtimes: showtimes[];
+}
 
 @Injectable({
   providedIn: 'root'

@@ -22,6 +22,7 @@ export const routes: Routes = [
         { path: 'theatercrud', component: Theatercrud},
         { path: 'movie', component: Dashboard}
         ],
+        loadChildren: () => import('./admin/admin-module').then(m => m.AdminModule)
     },
     {
         path: 'booking/:id', 
