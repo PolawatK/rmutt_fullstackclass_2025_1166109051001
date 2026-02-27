@@ -1,9 +1,12 @@
 import { Component , ViewChild,ElementRef } from '@angular/core';
 import { Footer } from '../../share/footer/footer';
 import { Navbar } from '../../share/navbar/navbar';
+import { RouterLink } from '@angular/router';
+
+
 @Component({
   selector: 'app-home',
-  imports: [Footer, Navbar],
+  imports: [Footer, Navbar,RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

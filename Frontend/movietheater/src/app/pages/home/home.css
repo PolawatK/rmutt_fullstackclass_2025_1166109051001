@@ -27,20 +27,29 @@
 .movie-wrapper {
   position: relative;
   display: flex;
+  max-width: 88%;
   gap: 1rem;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 0 80px; 
+  padding: 0 60px; 
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+@media(max-width:992px){
+  .movie-wrapper{
+    padding: 0 20px;
+    max-width: 95%;
+  }
+}
+
 /* Chrome, Edge, Safari */
 .movie-wrapper::-webkit-scrollbar {
   display: none;              
 }
 
 .movie-card {
-  min-width: 220px;
+  min-width: 80px;
+  max-width: 220px;
   flex: 0 0 auto;
   height: 320px;
   border-radius: 15px;
@@ -49,6 +58,12 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
+@media(max-width:768px){
+  .movie-card{
+    min-width: 160px;
+  }
+}
+
 .poster{
   width:100%;
   height: 75%;
@@ -56,12 +71,17 @@
 }
 
 .scroll-btn{
+  width: 40px;
+  height: 45px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   transform: translateY(-50%);
   z-index: 999;
-  width: 60px;
-  height: 60%;
-  top: 20%;
+  top: 50%;
   transform: none;
   background: rgba(0,0,0,0.6);
   border: none;
@@ -79,6 +99,7 @@
   transform: translateY(-1%) scale(1.05);
 }
 
+
 .scroll-btn.left{
   left: 0px;
 }
@@ -87,3 +108,18 @@
 }
 
 /* card theaher */
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px rgba(0,0,0,.5);
+}
+
+.card-img-top {
+  height: 100px;
+  object-fit: cover;
+}

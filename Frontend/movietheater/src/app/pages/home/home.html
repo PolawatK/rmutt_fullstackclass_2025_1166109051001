@@ -10,7 +10,7 @@
         </span>
 
         <h1 class="fw-bold display-1">
-            cinema
+            Cinema
         </h1>
         <h2 class="fw-bold display-3">
             Cinema description
@@ -26,7 +26,7 @@
                 Browse Movies
             </a>
 
-            <a href="#" class="btn btn-outline-light btn-lg px-4">
+            <a routerLink="/theaters" class="btn btn-outline-light btn-lg px-4">
                 View Theaters
             </a>
         </div>
@@ -38,21 +38,21 @@
 <!-- card ongoing movie  -->
 <section class="py-4 position-relative bg-dark slider-section">
 
-    <div class="container-fluid px-4 position-relative">
+    <div class="container-fluid px-2 px-md-4 px-xl-5 position-relative">
 
-        <h4 class="mb-3 text-light">Now Showing</h4>
-        <span></span>
+        <div class="container-fluid d-flex justify-content-between"><span class="mb-3 text-light fw-bold h4">Now Showing</span> <span class="fw-lighter display-10">Veiw All</span></div>  
+        
 
 
 
         <!-- buttonScroll Container -->
-        <button class="scroll-btn left" (click)="scrollLeft(scrollContainer1)">‹</button>
+        <button class="btn scroll-btn left mx-1 d-none d-lg-flex" (click)="scrollLeft(scrollContainer1)">‹</button>
 
 
         <div #scrollContainer1 class="movie-wrapper">
 
             @for (item of items1; track $index) {
-            <div class="movie-card card">
+            <div class="movie-card card text-center">
                 <img [src]="item.image" class="poster">
 
                 <div class="card-body">
@@ -66,27 +66,29 @@
 
         </div>
 
-        <button class="scroll-btn right" (click)="scrollRight(scrollContainer1)">›</button>
+        <button class="scroll-btn right mx-1 d-none d-lg-flex" (click)="scrollRight(scrollContainer1)">›</button>
 
     </div>
+
+    
 
 </section>
 
 <!-- card coming soon  -->
 <section class="py-4 position-relative bg-dark">
+    
+    <div class="container-fluid px-2 px-md-4 px-xl-5 position-relative">
 
-    <div class="container-fluid px-4 position-relative">
-
-        <h4 class="mb-3 text-light">Coming soon</h4>
+        <div class="container-fluid d-flex justify-content-between"><span class="mb-3 text-light fw-bold h4">Coming soon</span><span class="fw-lighter display-10">View All</span></div>
 
         <!-- Scroll Container -->
-        <button class="scroll-btn left" (click)="scrollLeft(scrollContainer2)">‹</button>
+        <button class="btn scroll-btn left d-none d-lg-flex" (click)="scrollLeft(scrollContainer2)">‹</button>
 
         <div #scrollContainer2 class="movie-wrapper">
 
 
             @for (item of items1; track $index) {
-            <div class="movie-card card ">
+            <div class="movie-card card text-center">
                 <img [src]="item.image" class="poster">
 
                 <div class="card-body">
@@ -99,7 +101,7 @@
             }
 
         </div>
-        <button class="scroll-btn right" (click)="scrollRight(scrollContainer2)">›</button>
+        <button class="btn scroll-btn right d-none d-lg-flex" (click)="scrollRight(scrollContainer2)">›</button>
 
     </div>
 
@@ -112,25 +114,25 @@
 <section class="py-5 bg-dark">
   <div class="container-fluid">
 
-    <h3 class="text-light mb-4">Theaters</h3>
+    <div class="container-fluid d-flex justify-content-between"><span class="mb-3 text-light fw-bold h4">Theaters</span><span class="fw-lighter display-10">View All</span></div>
 
-    <div class="row g-4">
+    <div class="row g-2">
 
       @for (item of theater; track $index) {
-        <div class="col-12 col-md-6 col-lg-3">
-          <div class="card h-100 shadow-sm">
+        <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+          <div class="card h-100  shadow-sm bg-dark">
 
             <img 
               src="https://endlessicons.com/wp-content/uploads/2012/11/image-holder-icon-614x460.png"
               class="card-img-top"
             >
 
-            <div class="card-body">
-              <h5 class="card-title text-dark">
+            <div class="card-body text-center">
+              <h5 class="card-title text-light">
                 {{ item.name }}
               </h5>
 
-              <a href="#" class="btn btn-dark">
+              <a href="#" class="btn btn-outline-light mt-3">
                 View Details
               </a>
             </div>
