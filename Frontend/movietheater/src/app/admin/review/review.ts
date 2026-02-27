@@ -12,7 +12,9 @@ import { CommonModule } from '@angular/common';
 export class ReviewComponent implements OnInit {
 
   reviews: Review[] = [];
-
+  totalReviews = 0;
+  averageRating = 0;
+  
   constructor(private reviewService: ReviewService) {}
 
   ngOnInit(): void {
@@ -25,7 +27,27 @@ export class ReviewComponent implements OnInit {
         console.error(err);
       }
     });
+    this.reviewService.getReviews().subscribe(data => {
+    this.reviews = data;
+    this.totalReviews = this.reviews.length;
+    const totalScore = this.reviews.reduce(
+      (sum, r) => sum + r.rating,
+      0
+    );
+    this.averageRating =
+      this.totalReviews > 0
+        ? totalScore / this.totalReviews
+        : 0;
+    });
   }
+
+  getStars(rating: number): number[] {
+  return Array(rating).fill(0);
+  }
+
+  
+
+  
 }
 
 

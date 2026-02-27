@@ -3,6 +3,6 @@ const router = express.Router();
 const reviewController = require('../controllers/review-controller');
 
 
-router.get('/review', reviewController.getReviewData);
+router.get('/', reviewController.getReviewData);
 
-module.exports = router;
+module.exports = router;    

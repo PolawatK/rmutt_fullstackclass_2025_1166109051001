@@ -6,9 +6,11 @@ import { environment } from '../../environments/environment';
 export interface customer {
   id: number;
   user_name: string;
-  movie_name: string;
-  rating: number;
-  comment: string;
+  email: string;
+  phone: string;
+  role: string;
+  bookings: number;
+  total_spent: number;
 }
 
 @Injectable({

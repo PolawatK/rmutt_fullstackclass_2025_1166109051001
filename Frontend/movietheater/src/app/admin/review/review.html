@@ -3,11 +3,13 @@
     <div class="mb-4">
         <h2 class="text-light">Reviews</h2>
         <small class="text-secondary">
-            11 reviews - Average:
-            <span class="text-warning fw-semibold">4.5 / 5</span>
-        </small>
+                {{ totalReviews }} reviews - Average:
+                <span class="text-warning fw-semibold">
+                {{ averageRating | number:'1.1-1' }} / 5
+        </span>
+</small>
     </div>
-
+    @for (r of reviews; track $index){
     <div class="card bgcard border-secondary p-3">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start">
             <div class="d-flex">
@@ -16,25 +18,25 @@
                 </div>
                 <div>
                     <div>
-                        <span class="fw-bold">Alex Johnson</span>
+                        <span class="fw-bold">{{r.name}}</span>
                         <span class="text-secondary"> on </span>
-                        <span class="text-warning fw-semibold">Stellar Odyssey</span>
+                        <span class="text-warning fw-semibold">{{r.title}}</span>
                     </div>
-                    <small class="text-secondary">Sun, Feb 15</small>
+                    <small class="text-secondary">{{r.created_at | date:'yyyy-MM-dd'}}</small>
                     <p class="mt-2 mb-0 text-secondary">
-                        Absolutely breathtaking visuals and storytelling.
-                        A masterpiece of modern sci-fi cinema.
+                        {{r.comment}}
                     </p>
                 </div>
 
             </div>
             <div class="text-warning fs-5 mt-3 mt-md-0">
-                ⭐⭐⭐⭐⭐
+            @for (star of getStars(r.rating); track $index) {
+                ⭐    
+            }
             </div>
-
         </div>
-
     </div>
+}
 
 </div>
 <h1></h1>

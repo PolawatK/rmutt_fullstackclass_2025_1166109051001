@@ -9,6 +9,9 @@ export interface Review {
   movie_id: string;
   rating: number;
   comment: string;
+  title: string;
+  name: string;
+  created_at: Date;
 }
 
 @Injectable({
