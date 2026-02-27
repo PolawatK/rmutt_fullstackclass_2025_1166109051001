@@ -8,6 +8,7 @@ export const routes: Routes = [
         path: '',
         component: Home
     },
+
     {
         path: 'admin',
         component: AdminLayout,
@@ -16,6 +17,7 @@ export const routes: Routes = [
         { path: 'movie', component: Dashboard}
         ],
     },
+    
     {
         path: 'booking', 
         loadChildren: () => import('./booking/booking-module').then(m => m.BookingModule)
