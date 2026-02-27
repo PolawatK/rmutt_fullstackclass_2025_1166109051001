@@ -10,6 +10,7 @@ export class Navbar {
      menuValue = false;
 
       toggle() {
-        this.menuValue = !this.menuValue;
+       this.menuValue = !this.menuValue;
+       
       }
 }

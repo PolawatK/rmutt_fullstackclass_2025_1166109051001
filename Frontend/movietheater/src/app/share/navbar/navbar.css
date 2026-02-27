@@ -1,14 +1,25 @@
 
+body {
+    padding-top: 70px;
+}
+
 header {
     background-color: #000000;
     border-bottom: 1px solid rgb(255, 255, 255);
     padding: 0px 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10000;
 }
 
 .nav-wrapper {
+    position: relative;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    height: 70px;
 }
 
 .logo-section {
@@ -33,9 +44,12 @@ header {
     color: #fbbf24;
 }
 
+body.menu-open {
+  overflow: hidden;
+}
 
 .desktop-menu {
-    margin: 0px;
+  display: flex;
 }
 
 .desktop-menu ul {
@@ -114,91 +128,53 @@ header {
     cursor: pointer;
 }
 
-
-@media (max-width: 768px) {
-    
-    header {
-    height: 75px;
-  }
-
-    .nav-wrapper {
-    height: 75px;
-  }
-
-    .desktop-menu {
-        position: fixed;
-        top: 75px;
-        right: -100%;
-        width: 50%;
-        height: 100vh;
-        background-color: #000000;
-        transition: 0.3s ease;
-    }
-
-    .desktop-menu.mobile-open {
-        right: 0;
-    }
-
-    .desktop-menu ul {
-        flex-direction: column;
-        align-items: center; 
-    }
-
-    .desktop-menu ul li{  
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        width: 100%;
-        text-align: center;
-        display:block;
-    }
-
-    .menu {
-        display: block;
-    }
-
-    .admin-link {
-        display: none;
-    }
-    
-    .profile-icon {
-        display: none;
-    }
-}
-
 .mobile-profile {
     display: none;
 }
 
 @media (max-width: 768px) {
 
-    .profile-link {
-        display: none;
-    }
+  .menu {
+      display: block;
+  }
 
-    .mobile-profile {
-        display: block;
-        margin-bottom: 10px;
-    }
+  .desktop-menu {
+    position: fixed;
+    top: 70px;     
+    right: -100%;
+    width: 260px;
+    height: calc(100vh - 70px);
+    background: #000000;
+    transition: right 0.3s ease;
 
-    .mobile-profile-box {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 50px;
-        display: block;
-    }
+  }
 
-    .mobile-profile-box span {
-        color: white;
-        font-weight: 500;
-    }
+  .desktop-menu.mobile-open {
+    right: 0;
+  }
 
-    .mobile-profile-box img {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        border: 2px solid #ffc107;
-        margin-right: 10px; 
-    }
-    
+  .desktop-menu ul {
+    flex-direction: column;
+  }
 
+  .desktop-menu ul li {
+    padding: 15px 50px;
+    border-bottom: 1px solid #1e293b;
+  }
+
+  .profile-link {
+    display: none;
+  }
+
+  .mobile-profile {
+    display: block;
+    padding: 20px;
+    border-bottom: 1px solid #1e293b;
+  }
+
+  .mobile-profile-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 }
