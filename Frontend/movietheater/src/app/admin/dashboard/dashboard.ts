@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { MovieService,Movie } from '../../services/movie.service';
+import { AdminRoutingModule } from "../admin-routing";
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [AdminRoutingModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
