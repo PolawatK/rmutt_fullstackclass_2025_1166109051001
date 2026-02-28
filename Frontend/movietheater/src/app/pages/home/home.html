@@ -1,5 +1,151 @@
 <app-navbar></app-navbar>
 
-<p>ฟูสู้ๆนะครับ</p>
+<section class="landing-page align-items-center d-flex bg-dark">
+    <div class="overlay"></div>
+
+    <div class="container text-center text-light position-relative">
+
+        <span class="badge bg-warning px-3 py-2 mb-4">
+            welcome
+        </span>
+
+        <h1 class="fw-bold display-1">
+            Cinema
+        </h1>
+        <h2 class="fw-bold display-3">
+            Cinema description
+        </h2>
+
+        <p class="lead mt-4 mb-5">
+            Browse the latest movies, pick your perfect seats,
+            and book tickets instantly.
+        </p>
+
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#" class="btn btn-warning btn-lg px-4">
+                Browse Movies
+            </a>
+
+            <a routerLink="/theaters" class="btn btn-outline-light btn-lg px-4">
+                View Theaters
+            </a>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- card ongoing movie  -->
+<section class="py-4 position-relative bg-dark slider-section">
+
+    <div class="container-fluid px-2 px-md-4 px-xl-5 position-relative">
+
+        <div class="container-fluid d-flex justify-content-between"><span class="mb-3 text-light fw-bold h4">Now Showing</span> <span class="fw-lighter display-10">Veiw All</span></div>  
+        
+
+
+
+        <!-- buttonScroll Container -->
+        <button class="btn scroll-btn left mx-1 d-none d-lg-flex" (click)="scrollLeft(scrollContainer1)">‹</button>
+
+
+        <div #scrollContainer1 class="movie-wrapper">
+
+            @for (item of items1; track $index) {
+            <div class="movie-card card text-center">
+                <img [src]="item.image" class="poster">
+
+                <div class="card-body">
+                    <h6>{{ item.title }}</h6>
+                    <a [href]="" class="btn btn-sm btn-dark">
+                        Detail
+                    </a>
+                </div>
+            </div>
+            }
+
+        </div>
+
+        <button class="scroll-btn right mx-1 d-none d-lg-flex" (click)="scrollRight(scrollContainer1)">›</button>
+
+    </div>
+
+    
+
+</section>
+
+<!-- card coming soon  -->
+<section class="py-4 position-relative bg-dark">
+    
+    <div class="container-fluid px-2 px-md-4 px-xl-5 position-relative">
+
+        <div class="container-fluid d-flex justify-content-between"><span class="mb-3 text-light fw-bold h4">Coming soon</span><span class="fw-lighter display-10">View All</span></div>
+
+        <!-- Scroll Container -->
+        <button class="btn scroll-btn left d-none d-lg-flex" (click)="scrollLeft(scrollContainer2)">‹</button>
+
+        <div #scrollContainer2 class="movie-wrapper">
+
+
+            @for (item of items1; track $index) {
+            <div class="movie-card card text-center">
+                <img [src]="item.image" class="poster">
+
+                <div class="card-body">
+                    <h6 class="text-light">{{ item.title }}</h6>
+                    <a [href]="" class="btn btn-sm btn-dark">
+                        Detail
+                    </a>
+                </div>
+            </div>
+            }
+
+        </div>
+        <button class="btn scroll-btn right d-none d-lg-flex" (click)="scrollRight(scrollContainer2)">›</button>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- card theater -->
+<section class="py-5 bg-dark">
+  <div class="container">
+
+    <div class="d-flex justify-content-between">
+        <span class="mb-3 text-light fw-bold h4">Theaters</span>
+        <a routerLink="/theaters"><span class="fw-lighter display-10">View All</span></a>
+    </div>
+
+    <div class="row g-2">
+
+      @for (item of theater; track $index) {
+        <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+          <div class="theater-card card h-100 shadow-sm">
+
+            <img 
+              src="https://endlessicons.com/wp-content/uploads/2012/11/image-holder-icon-614x460.png"
+              class="card-img-top"
+            >
+
+            <div class="card-body text-center">
+              <h5 class="card-title text-light">
+                {{ item.name }}
+              </h5>
+
+              <a href="#" class="btn btn-dark mt-3">
+                View Details
+              </a>
+            </div>
+
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</section>
 
 <app-footer></app-footer>

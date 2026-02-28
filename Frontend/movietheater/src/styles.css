@@ -8,6 +8,7 @@
   --main-bg-color: #010a18;
   --text-color: #fff;
   --highlight-color: #ffa500;
+  --card-color: linear-gradient(180deg, #0b0f17, #0d111a);
 }
 * {
   box-sizing: border-box;
