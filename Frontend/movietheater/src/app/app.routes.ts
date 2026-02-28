@@ -4,6 +4,7 @@ import { Dashboard } from './admin/dashboard/dashboard';
 import { AdminLayout } from './admin/admin-layout/admin-layout';
 import { Theaters } from './pages/theaters/theaters';
 import { Customers } from './admin/customers/customers';
+import { Authentication } from './authentication/authentication';
 import { ReviewComponent } from './admin/review/review';
 export const routes: Routes = [
     {
@@ -14,6 +15,10 @@ export const routes: Routes = [
     {
         path: 'theaters',
         component: Theaters
+    },
+    {
+        path: 'regislog',
+        component: Authentication
     },
     {
         path: 'admin',

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auth Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="authentication.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="container">
+    <!-- Brand -->
+    <div class="brand">
+      <span class="brand-name">โรงหนังมาพรม</span>
+    </div>
+
+    <!-- Card -->
+    <div class="card">
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" id="tab-login" onclick="switchTab('login')">Sign In</button>
+        <button class="tab" id="tab-register" onclick="switchTab('register')">Sign Up</button>
+        <div class="tab-slider" id="tab-slider"></div>
+      </div>
+
+      <!-- Login Form -->
+      <div class="form-wrapper active" id="form-login">
+        <form onsubmit="return false;">
+          <div class="field">
+            <label>Email</label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 20 20" fill="none">
+                <path d="M3 5h14l-7 7L3 5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <rect x="3" y="5" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <input type="email" placeholder="you@example.com" />
+            </div>
+          </div>
+          <div class="field">
+            <label>
+              Password
+              <a href="#" class="forgot">Forgot?</a>
+            </label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 20 20" fill="none">
+                <rect x="5" y="9" width="10" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M7 9V6.5a3 3 0 016 0V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <input type="password" id="login-pass" placeholder="••••••••" />
+              <button type="button" class="eye-btn" onclick="togglePass('login-pass', this)">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M1 10s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="remember-row">
+            <label class="checkbox-label">
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+              Remember me
+            </label>
+          </div>
+          <button type="submit" class="btn-primary">
+            <span>Sign In</span>
+            <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Register Form -->
+      <div class="form-wrapper" id="form-register">
+        <div class="form-header">
+          <h2>Create account</h2>
+          <p>Join us and get started today</p>
+        </div>
+        <form onsubmit="return false;">
+          <div class="fields-row">
+            <div class="field">
+              <label>First Name</label>
+              <div class="input-wrap">
+                <svg class="input-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 17c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <input type="text" placeholder="John" />
+              </div>
+            </div>
+            <div class="field">
+              <label>Last Name</label>
+              <div class="input-wrap">
+                <input type="text" placeholder="Doe" style="padding-left:1rem"/>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 20 20" fill="none"><path d="M3 5h14l-7 7L3 5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="3" y="5" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+              <input type="email" placeholder="you@example.com" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 20 20" fill="none"><rect x="5" y="9" width="10" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <input type="password" id="reg-pass" placeholder="Min. 8 characters" />
+              <button type="button" class="eye-btn" onclick="togglePass('reg-pass', this)">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M1 10s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
+              </button>
+            </div>
+            <div class="strength-bar" id="strength-bar">
+              <div class="strength-fill" id="strength-fill"></div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Confirm Password</label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 20 20" fill="none"><path d="M7 10l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="3" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/></svg>
+              <input type="password" placeholder="Repeat password" />
+            </div>
+          </div>
+          <label class="checkbox-label terms">
+            <input type="checkbox" />
+            <span class="checkmark"></span>
+            I agree to the <a href="#">Terms</a> &amp; <a href="#">Privacy Policy</a>
+          </label>
+          <button type="submit" class="btn-primary">
+            <span>Create Account</span>
+            <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tab) {
+      const loginForm = document.getElementById('form-login');
+      const registerForm = document.getElementById('form-register');
+      const tabLogin = document.getElementById('tab-login');
+      const tabRegister = document.getElementById('tab-register');
+      const slider = document.getElementById('tab-slider');
+
+      if (tab === 'login') {
+        loginForm.classList.add('active');
+        registerForm.classList.remove('active');
+        tabLogin.classList.add('active');
+        tabRegister.classList.remove('active');
+        slider.style.transform = 'translateX(0)';
+      } else {
+        registerForm.classList.add('active');
+        loginForm.classList.remove('active');
+        tabRegister.classList.add('active');
+        tabLogin.classList.remove('active');
+        slider.style.transform = 'translateX(100%)';
+      }
+    }
+
+    function togglePass(id, btn) {
+      const input = document.getElementById(id);
+      const isHidden = input.type === 'password';
+      input.type = isHidden ? 'text' : 'password';
+      btn.style.color = isHidden ? 'var(--highlight-color)' : '';
+    }
+
+    // Password strength
+    const regPass = document.getElementById('reg-pass');
+    const strengthFill = document.getElementById('strength-fill');
+    if (regPass) {
+      regPass.addEventListener('input', () => {
+        const val = regPass.value;
+        let score = 0;
+        if (val.length >= 8) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+        const colors = ['#ef4444','#f97316','#eab308','#22c55e'];
+        const widths = ['25%','50%','75%','100%'];
+        strengthFill.style.width = score > 0 ? widths[score-1] : '0';
+        strengthFill.style.background = score > 0 ? colors[score-1] : 'transparent';
+      });
+    }
+
+    // Input focus effects
+    document.querySelectorAll('.input-wrap input').forEach(input => {
+      input.addEventListener('focus', () => input.closest('.input-wrap').classList.add('focused'));
+      input.addEventListener('blur', () => input.closest('.input-wrap').classList.remove('focused'));
+    });
+  </script>
+</body>
+</html>

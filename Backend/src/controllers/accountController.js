@@ -3,6 +3,11 @@ const authService = require('../services/auth.service');
 
 module.exports = {
 
+  async getAllUsers(req, res) {
+    const users = await accountService.getAllUsers();
+    res.json(users);
+  },
+  
   async getAccount(req, res) {
     const accounts = await accountService.getAllAccounts();
     res.json(accounts);
