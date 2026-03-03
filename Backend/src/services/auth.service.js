@@ -13,11 +13,7 @@ module.exports = {
     if (!user) {
       throw { status: 400, message: 'Invalid email or password' };
     }
-
-    if (user.role_id !== 1) {
-      throw { status: 403, message: 'User is not an admin' };
-    }
-
+    
     return this.generateTokens(user);
   },
 
