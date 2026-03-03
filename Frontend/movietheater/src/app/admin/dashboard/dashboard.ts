@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MovieService,Movie } from '../../services/movie.service';
+import { DashboardService,Movie } from '../../services/dashboard.service';
 import { AdminRoutingModule } from "../admin-routing";
 @Component({
   selector: 'app-dashboard',
@@ -10,10 +10,10 @@ import { AdminRoutingModule } from "../admin-routing";
 export class Dashboard {
 movies: Movie[] = [];
 
-  constructor(private MvService: MovieService) {}
+  constructor(private DbService: DashboardService) {}
 
   ngOnInit(): void {
-    this.MvService.getAllMovies().subscribe({
+    this.DbService.getAllMovies().subscribe({
       next: (data) => {
         console.log('Data from backend:', data);
         this.movies = data;
