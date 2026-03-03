@@ -43,7 +43,6 @@ groupData(data: any[]) {
         showtimes: []
       };
     }
-
     grouped[item.screen_id].showtimes.push(item);
   });
 

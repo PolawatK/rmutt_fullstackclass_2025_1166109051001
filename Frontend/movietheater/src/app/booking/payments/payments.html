@@ -1,1 +1,21 @@
-<p>payments works!</p>
+<h2>Payment</h2>
+@if (showtime) {
+<div>
+    <p>Movie: {{ showtime.movie_title }}</p>
+    <p>Screen: {{ showtime.screen_name }}</p>
+    <p>Time: {{ showtime.start_time | date:'short' }}</p>
+</div>
+}
+
+<div>
+    <p>Seats:</p>
+    <ul>
+        @for (seat of seats; track $index) {
+        <li>
+            {{ seat.row_label }}{{ seat.seat_number }}
+        </li>
+        }
+    </ul>
+</div>
+
+<p>Total: {{ getTotal() }} THB</p>
