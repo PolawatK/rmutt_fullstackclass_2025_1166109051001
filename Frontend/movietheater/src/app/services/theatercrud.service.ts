@@ -9,25 +9,36 @@ export interface TheaterScreen {
   name: string;
   location: string;
   amenities: string;
-
   total_seats: number;
   normal_count: number;
   premium_count: number;
   vip_count: number;
 }
 
+export interface TheaterScreenCreate {
+  name: string;
+  location: string;
+  amenities: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class theatercrudService {
 
   // ตรง theater ยังไม่แก้ 
-  private apiUrl = `${environment.apiUrl}/theaters`;
+  private apiUrl = `${environment.apiUrl}/theatercrud`;
 
   constructor(private http: HttpClient,private router: Router) {}
 
 
   getAllTheaterScreens(): Observable<TheaterScreen[]> {
     return this.http.get<TheaterScreen[]>(this.apiUrl);
+  }
+
+  
+  AddTheaterScreen(screenData: any): Observable<TheaterScreen> {
+    return this.http.post<TheaterScreen>(`${this.apiUrl}/add`, screenData);
   }
 }
