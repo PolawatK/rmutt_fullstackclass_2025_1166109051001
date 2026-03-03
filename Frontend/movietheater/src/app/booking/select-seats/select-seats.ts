@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BookingService,Seat,ShowtimeDetail } from '../../services/booking.service';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-select-seats',
   imports: [DatePipe ],
@@ -18,19 +19,21 @@ export class SelectSeats implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private router: Router
   ) {}
-  ngOnInit() {
+
+
+ngOnInit() {
     this.showtimeId = this.route.snapshot.paramMap.get('id')!;
     this.loadData();
   }
 
- loadData() {
+
+loadData() {
     this.bookingService.getShowtime(this.showtimeId)
       .subscribe(data => {
         this.showtime = data;
-
-        // โหลด seats หลังรู้ screen_id
         this.bookingService.getSeats((data as any).screen_id)
           .subscribe(seats => this.seats = seats);
       });
@@ -38,7 +41,7 @@ export class SelectSeats implements OnInit {
     this.bookingService.getBookedSeats(this.showtimeId)
       .subscribe(data => this.bookedSeats = data);
   }
-  toggleSeat(seat: Seat) {
+toggleSeat(seat: Seat) {
   if (this.isBooked(seat.id)) return;
 
   const index = this.selectedSeats.findIndex(s => s.id === seat.id);
@@ -50,7 +53,7 @@ export class SelectSeats implements OnInit {
   }
 }
 
-  isBooked(seatId: string) {
+isBooked(seatId: string) {
   return this.bookedSeats.includes(seatId);
 }
 
@@ -58,24 +61,31 @@ isSelected(seatId: string) {
   return this.selectedSeats.some(s => s.id === seatId);
 }
 
-  getTotal() {
+getTotal() {
     return this.selectedSeats.length * this.showtime.price;
   }
-  //******* */
-  get groupedSeats(): { row: string; seats: Seat[] }[] {
 
+get groupedSeats(): { row: string; seats: Seat[] }[] {
   const groups: { [key: string]: Seat[] } = {};
-
   for (const seat of this.seats) {
     if (!groups[seat.row_label]) {
       groups[seat.row_label] = [];
     }
     groups[seat.row_label].push(seat);
   }
-
   return Object.keys(groups).map(row => ({
     row,
     seats: groups[row]
   }));
+}
+
+goToPayment() {
+  this.router.navigate(['payments'], {
+    relativeTo: this.route,
+    state: {
+      showtime: this.showtime,
+      seats: this.selectedSeats
+    }
+  });
 }
 }
