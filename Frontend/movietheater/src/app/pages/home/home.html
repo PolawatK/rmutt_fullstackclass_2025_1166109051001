@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
 
+<!-- landing page -->
 <section class="landing-page align-items-center d-flex bg-dark">
     <div class="overlay"></div>
 
@@ -112,7 +113,7 @@
 
 <!-- card theater -->
 <section class="py-5 bg-dark">
-  <div class="container">
+  <div class="container-fluid">
 
     <div class="d-flex justify-content-between">
         <span class="mb-3 text-light fw-bold h4">Theaters</span>
@@ -123,7 +124,7 @@
 
       @for (item of theater; track $index) {
         <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-          <div class="theater-card card h-100 shadow-sm">
+          <div class="theater-card card  shadow-sm">
 
             <img 
               src="https://endlessicons.com/wp-content/uploads/2012/11/image-holder-icon-614x460.png"

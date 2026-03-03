@@ -60,6 +60,44 @@ scrollLeft(container: HTMLElement) {
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpM4UVhH8EiRHwevbx2vw1MK7pNK5VzYo1aQ&s',
       title: 'Movie 1',
       description: 'Description of Movie 1'
+    },{
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdLg0DZlN8b8Y_LoC2lpUrtBmxzcPPdfPWA&s',
+      title: 'Movie 1',
+      description: 'Description of Movie 1'
+    },
+    {
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSooTWufA5l-rDG6r7B-5rcvFXj4Z4w8eFwXg&s',
+      title: 'Movie 1',
+      description: 'Description of Movie 1'
+    },
+    {
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdcf3Ls86pJ2rMyEe1kkJmAzbhZnmXVUiBA&s',
+      title: 'Movie 1',
+      description: 'Description of Movie 1'
+    },
+    {
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpM4UVhH8EiRHwevbx2vw1MK7pNK5VzYo1aQ&s',
+      title: 'Movie 1',
+      description: 'Description of Movie 1'
+    },{
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdLg0DZlN8b8Y_LoC2lpUrtBmxzcPPdfPWA&s',
+      title: 'Movie 1',
+      description: 'Description of Movie 1'
+    },
+    {
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSooTWufA5l-rDG6r7B-5rcvFXj4Z4w8eFwXg&s',
+      title: 'Movie 1',
+      description: 'Description of Movie 1'
+    },
+    {
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdcf3Ls86pJ2rMyEe1kkJmAzbhZnmXVUiBA&s',
+      title: 'Movie 1',
+      description: 'Description of Movie 1'
+    },
+    {
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpM4UVhH8EiRHwevbx2vw1MK7pNK5VzYo1aQ&s',
+      title: 'Movie 1',
+      description: 'Description of Movie 1'
     },
     
   ]
@@ -67,5 +105,7 @@ scrollLeft(container: HTMLElement) {
   movies: any[] = [];
 
   constructor() {}
+
+  
 
 }
