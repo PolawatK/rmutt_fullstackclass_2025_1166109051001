@@ -30,6 +30,7 @@ app.use('/api/screens', screenRoutes);
 app.use('/api/review', reviewRoutes);
 app.use('/api/customers', customerRoutes);
 app.use('/api/bookingcrud', bookingRoute);
+app.use('/api/theatercrud', theatercrudRoutes);
 
 pool.query("SELECT 1")
   .then(() => console.log("✅ Database connected"))
