@@ -9,6 +9,7 @@ const showtimeRoutes = require('./routes/showtime.routes');
 const screenRoutes = require('./routes/screen.routes');
 const reviewRoutes = require('./routes/review-routes');
 const customerRoutes = require('./routes/customers-routes');
+
 const bookingRoutes = require('./routes/booking.routes');
 const bookingRoute = require('./routes/bookingcrud.route');
 
