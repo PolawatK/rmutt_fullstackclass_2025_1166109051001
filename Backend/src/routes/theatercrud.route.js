@@ -4,6 +4,6 @@ const theaterController = require('../controllers/theatercrud.controller');
 
 
 router.get('/', theaterController.getTheaterScreen);
-router.post('/add', theaterController.addTheaterScreen);
+//router.post('/add', theaterController.addTheaterScreen);
 
 module.exports = router;

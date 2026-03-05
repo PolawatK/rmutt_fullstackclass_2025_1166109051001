@@ -15,6 +15,7 @@ export interface TheaterScreen {
   vip_count: number;
 }
 
+//add addiotional
 export interface TheaterScreenCreate {
   name: string;
   location: string;

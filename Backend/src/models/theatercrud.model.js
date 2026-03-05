@@ -19,6 +19,5 @@ exports.getTheaterScreen = async (req, res) => {
         GROUP BY s.id, s.name, s.location, s.amenities
         ORDER BY s.id;
     `);
-
   return rows;
 };
