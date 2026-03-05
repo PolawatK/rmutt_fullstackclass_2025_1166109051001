@@ -9,12 +9,9 @@ const showtimeRoutes = require('./routes/showtime.routes');
 const screenRoutes = require('./routes/screen.routes');
 const reviewRoutes = require('./routes/review-routes');
 const customerRoutes = require('./routes/customers-routes');
-<<<<<<< HEAD
 const bookingRoutes = require('./routes/booking.routes');
-=======
 const bookingRoute = require('./routes/bookingcrud.route');
 
->>>>>>> Theater-(Mark)
 app.use(cors());
 app.use(express.json());
 
