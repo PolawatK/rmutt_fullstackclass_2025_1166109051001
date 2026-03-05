@@ -1,0 +1,44 @@
+<div class="container">
+  <h2>Bookings</h2>
+  <div class="subtitle">All ticket bookings across CineVault</div>
+
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Movie</th>
+          <th>Showtime</th>
+          <th>Seats</th>
+          <th>Total</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (b of bookingscurd; track b.id) {
+          <tr>
+            <td>{{ b.customer }}</td>
+            <td>{{ b.movie }}</td>
+            <td>{{ b.start_time | date:'short' }}</td>
+            <td>{{ b.total_seats }}</td>
+            <td class="price">
+              {{ b.total_price | currency:'THB' }}
+            </td>
+            <td>
+              <span
+                class="badge"
+                [ngClass]="{
+                  'paid': b.status === 'PAID',
+                  'pending': b.status === 'PENDING',
+                  'cancelled': b.status === 'CANCELLED'
+                }">
+                {{ b.status }}
+              </span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

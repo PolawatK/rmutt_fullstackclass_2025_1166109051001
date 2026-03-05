@@ -27,5 +27,7 @@
     </div>
 
     }
-
+    <button class="btn btn-primary" [disabled]="selectedSeats.length === 0" (click)="goToPayment()">
+        Confirm
+    </button>
 </div>

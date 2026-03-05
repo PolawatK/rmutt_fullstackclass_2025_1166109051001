@@ -4,5 +4,4 @@ const theaterController = require('../controllers/theater-controller');
 
 
 router.get('/', theaterController.getshowtime);
-
 module.exports = router;

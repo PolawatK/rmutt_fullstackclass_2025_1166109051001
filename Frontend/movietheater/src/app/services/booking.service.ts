@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
 export interface ShowtimeDetail {
-  showtime_id: string;
+  id: string;
   movie_title: string;
   screen_name: string;
   start_time: Date;
@@ -34,5 +34,8 @@ export class BookingService {
 
   getBookedSeats(showtimeId: string) {
     return this.http.get<string[]>(`${this.apiUrl}/showtimes/${showtimeId}/booked-seats`);
+  }
+  createBooking(data: {showtime_id: string; seats: string[];}) {
+  return this.http.post(`${this.apiUrl}/bookings`, data);
   }
 }

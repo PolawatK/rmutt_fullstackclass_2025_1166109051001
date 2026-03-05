@@ -42,30 +42,46 @@ export class AuthInterceptor implements HttpInterceptor {
         });
     }
 
-    private handle401Error(req: HttpRequest<any>, next: HttpHandler){
-        if(!this.isRefreshing){
+    private handle401Error(req: HttpRequest<any>, next: HttpHandler) {
+        if (!this.isRefreshing) {
+
             this.isRefreshing = true;
             this.refreshTokenSubject.next(null);
 
-            return this.auth.refreshToken().pipe(
+            const refreshToken = this.auth.getRefreshToken();
+
+            if (!refreshToken) {
+                this.auth.logout();
+                return throwError(() => new Error('No refresh token'));
+            }
+
+            return this.auth.refreshToken(refreshToken).pipe(
                 switchMap(res => {
+
                     this.isRefreshing = false;
-                    this.auth.setTokens(res.access_token);
+
+                    // เก็บ token ใหม่ทั้ง access + refresh
+                    this.auth.setTokens(res.access_token, res.refresh_token);
+
                     this.refreshTokenSubject.next(res.access_token);
-                    return next.handle(this.addToken(req, res.access_token));
+
+                    return next.handle(
+                        this.addToken(req, res.access_token)
+                    );
                 }),
                 catchError(err => {
                     this.isRefreshing = false;
                     this.auth.logout();
-                    return throwError(() => err)
+                    return throwError(() => err);
                 })
             );
         }
-
         return this.refreshTokenSubject.pipe(
             filter(token => token !== null),
             take(1),
-            switchMap(token => next.handle(this.addToken(req, token!)))
-        )
+            switchMap(token =>
+                next.handle(this.addToken(req, token!))
+            )
+        );
     }
 }  

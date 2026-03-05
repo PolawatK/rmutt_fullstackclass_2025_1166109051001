@@ -7,14 +7,14 @@ function authenticateToken(req, res, next){
 
     const token = authHeader.split(' ')[1];
     jwt.verify(token, jwtConfig.secret, (err, decoded) => {
-        if (err) return res.status(401).json({ error: 'Invalid token'});
+        if (err) return res.status(403).json({ error: 'Invalid token'});
         req.user = decoded;
         next();
     });
 }
 
 function authenticateAdmin(req, res, next){
-    if (!req.user || req.user.role_id !== 2){
+    if (!req.user || req.user.role_id !== 1){
         return res.status(403).json({ error: 'Admin only access' });
     }
     next();

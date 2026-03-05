@@ -1,0 +1,62 @@
+const  pool  = require('../config/db');
+
+const createBooking = async (userId, showtimeId, seats) => {
+  const client = await pool.connect();
+
+  try {
+    await client.query('BEGIN');
+    const showtimeResult = await client.query(
+      `SELECT price FROM showtimes WHERE id = $1`,
+      [showtimeId]
+    );
+    if (showtimeResult.rows.length === 0) {
+      throw new Error('Showtime not found');
+    }
+    const price = showtimeResult.rows[0].price;
+    const totalPrice = price * seats.length;
+    const existingSeats = await client.query(
+      `
+      SELECT seat_id
+      FROM booking_seats
+      WHERE showtime_id = $1
+      AND seat_id = ANY($2)
+      `,
+      [showtimeId, seats]
+    );
+
+    if (existingSeats.rows.length > 0) {
+      throw new Error('Some seats are already booked');
+    }
+    const bookingResult = await client.query(
+      `
+      INSERT INTO bookings (user_id, showtime_id, total_price, status, created_at)
+      VALUES ($1, $2, $3, 'CONFIRMED', NOW())
+      RETURNING id
+      `,
+      [userId, showtimeId, totalPrice]
+    );
+
+    const bookingId = bookingResult.rows[0].id;
+    for (const seatId of seats) {
+      await client.query(
+        `
+        INSERT INTO booking_seats (booking_id, seat_id, showtime_id)
+        VALUES ($1, $2, $3)
+        `,
+        [bookingId, seatId, showtimeId]
+      );
+    }
+    await client.query('COMMIT');
+    return bookingId;
+
+  } catch (error) {
+    await client.query('ROLLBACK');
+    throw error;
+  } finally {
+    client.release();
+  }
+};
+
+module.exports = {
+  createBooking
+};

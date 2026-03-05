@@ -9,22 +9,27 @@ const showtimeRoutes = require('./routes/showtime.routes');
 const screenRoutes = require('./routes/screen.routes');
 const reviewRoutes = require('./routes/review-routes');
 const customerRoutes = require('./routes/customers-routes');
+const bookingRoutes = require('./routes/booking.routes');
+const bookingRoute = require('./routes/bookingcrud.route');
 const theatercrudRoutes = require('./routes/theatercrud.route');
 app.use(cors());
 app.use(express.json());
+
+
 const port = process.env.PORT || 5050;
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
+app.use('/api/bookings', bookingRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/theaters', theaterRoutes);
 app.use('/api/showtimes', showtimeRoutes);
 app.use('/api/screens', screenRoutes);
 app.use('/api/review', reviewRoutes);
 app.use('/api/customers', customerRoutes);
-app.use('/api/theatercrud', theatercrudRoutes);
+app.use('/api/bookingcrud', bookingRoute);
 
 pool.query("SELECT 1")
   .then(() => console.log("✅ Database connected"))

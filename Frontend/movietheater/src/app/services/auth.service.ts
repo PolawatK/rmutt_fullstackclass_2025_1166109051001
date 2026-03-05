@@ -1,49 +1,76 @@
-import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-@Injectable({ providedIn: 'root'})
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
-    private API = 'http://localhost:3000';
 
-    constructor(private http: HttpClient){}
+  private apiUrl = 'http://localhost:5050/api';
 
-    getAccessToken(){
-        return localStorage.getItem('access_token');
+  constructor(private http: HttpClient) {}
+
+  // ========================
+  // API CALLS
+  // ========================
+
+  login(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, data);
+  }
+
+  register(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, data);
+  }
+
+  refreshToken(refreshToken: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/refresh`, {
+      refresh_token: refreshToken
+    });
+  }
+
+  // ========================
+  // TOKEN MANAGEMENT
+  // ========================
+
+  setTokens(accessToken: string, refreshToken?: string) {
+    localStorage.setItem('access_token', accessToken);
+    if (refreshToken) {
+      localStorage.setItem('refresh_token', refreshToken);
     }
-    
-    getrefreshToken(){
-        return localStorage.getItem('refresh_token');
-    }
+  }
 
-    setTokens(accessToken: string, refreshToken?: string){
-        localStorage.setItem('access_token', accessToken);
-        if(refreshToken){
-            localStorage.setItem('refresh_token', refreshToken);
-        }
-    }
+  getAccessToken(): string | null {
+    return localStorage.getItem('access_token');
+  }
 
-    refreshToken(){
-        return this.http.post<{ access_token: string }>(
-            `${environment.apiUrl}/refresh`,
-            { refresh_token: this.getrefreshToken()}
-        );
-    }
+  getRefreshToken(): string | null {
+    return localStorage.getItem('refresh_token');
+  }
 
-    logout(){
-        localStorage.clear();
-    }
+  logout() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+  }
 
-    isLoggedIn(): boolean{
-        return !!this.getAccessToken();
-    }
+  isLoggedIn(): boolean {
+    return !!this.getAccessToken();
+  }
 
-    getRoleId(): number | null {
-        const token = this.getAccessToken();
-        if (!token) return null;
+  // ========================
+  // ROLE (decode JWT)
+  // ========================
 
-        const payload = JSON.parse(atob(token.split('.')[1]))
-        return payload.role_id ?? null;
+  getRoleId(): number | null {
+    const token = this.getAccessToken();
+    if (!token) return null;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.role_id || null;
+    } catch {
+      return null;
     }
-   
+  }
+
 }

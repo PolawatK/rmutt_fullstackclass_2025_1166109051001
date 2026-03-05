@@ -13,7 +13,7 @@ export interface Movie {
 @Injectable({
   providedIn: 'root'
 })
-export class MovieService {
+export class DashboardService {
 
   private apiUrl = `${environment.apiUrl}/dashboard`;
 
