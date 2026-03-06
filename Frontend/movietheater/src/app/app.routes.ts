@@ -9,6 +9,7 @@ import { Authentication } from './authentication/authentication';
 import { ReviewComponent } from './admin/review/review';
 import { Bookingcrud} from './admin/bookingcrud/bookingcrud';
 import { Moviecrud } from './admin/moviecrud/moviecrud';
+import { Movies } from './pages/movies/movies';
 export const routes: Routes = [
     {
         path: '',
@@ -22,6 +23,10 @@ export const routes: Routes = [
     {
         path: 'regislog',
         component: Authentication
+    },
+    {
+        path: 'movies',
+        component: Movies
     },
     {
         path: 'admin',
