@@ -1,7 +1,9 @@
-import { Component , ViewChild,ElementRef } from '@angular/core';
+import { Component , ViewChild,ElementRef,OnInit } from '@angular/core';
 import { Footer } from '../../share/footer/footer';
 import { Navbar } from '../../share/navbar/navbar';
 import { RouterLink } from '@angular/router';
+import { HomeService,Movie,Theater } from '../../services/home.service';
+
 
 
 @Component({
@@ -14,7 +16,32 @@ import { RouterLink } from '@angular/router';
 
 
 
-export class Home {
+export class Home implements OnInit{
+constructor(private hService: HomeService) {}
+  movies: Movie[] = [];
+  theater: Theater[] = [];
+  
+ngOnInit(): void {
+  this.loaddata()
+}
+loaddata(){
+  this.hService.getAllMovies().subscribe({
+      next : (data) => {
+          this.movies = data;
+      },
+      error : (err) => {
+          
+      },
+    });
+    this.hService.getAllTheater().subscribe({
+      next:(data) => {
+          this.theater = data;
+      },
+      error:(err) =>{
+          
+      },
+    });
+}
   @ViewChild('scrollContainer1')
   scrollContainer1!:ElementRef;
 
@@ -34,77 +61,72 @@ scrollLeft(container: HTMLElement) {
     behavior: 'smooth'
   });
 }
-  theater = [
-    {name:'Major'},
-    {name:'Kid'},
-    {name:'IMAX'},
-  ]
 
-   items1 = [
-    {
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdLg0DZlN8b8Y_LoC2lpUrtBmxzcPPdfPWA&s',
-      title: 'Movie 1',
-      description: 'Description of Movie 1'
-    },
-    {
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSooTWufA5l-rDG6r7B-5rcvFXj4Z4w8eFwXg&s',
-      title: 'Movie 1',
-      description: 'Description of Movie 1'
-    },
-    {
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdcf3Ls86pJ2rMyEe1kkJmAzbhZnmXVUiBA&s',
-      title: 'Movie 1',
-      description: 'Description of Movie 1'
-    },
-    {
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpM4UVhH8EiRHwevbx2vw1MK7pNK5VzYo1aQ&s',
-      title: 'Movie 1',
-      description: 'Description of Movie 1'
-    },{
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdLg0DZlN8b8Y_LoC2lpUrtBmxzcPPdfPWA&s',
-      title: 'Movie 1',
-      description: 'Description of Movie 1'
-    },
-    {
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSooTWufA5l-rDG6r7B-5rcvFXj4Z4w8eFwXg&s',
-      title: 'Movie 1',
-      description: 'Description of Movie 1'
-    },
-    {
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdcf3Ls86pJ2rMyEe1kkJmAzbhZnmXVUiBA&s',
-      title: 'Movie 1',
-      description: 'Description of Movie 1'
-    },
-    {
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpM4UVhH8EiRHwevbx2vw1MK7pNK5VzYo1aQ&s',
-      title: 'Movie 1',
-      description: 'Description of Movie 1'
-    },{
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdLg0DZlN8b8Y_LoC2lpUrtBmxzcPPdfPWA&s',
-      title: 'Movie 1',
-      description: 'Description of Movie 1'
-    },
-    {
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSooTWufA5l-rDG6r7B-5rcvFXj4Z4w8eFwXg&s',
-      title: 'Movie 1',
-      description: 'Description of Movie 1'
-    },
-    {
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdcf3Ls86pJ2rMyEe1kkJmAzbhZnmXVUiBA&s',
-      title: 'Movie 1',
-      description: 'Description of Movie 1'
-    },
-    {
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpM4UVhH8EiRHwevbx2vw1MK7pNK5VzYo1aQ&s',
-      title: 'Movie 1',
-      description: 'Description of Movie 1'
-    },
+  //  items1 = [
+  //   {
+  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdLg0DZlN8b8Y_LoC2lpUrtBmxzcPPdfPWA&s',
+  //     title: 'Movie 1',
+  //     description: 'Description of Movie 1'
+  //   },
+  //   {
+  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSooTWufA5l-rDG6r7B-5rcvFXj4Z4w8eFwXg&s',
+  //     title: 'Movie 1',
+  //     description: 'Description of Movie 1'
+  //   },
+  //   {
+  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdcf3Ls86pJ2rMyEe1kkJmAzbhZnmXVUiBA&s',
+  //     title: 'Movie 1',
+  //     description: 'Description of Movie 1'
+  //   },
+  //   {
+  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpM4UVhH8EiRHwevbx2vw1MK7pNK5VzYo1aQ&s',
+  //     title: 'Movie 1',
+  //     description: 'Description of Movie 1'
+  //   },{
+  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdLg0DZlN8b8Y_LoC2lpUrtBmxzcPPdfPWA&s',
+  //     title: 'Movie 1',
+  //     description: 'Description of Movie 1'
+  //   },
+  //   {
+  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSooTWufA5l-rDG6r7B-5rcvFXj4Z4w8eFwXg&s',
+  //     title: 'Movie 1',
+  //     description: 'Description of Movie 1'
+  //   },
+  //   {
+  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdcf3Ls86pJ2rMyEe1kkJmAzbhZnmXVUiBA&s',
+  //     title: 'Movie 1',
+  //     description: 'Description of Movie 1'
+  //   },
+  //   {
+  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpM4UVhH8EiRHwevbx2vw1MK7pNK5VzYo1aQ&s',
+  //     title: 'Movie 1',
+  //     description: 'Description of Movie 1'
+  //   },{
+  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdLg0DZlN8b8Y_LoC2lpUrtBmxzcPPdfPWA&s',
+  //     title: 'Movie 1',
+  //     description: 'Description of Movie 1'
+  //   },
+  //   {
+  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSooTWufA5l-rDG6r7B-5rcvFXj4Z4w8eFwXg&s',
+  //     title: 'Movie 1',
+  //     description: 'Description of Movie 1'
+  //   },
+  //   {
+  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdcf3Ls86pJ2rMyEe1kkJmAzbhZnmXVUiBA&s',
+  //     title: 'Movie 1',
+  //     description: 'Description of Movie 1'
+  //   },
+  //   {
+  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpM4UVhH8EiRHwevbx2vw1MK7pNK5VzYo1aQ&s',
+  //     title: 'Movie 1',
+  //     description: 'Description of Movie 1'
+  //   },
     
-  ]
+  // ]
 
-  movies: any[] = [];
+  
 
-  constructor() {}
+  
 
   
 

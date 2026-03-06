@@ -10,3 +10,15 @@ exports.getHomeMovieData = async (req, res) => {
 
   return rows;
 };
+
+
+exports.getHometheaterData = async (req, res) => {
+
+  const { rows } = await pool.query(`
+      SELECT DISTINCT amenities
+      FROM screens
+      WHERE amenities IS NOT NULL;
+    `);
+
+  return rows;
+}

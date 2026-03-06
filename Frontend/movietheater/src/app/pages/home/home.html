@@ -52,9 +52,9 @@
 
         <div #scrollContainer1 class="movie-wrapper">
 
-            @for (item of items1; track $index) {
+            @for (item of movies; track $index) {
             <div class="movie-card card text-center">
-                <img [src]="item.image" class="poster">
+                <img [src]="" class="poster">
 
                 <div class="card-body">
                     <h6>{{ item.title }}</h6>
@@ -75,22 +75,22 @@
 
 </section>
 
-<!-- card coming soon  -->
+<!-- card coming soon 
 <section class="py-4 position-relative bg-dark">
     
     <div class="container-fluid px-2 px-md-4 px-xl-5 position-relative">
 
-        <div class="container-fluid d-flex justify-content-between"><span class="mb-3 text-light fw-bold h4">Coming soon</span><span class="fw-lighter display-10">View All</span></div>
+        <div class="container-fluid d-flex justify-content-between"><span class="mb-3 text-light fw-bold h4">Coming soon</span><span class="fw-lighter display-10">View All</span></div> -->
 
         <!-- Scroll Container -->
-        <button class="btn scroll-btn left d-none d-lg-flex" (click)="scrollLeft(scrollContainer2)">‹</button>
+        <!-- <button class="btn scroll-btn left d-none d-lg-flex" (click)="scrollLeft(scrollContainer2)">‹</button>
 
         <div #scrollContainer2 class="movie-wrapper">
 
 
-            @for (item of items1; track $index) {
+            @for (item of movies; track $index) {
             <div class="movie-card card text-center">
-                <img [src]="item.image" class="poster">
+                <img [src]="" class="poster">
 
                 <div class="card-body">
                     <h6 class="text-light">{{ item.title }}</h6>
@@ -107,7 +107,7 @@
     </div>
 
 </section>
-
+ -->
 
 
 
@@ -125,15 +125,15 @@
       @for (item of theater; track $index) {
         <div class="col-6 col-md-4 col-lg-3 col-xl-2">
           <div class="theater-card card  shadow-sm">
-
+            <!-- img ยังไม่มีใน DB -->
             <img 
               src="https://endlessicons.com/wp-content/uploads/2012/11/image-holder-icon-614x460.png"
               class="card-img-top"
             >
-
+            <!-- ดึง amenities นะ -->
             <div class="card-body text-center">
               <h5 class="card-title text-light">
-                {{ item.name }}
+                {{ item.amenities }}
               </h5>
 
               <a href="#" class="btn btn-dark mt-3">
