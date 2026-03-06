@@ -29,7 +29,7 @@ export const routes: Routes = [
         { path: 'movie', component: Dashboard},
         { path: 'review', component: ReviewComponent},
         { path: 'customers', component: Customers},
-        { path: 'theatercrud', component: Theatercrud}
+        { path: 'theaters', component: Theatercrud}
         ],
     },
     
