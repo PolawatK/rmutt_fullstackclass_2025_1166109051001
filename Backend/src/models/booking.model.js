@@ -1,6 +1,6 @@
 const  pool  = require('../config/db');
 
-const createBooking = async (userId, showtimeId, seats) => {
+const createBooking = async (userId, showtimeId, seats, paymentMethod) => {
   const client = await pool.connect();
 
   try {
@@ -46,6 +46,12 @@ const createBooking = async (userId, showtimeId, seats) => {
         [bookingId, seatId, showtimeId]
       );
     }
+      await client.query(
+        `
+        INSERT INTO payments (booking_id, amount, method,paid_at)
+        VALUES ($1,$2,$3, NOW())
+        `,[bookingId,totalPrice,paymentMethod])
+
     await client.query('COMMIT');
     return bookingId;
 

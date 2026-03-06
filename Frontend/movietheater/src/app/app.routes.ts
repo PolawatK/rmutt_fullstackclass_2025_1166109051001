@@ -30,12 +30,11 @@ export const routes: Routes = [
         { path: 'movie', component: Dashboard},
         { path: 'review', component: ReviewComponent},
         { path: 'customers', component: Customers},
-        { path: 'theaters', component: Theatercrud}
+        { path: 'theaters', component: Theatercrud},
         { path: 'theatercrud', component: Theatercrud},
         { path: 'bookingcrud', component: Bookingcrud},
         ],
     },
-    
     {
         path: 'booking/:id', 
         loadChildren: () => import('./booking/booking-module').then(m => m.BookingModule)
