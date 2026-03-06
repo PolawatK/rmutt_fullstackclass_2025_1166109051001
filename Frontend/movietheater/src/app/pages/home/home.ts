@@ -2,7 +2,7 @@ import { Component , ViewChild,ElementRef,OnInit } from '@angular/core';
 import { Footer } from '../../share/footer/footer';
 import { Navbar } from '../../share/navbar/navbar';
 import { RouterLink } from '@angular/router';
-import { HomeService,Movie,Theater } from '../../services/home.service';
+import { HomeService,MovieShowtime,MovieOngoing,Theater } from '../../services/home.service';
 
 
 
@@ -18,16 +18,25 @@ import { HomeService,Movie,Theater } from '../../services/home.service';
 
 export class Home implements OnInit{
 constructor(private hService: HomeService) {}
-  movies: Movie[] = [];
+  MovieShowtimes: MovieShowtime[] = [];
+  MovieOngoings: MovieOngoing[] = [];
   theater: Theater[] = [];
   
 ngOnInit(): void {
   this.loaddata()
 }
 loaddata(){
-  this.hService.getAllMovies().subscribe({
+  this.hService.getAllMoviesShowtime().subscribe({
       next : (data) => {
-          this.movies = data;
+          this.MovieShowtimes = data;
+      },
+      error : (err) => {
+          
+      },
+    });
+  this.hService.getAllMoviesOngoing().subscribe({
+      next : (data) => {
+          this.MovieOngoings = data;
       },
       error : (err) => {
           
@@ -62,72 +71,34 @@ scrollLeft(container: HTMLElement) {
   });
 }
 
-  //  items1 = [
-  //   {
-  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdLg0DZlN8b8Y_LoC2lpUrtBmxzcPPdfPWA&s',
-  //     title: 'Movie 1',
-  //     description: 'Description of Movie 1'
-  //   },
-  //   {
-  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSooTWufA5l-rDG6r7B-5rcvFXj4Z4w8eFwXg&s',
-  //     title: 'Movie 1',
-  //     description: 'Description of Movie 1'
-  //   },
-  //   {
-  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdcf3Ls86pJ2rMyEe1kkJmAzbhZnmXVUiBA&s',
-  //     title: 'Movie 1',
-  //     description: 'Description of Movie 1'
-  //   },
-  //   {
-  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpM4UVhH8EiRHwevbx2vw1MK7pNK5VzYo1aQ&s',
-  //     title: 'Movie 1',
-  //     description: 'Description of Movie 1'
-  //   },{
-  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdLg0DZlN8b8Y_LoC2lpUrtBmxzcPPdfPWA&s',
-  //     title: 'Movie 1',
-  //     description: 'Description of Movie 1'
-  //   },
-  //   {
-  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSooTWufA5l-rDG6r7B-5rcvFXj4Z4w8eFwXg&s',
-  //     title: 'Movie 1',
-  //     description: 'Description of Movie 1'
-  //   },
-  //   {
-  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdcf3Ls86pJ2rMyEe1kkJmAzbhZnmXVUiBA&s',
-  //     title: 'Movie 1',
-  //     description: 'Description of Movie 1'
-  //   },
-  //   {
-  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpM4UVhH8EiRHwevbx2vw1MK7pNK5VzYo1aQ&s',
-  //     title: 'Movie 1',
-  //     description: 'Description of Movie 1'
-  //   },{
-  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxdLg0DZlN8b8Y_LoC2lpUrtBmxzcPPdfPWA&s',
-  //     title: 'Movie 1',
-  //     description: 'Description of Movie 1'
-  //   },
-  //   {
-  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSooTWufA5l-rDG6r7B-5rcvFXj4Z4w8eFwXg&s',
-  //     title: 'Movie 1',
-  //     description: 'Description of Movie 1'
-  //   },
-  //   {
-  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdcf3Ls86pJ2rMyEe1kkJmAzbhZnmXVUiBA&s',
-  //     title: 'Movie 1',
-  //     description: 'Description of Movie 1'
-  //   },
-  //   {
-  //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpM4UVhH8EiRHwevbx2vw1MK7pNK5VzYo1aQ&s',
-  //     title: 'Movie 1',
-  //     description: 'Description of Movie 1'
-  //   },
-    
-  // ]
-
+  theaterImages: Record<string,string> = {
+  Kids: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNJTnJsLqhJ5JZb4bu9nql_RLYcvAMyVecyQ&s',
+  '4DX': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkofXB7_kcGQ_qilyY-7kGmgrUjC1EmrIZqA&s',
+  VIP: 'https://media.sfcinema.com/public/1753244437023_6aa900d2899ee753f77dab9e0be63a0d.png',
+  Standard: 'data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300">\
+<rect width="100%" height="100%" fill="black"/>\
+<text x="50%" y="50%" fill="white" font-size="70" text-anchor="middle" dominant-baseline="middle">STANDARD</text>\
+</svg>',
+  IMAX: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpwHdj5JjbuzbGB4p0kBOmlDSrIh62WP1X2g&s'
+};
   
 
-  
+getAmenityImage(type: string): string {
 
-  
+  const svg = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="600" height="300">
+    <rect width="100%" height="100%" fill="black"/>
+    <text x="50%" y="50%" fill="white"
+      font-size="60"
+      text-anchor="middle"
+      dominant-baseline="middle">
+      ${type}
+    </text>
+  </svg>
+  `;
+
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
 
 }

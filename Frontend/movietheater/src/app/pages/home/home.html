@@ -11,15 +11,15 @@
         </span>
 
         <h1 class="fw-bold display-1">
-            Cinema
+            CineVault
         </h1>
-        <h2 class="fw-bold display-3">
-            Cinema description
+        <h2 class="fw-light display-6">
+            Your Movie Experience Starts Here
         </h2>
 
-        <p class="lead mt-4 mb-5">
-            Browse the latest movies, pick your perfect seats,
-            and book tickets instantly.
+        <p class="mt-4 mb-5">
+            Discover the latest movies, choose the best seats,
+            and book your tickets instantly.
         </p>
 
         <div class="d-flex justify-content-center gap-3">
@@ -52,7 +52,7 @@
 
         <div #scrollContainer1 class="movie-wrapper">
 
-            @for (item of movies; track $index) {
+            @for (item of MovieShowtimes; track $index) {
             <div class="movie-card card text-center">
                 <img [src]="" class="poster">
 
@@ -75,28 +75,25 @@
 
 </section>
 
-<!-- card coming soon 
+<!-- card coming soon  -->
 <section class="py-4 position-relative bg-dark">
     
     <div class="container-fluid px-2 px-md-4 px-xl-5 position-relative">
 
-        <div class="container-fluid d-flex justify-content-between"><span class="mb-3 text-light fw-bold h4">Coming soon</span><span class="fw-lighter display-10">View All</span></div> -->
+        <div class="container-fluid d-flex justify-content-between"><span class="mb-3 text-light fw-bold h4">Coming soon</span><span class="fw-lighter display-10">View All</span></div>
 
         <!-- Scroll Container -->
-        <!-- <button class="btn scroll-btn left d-none d-lg-flex" (click)="scrollLeft(scrollContainer2)">‹</button>
+        <button class="btn scroll-btn left d-none d-lg-flex" (click)="scrollLeft(scrollContainer2)">‹</button>
 
         <div #scrollContainer2 class="movie-wrapper">
 
 
-            @for (item of movies; track $index) {
+            @for (item of MovieOngoings; track $index) {
             <div class="movie-card card text-center">
                 <img [src]="" class="poster">
 
                 <div class="card-body">
                     <h6 class="text-light">{{ item.title }}</h6>
-                    <a [href]="" class="btn btn-sm btn-dark">
-                        Detail
-                    </a>
                 </div>
             </div>
             }
@@ -107,7 +104,7 @@
     </div>
 
 </section>
- -->
+
 
 
 
@@ -125,12 +122,11 @@
       @for (item of theater; track $index) {
         <div class="col-6 col-md-4 col-lg-3 col-xl-2">
           <div class="theater-card card  shadow-sm">
-            <!-- img ยังไม่มีใน DB -->
-            <img 
-              src="https://endlessicons.com/wp-content/uploads/2012/11/image-holder-icon-614x460.png"
-              class="card-img-top"
-            >
-            <!-- ดึง amenities นะ -->
+            <div class="theater-img">
+            <img
+                [src]="theaterImages[item.amenities] || getAmenityImage(item.amenities)"
+            />
+            </div>
             <div class="card-body text-center">
               <h5 class="card-title text-light">
                 {{ item.amenities }}

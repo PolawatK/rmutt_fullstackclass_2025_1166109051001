@@ -131,7 +131,20 @@
     0 0 20px rgba(255,255,255,.05);
 }
 
-.card-img-top {
-  height: 75%;
-  object-fit: cover;
+.theater-img{
+  height:140px;
+  background:black;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-top-left-radius:15px;
+  border-top-right-radius:15px;
+}
+
+.theater-img img{
+  max-height:100%;
+  max-width:100%;
+  object-fit:contain;
 }

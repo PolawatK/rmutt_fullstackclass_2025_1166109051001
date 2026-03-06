@@ -1,8 +1,19 @@
 const Homemodel = require('../models/home.model');
 
-exports.getHomeMovieData = async (req, res) => {
+exports.getHomeShowtimeMovieData = async (req, res) => {
   try {
-    const movies = await Homemodel.getHomeMovieData(req, res);
+    const movies = await Homemodel.getHomeShowtimeMovieData(req, res);
+
+    res.json(movies);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Load data failed' });
+  }
+};
+
+exports.getHomeComingSoonMovieData = async (req, res) => {
+  try {
+    const movies = await Homemodel.getHomeComingSoonMovieData(req, res);
 
     res.json(movies);
   } catch (err) {

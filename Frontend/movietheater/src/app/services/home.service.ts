@@ -3,7 +3,14 @@ import { HttpClient} from '@angular/common/http';
 import { Observable} from 'rxjs';
 import { environment } from '../../environments/environment';
 
-export interface Movie {
+export interface MovieShowtime {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+}
+
+export interface MovieOngoing {
   id: string;
   title: string;
   description: string;
@@ -27,8 +34,11 @@ export class HomeService {
 
   constructor(private http: HttpClient) {}
 
-  getAllMovies(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(`${this.apiUrl}/movies`);
+  getAllMoviesShowtime(): Observable<MovieShowtime[]> {
+    return this.http.get<MovieShowtime[]>(`${this.apiUrl}/movies/showing`);
+  }
+  getAllMoviesOngoing(): Observable<MovieOngoing[]> {
+    return this.http.get<MovieOngoing[]>(`${this.apiUrl}/movies/coming-soon`);
   }
   getAllTheater(): Observable<Theater[]> {
     return this.http.get<Theater[]>(`${this.apiUrl}/theater`);

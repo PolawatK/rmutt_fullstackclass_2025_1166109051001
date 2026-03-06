@@ -1,11 +1,25 @@
 const  pool  = require('../config/db');
 
-exports.getHomeMovieData = async (req, res) => {
+exports.getHomeShowtimeMovieData = async (req, res) => {
 
   const { rows } = await pool.query(`
-      SELECT *
-      FROM movies
-      ORDER BY created_at DESC
+      SELECT DISTINCT m.*
+      FROM movies m
+      INNER JOIN showtimes s
+      ON m.id = s.movie_id;
+    `);
+
+  return rows;
+};
+
+exports.getHomeComingSoonMovieData = async (req, res) => {
+
+  const { rows } = await pool.query(`
+      SELECT m.*
+      FROM movies m
+      LEFT JOIN showtimes s
+      ON m.id = s.movie_id
+      WHERE s.movie_id IS NULL;
     `);
 
   return rows;
