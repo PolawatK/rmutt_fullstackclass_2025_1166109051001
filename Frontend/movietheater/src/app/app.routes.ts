@@ -7,6 +7,7 @@ import { Theaters } from './pages/theaters/theaters';
 import { Customers } from './admin/customers/customers';
 import { Authentication } from './authentication/authentication';
 import { ReviewComponent } from './admin/review/review';
+import { Bookingcrud} from './admin/bookingcrud/bookingcrud';
 export const routes: Routes = [
     {
         path: '',
@@ -30,6 +31,8 @@ export const routes: Routes = [
         { path: 'review', component: ReviewComponent},
         { path: 'customers', component: Customers},
         { path: 'theaters', component: Theatercrud}
+        { path: 'theatercrud', component: Theatercrud},
+        { path: 'bookingcrud', component: Bookingcrud},
         ],
     },
     
@@ -40,4 +43,6 @@ export const routes: Routes = [
     {
         path: 'reviews', component: ReviewComponent
     }
+    
+
     ];
