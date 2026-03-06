@@ -7,14 +7,14 @@ export interface MovieShowtime {
   id: string;
   title: string;
   description: string;
-  imageUrl: string;
+  image_url: string;
 }
 
 export interface MovieOngoing {
   id: string;
   title: string;
   description: string;
-  imageUrl: string;
+  image_url: string;
 }
 
 export interface Theater{
