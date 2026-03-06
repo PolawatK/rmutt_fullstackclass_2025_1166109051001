@@ -25,22 +25,26 @@ export class SelectSeats implements OnInit {
 
 
 ngOnInit() {
-    this.showtimeId = this.route.snapshot.paramMap.get('id')!;
+    this.showtimeId = this.route.snapshot.paramMap.get('id')!; 
     this.loadData();
   }
 
 
 loadData() {
     this.bookingService.getShowtime(this.showtimeId)
-      .subscribe(data => {
+      .subscribe(data => { 
         this.showtime = data;
         this.bookingService.getSeats((data as any).screen_id)
-          .subscribe(seats => this.seats = seats);
+          .subscribe(seats =>{
+            this.seats = seats;
+            console.log(seats);
+          });
       });
 
     this.bookingService.getBookedSeats(this.showtimeId)
       .subscribe(data => this.bookedSeats = data);
   }
+
 toggleSeat(seat: Seat) {
   if (this.isBooked(seat.id)) return;
 

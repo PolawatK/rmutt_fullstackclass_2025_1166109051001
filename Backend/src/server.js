@@ -13,6 +13,7 @@ const bookingRoutes = require('./routes/booking.routes');
 const bookingRoute = require('./routes/bookingcrud.route');
 const theatercrudRoutes = require('./routes/theatercrud.route');
 
+const homeRoutes = require('./routes/home.routes')
 const bookingRoutes = require('./routes/booking.routes');
 const bookingRoute = require('./routes/bookingcrud.route');
 
@@ -35,22 +36,14 @@ app.use('/api/review', reviewRoutes);
 app.use('/api/customers', customerRoutes);
 app.use('/api/bookingcrud', bookingRoute);
 app.use('/api/theatercrud', theatercrudRoutes);
+app.use('/api/homes',homeRoutes)
 
 pool.query("SELECT 1")
   .then(() => console.log("✅ Database connected"))
   .catch(err => console.error("❌ DB Error:", err.message));
 
 app.get("/", (req, res) => {
-  res.send("Backend is running 🚀");
-});
-
-app.get("/health", async (req, res) => {
-  try {
-    await pool.query("SELECT 1");
-    res.json({ status: "DB Connected" });
-  } catch (err) {
-    res.status(500).json({ status: "DB Error" });
-  }
+  res.send("Backend is running");
 });
 
 app.use(express.json());
