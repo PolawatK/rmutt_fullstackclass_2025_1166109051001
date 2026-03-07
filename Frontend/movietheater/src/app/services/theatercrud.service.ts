@@ -28,7 +28,6 @@ export interface TheaterScreenCreate {
   providedIn: 'root',
 })
 export class theatercrudService {
-  // ตรง theater ยังไม่แก้
   private apiUrl = `${environment.apiUrl}/theatercrud`;
 
   constructor(

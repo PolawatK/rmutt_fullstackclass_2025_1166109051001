@@ -213,6 +213,13 @@ body.menu-open {
   }
 }
 
+.admin-btn{
+  display:block;
+  padding:8px 15px;
+  color:#ffc107;
+  text-decoration:none;
+}
+
 @media (max-width: 768px) {
 
   .menu {

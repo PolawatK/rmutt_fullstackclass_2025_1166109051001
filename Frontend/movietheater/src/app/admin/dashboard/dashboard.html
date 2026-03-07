@@ -1,8 +1,8 @@
-<div class="container-fluid  py-4">
+<div class="container-fluid py-4">
     <div class="main p-4">
         <div class="title mb-3">
-            <h2>Dashboard Overview</h2>
-            <h6 class="text-title">All ticket bookings across CineVault</h6>
+            <h5>Dashboard Overview</h5>
+            <h6 class="text-title">Welcome back. Here is what is happening at CineVault.</h6>
         </div>
         <div class="row mb-4">
             <br>
@@ -78,46 +78,47 @@
                 </div>
             </div>
         </div>
-        <h2>Bookings</h2>
-        <div class="subtitle">All ticket bookings across CineVault</div>
+        <div class="container">
+            <h2>Bookings</h2>
+            <div class="subtitle">All ticket bookings across CineVault</div>
 
-        <div class="table-card">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Customer</th>
-                        <th>Movie</th>
-                        <th>Showtime</th>
-                        <th>Seats</th>
-                        <th>Total</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
+            <div class="table-card" style="overflow-y: auto; height: 220px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Movie</th>
+                            <th>Showtime</th>
+                            <th>Seats</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    @for (b of bookingscurd.slice(0,10);; track b.id) {
-                    <tr>
-                        <td>{{ b.customer }}</td>
-                        <td>{{ b.movie }}</td>
-                        <td>{{ b.start_time | date:'short' }}</td>
-                        <td>{{ b.total_seats }}</td>
-                        <td class="price">
-                            {{ b.total_price | currency:'THB' }}
-                        </td>
-                        <td>
-                            <span class="badge paid">
-                                {{ b.status }}
-                            </span>
-                        </td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
+                    <tbody>
+                        @for (b of bookingscurd; track b.id) {
+                        <tr>
+                            <td>{{ b.customer }}</td>
+                            <td>{{ b.movie }}</td>
+                            <td>{{ b.start_time | date:'short' }}</td>
+                            <td>{{ b.total_seats }}</td>
+                            <td class="price">
+                                {{ b.total_price | currency:'THB' }}
+                            </td>
+                            <td>
+                                <span class="badge paid">
+                                    {{ b.status }}
+                                </span>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
+
     </div>
-
 </div>
-
 
 
 <!-- @for (item of movies; track $index) {
