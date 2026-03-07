@@ -1,20 +1,20 @@
 .table-card {
-  min-width:1200px;
   background: #0f172a;
   border: 1px solid #1f2937;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.03),
-              0 10px 30px rgba(0,0,0,0.4);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
 }
-.table-container{
-  width:100%;
-  overflow-x:auto;
+.table-container {
+  width: 100%;
+  overflow-x: auto;
 }
 thead {
   background: #111827;
@@ -45,45 +45,47 @@ tbody td {
   text-align: center;
   white-space: nowrap;
 }
-
-.poster-preview{
-  width:180px;
-  border-radius:12px;
-  object-fit:cover;
-  box-shadow:0 8px 25px rgba(0,0,0,0.6);
-  transition:0.2s;
+.crud-btn {
+  margin-right: 10px;
+}
+.poster-preview {
+  width: 180px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  transition: 0.2s;
 }
 
-.poster-preview:hover{
-  transform:scale(1.05);
+.poster-preview:hover {
+  transform: scale(1.05);
 }
 
-.modal-theme{
+.modal-theme {
   background: #0f172a;
   border: 1px solid #1f2937;
   border-radius: 16px;
   color: #e5e7eb;
 }
 
-.modal-theme .modal-header{
+.modal-theme .modal-header {
   border-bottom: 1px solid #1f2937;
 }
 
-.modal-theme .modal-footer{
+.modal-theme .modal-footer {
   border-top: 1px solid #1f2937;
 }
 
 .modal-theme input,
-.modal-theme textarea{
-  background:#111827;
-  border:1px solid #1f2937;
-  color:#e5e7eb;
+.modal-theme textarea {
+  background: #111827;
+  border: 1px solid #1f2937;
+  color: #e5e7eb;
 }
 
 .modal-theme input:focus,
-.modal-theme textarea:focus{
-  background:#111827;
-  color:#fff;
-  border-color:#374151;
-  box-shadow:none;
+.modal-theme textarea:focus {
+  background: #111827;
+  color: #fff;
+  border-color: #374151;
+  box-shadow: none;
 }

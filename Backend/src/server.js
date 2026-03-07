@@ -15,6 +15,9 @@ const bookingRoute = require('./routes/bookingcrud.route');
 const theatercrudRoutes = require('./routes/theatercrud.route');
 const homeRoutes = require('./routes/home.routes');
 const moviecrudRoutes = require('./routes/movie.routes');
+const paymentRoutes = require('./routes/payment.routes');
+
+
 
 app.use(cors());
 
@@ -39,8 +42,11 @@ app.use('/api/bookingcrud', bookingRoute);
 app.use('/api/homes', homeRoutes);
 app.use('/api/theatercrud', theatercrudRoutes);
 app.use('/api/moviecrud', moviecrudRoutes);
-
 app.use('/api', require('./routes/account.routes'));
+app.use('/api/homes',homeRoutes)
+app.use('/api/moviecrud',moviecrudRoutes)
+app.use('/api/paymentcrud', paymentRoutes);
+
 
 pool.query("SELECT 1")
   .then(() => console.log("✅ Database connected"))
