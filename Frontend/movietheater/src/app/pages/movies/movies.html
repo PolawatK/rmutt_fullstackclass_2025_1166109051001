@@ -3,4 +3,36 @@
 <br>
 <br>
 <br>
+<div class="container-fluid p-5">
+    <h1>Now Showing</h1>
+    <h6 style="color: rgb(126, 126, 126);">Browse all movies currently playing at CineVault Cinemas</h6>
+    <div class="input-group mb-3 mt-5 ">
+        <span class="input-group-text search-box-icon" id="basic-addon1"><i class="bx bx-search-big"></i></span>
+        <input type="text" class="form-control search-box" placeholder="Search movies...">
+    </div>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @for(item of Movie ;track $index){
+        <div class="col card-all">
+            <div class="card movie-card">
+                <div class="img-wrapper">
+                    <img [src]="item.image_url" class="card-img-top" alt="...">
+                    <div class="overlay"></div>
+                </div>
+                <div class="card-body card-content">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <div class="text-descript">
+                        <i class="bx bx-clock-dashed-half">
+                            <span style="margin-left:5px;margin-right:5px;">
+                                {{item.duration_minutes}}
+                            </span>
+                            min
+                        </i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+
+    </div>
+</div>
 <app-footer></app-footer>
