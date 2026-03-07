@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 export interface Review {
-  id: string;
+  id?: string;
   user_id: string;
   movie_id: string;
   rating: number;
@@ -29,4 +29,8 @@ export class ReviewService {
   getReviewsByMovie(movieId: string): Observable<Review[]> {
     return this.http.get<Review[]>(`${this.apiUrl}/movie/${movieId}`);
   }
+  addReview(review: Review) {
+  return this.http.post<Review>(`${this.apiUrl}`, review);
 }
+}
+

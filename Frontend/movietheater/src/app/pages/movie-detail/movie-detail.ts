@@ -3,9 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Navbar } from "../../share/navbar/navbar";
 import { Review, ReviewService } from '../../services/review.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-movie-detail',
-  imports: [Navbar,CommonModule],
+  imports: [Navbar,CommonModule,FormsModule],
   templateUrl: './movie-detail.html',
   styleUrl: './movie-detail.css',
 })
@@ -46,4 +48,61 @@ export class MovieDetail implements OnInit {
 
  
   
+
+
+  selectedRating: number = 0;
+comment: string = '';
+
+setRating(rating: number) {
+  this.selectedRating = rating;
+}
+
+submitReview() {
+
+  if (!this.selectedRating || !this.comment.trim()) {
+    alert("Please add rating and comment");
+    return;
+  }
+  const userId = localStorage.getItem("user_id");
+
+  if (!userId) {
+    alert("User not logged in");
+    return;
+  }
+
+  const newReview: Review = {
+    
+    user_id: userId,
+    movie_id: this.movieId,
+    name: "You",
+    title: "Avengers Reborn",
+    rating: this.selectedRating,
+    comment: this.comment,
+    created_at: new Date()
+  };
+
+  this.reviewService.addReview(newReview).subscribe({
+    next: (res) => {
+
+      this.reviews.push(res);
+
+      this.totalReviews = this.reviews.length;
+
+      const totalScore = this.reviews.reduce(
+        (sum, r) => sum + r.rating,
+        0
+      );
+
+      this.averageRating = totalScore / this.totalReviews;
+
+      this.selectedRating = 0;
+      this.comment = '';
+      console.log("Review added", res);
+    },
+    error: (err) => {
+      console.error("Add review failed", err);
+    }
+  });
+}
+
 }

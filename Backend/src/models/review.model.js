@@ -31,21 +31,20 @@ exports.getReviewDataByMovie = async (req, res) => {
 
   return rows;
 };
+exports.createReview = async (review) => {
 
-app.post("/reviews",(req,res)=>{
+  const result = await pool.query(
+    `INSERT INTO reviews 
+     ( movie_id, user_id, rating, comment, created_at)
+     VALUES ($1, $2, $3, $4, $5)`,
+    [
+      review.movie_id,      
+      review.user_id,
+      review.rating,
+      review.comment,
+      review.created_at
+    ]
+  );
 
-const {movieId,rating,comment} = req.body
-
-const sql = `
-INSERT INTO reviews(movie_id,rating,comment)
-VALUES(?,?,?)
-`
-
-db.query(sql,[movieId,rating,comment],(err,result)=>{
-
-res.json({message:"review saved"})
-
-})
-
-})
-
+  return result;
+};

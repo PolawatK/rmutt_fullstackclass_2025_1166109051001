@@ -5,4 +5,5 @@ const reviewController = require('../controllers/review-controller');
 
 router.get('/', reviewController.getReviewData);
 router.get('/movie/:movieId', reviewController.getReviewDataByMovie);
+router.post("/", reviewController.addReview);
 module.exports = router;    
