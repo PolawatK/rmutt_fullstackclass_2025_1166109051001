@@ -1,0 +1,71 @@
+<div class="showtime-container">
+
+  <div class="header">
+    <h2>🎬 Manage Showtimes</h2>
+
+    <button class="add-btn">
+      + Add Showtime
+    </button>
+  </div>
+
+
+  <table class="showtime-table">
+
+    <thead>
+      <tr>
+        <th>Movie</th>
+        <th>Screen</th>
+        <th>Start Time</th>
+        <th>Duration</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let s of showtimes">
+
+        <td class="movie">
+          🎬 {{ s.title }}
+        </td>
+
+        <td>
+          {{ s.screen }}
+        </td>
+
+        <td>
+          {{ s.start_time  }}
+        </td>
+
+        <td>
+          {{ s.duration_minutes }} min
+        </td>
+
+        <td>
+          {{ s.price }} ฿
+        </td>
+
+        <td class="actions">
+
+          <button
+            class="edit-btn"
+            >
+            Edit
+          </button>
+
+          <button
+            class="delete-btn"
+            >
+            Delete
+          </button>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
