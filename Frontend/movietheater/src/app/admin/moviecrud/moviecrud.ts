@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { MovieCRUDService,MovieCRUD } from '../../services/moviecrud.service';
 
 @Component({
   selector: 'app-moviecrud',
@@ -7,10 +8,18 @@ import { Component } from '@angular/core';
   styleUrl: './moviecrud.css',
 })
 export class Moviecrud {
+constructor(private MService: MovieCRUDService) {}
+  movieCRUD:MovieCRUD[] =[];
 
-  movie=[
-    {id:1},
-    {id:1},
-    {id:1},
-      ];
+  ngOnInit():void {
+    this.MService.getAllMoviesCRUD().subscribe({
+      next:(data) =>{
+        this.movieCRUD = data;
+        console.log(data);
+      },
+      error:(err) => {
+
+      },
+    });
+  }
 }

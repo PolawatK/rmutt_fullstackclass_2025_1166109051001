@@ -1,48 +1,48 @@
 <div class="container-fluid">
     <!-- title and Button section  -->
-    <section class="Header-Page d-flex justify-content-between align-items-center mt-3">
-        <div class="mx-1">
+    <section class="Header-Page row mt-4 mx-3 align-items-center">
+        <div class="mx-1 col">
             <p class="h3 fw-bold mb-0">Movies</p>
             <p class="text-muted mb-0">Manage Movies in database.</p>
         </div>
-        <a routerLink="" class="btn btn-outline-light">
+        <a routerLink="" class="btn btn-outline-light col-auto ">
             Add Movie
         </a>
         
     </section>
 
     <!-- table section -->
-    <section class="data-table mt-4">
-        <div class="card bg-dark border-0 shadow">
+    <section class="data-table  mt-4">
+        <div class="table-container border-0 shadow">
             <div class="card-body">
                 <!-- head table -->
-                <table class="table">
+                <table class="table-card">
                     <thead>
                         <tr>
-                            <th class="col text-light text-center">ID</th>
-                            <th class="col text-light text-center">Title</th>
-                            <th class="col text-light text-center">Description</th>
-                            <th class="col text-light text-center">Duration-minutes</th>
-                            <th class="col text-light text-center">Release-date</th>
-                            <th class="col text-light text-center">Director</th>
-                            <th class="col text-light text-center">Created-at</th>
-                            <th class="col text-light text-center">Image-url</th>
-                            <th colspan="2" class="col text-light text-center">Manage</th>
+                            <th class="col text-muted text-center">ID</th>
+                            <th class="col text-muted text-center">Title</th>
+                            <th class="col text-muted text-center">Description</th>
+                            <th class="col text-muted text-center">Duration-minutes</th>
+                            <th class="col text-muted text-center">Release-date</th>
+                            <th class="col text-muted text-center">Director</th>
+                            <th class="col text-muted text-center">rating</th>
+                            <th class="col text-muted text-center">Image-url</th>
+                            <th colspan="2" class="col text-muted text-center">Manage</th>
                         </tr>
                     </thead>
                     <!-- body table -->
                     <tbody class="text-light">
-                        @for (item of movie; track $index) {
+                        @for (item of movieCRUD; track $index) {
                         <tr>
-                        <th scope="row">1</th>
-                        <td class="col text-center">acb </td>
-                        <td class="col text-center">Otto</td>
-                        <td class="col text-center">@mdo</td>
-                        <td class="col text-center">Mark</td>
-                        <td class="col text-center">Otto</td>
-                        <td class="col text-center">@mdo</td>
-                        <td class="col text-center">@mdo</td>
-                        <td class="col text-center"><button type="button" class="btn btn-outline-light">Edit</button></td>
+                        <th class="col text-center">{{item.id}}</th>
+                        <td class="col text-center">{{item.title}}</td>
+                        <td class="col text-center">{{item.description}}</td>
+                        <td class="col text-center">{{item.duration_minutes}}</td>
+                        <td class="col text-center">{{item.release_date}}</td>
+                        <td class="col text-center">{{item.director}}</td>
+                        <td class="col text-center">{{item.avg_rating}}/5 ⭐</td>
+                        <td class="col text-center"><img [src]="item.image_url" width="60"></td>
+                        <td class="col text-center"><button type="button" class="btn btn btn-warning">Edit</button></td>
                         <td class="col text-center"><button type="button" class="btn btn-outline-danger">Delete</button></td>
                         </tr>
                     }
