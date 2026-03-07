@@ -1,17 +1,17 @@
-/* Card ใหญ่ (แต่ละ Screen) */
 .theater-card {
   background: var(--card-color);
   border: 1px solid #1f2937;
   border-radius: 14px;
 }
+h1 {
+  font-weight: 800;
+}
 
-/* Header */
 .theater-header {
   border-bottom: 1px solid #1f2937;
   padding: 1.25rem;
 }
 
-/* Showtime card */
 .show-card {
   background-color: #000000;
   border: 1px solid #1f2937;
@@ -26,9 +26,8 @@
   cursor: pointer;
 }
 
-/* Text styles */
 .text-muted-custom {
-  color: #9ca3af;
+  color: rgb(126, 126, 126);
 }
 
 .price {
@@ -36,7 +35,6 @@
   font-weight: 600;
 }
 
-/* icon box */
 .icon-box {
   width: 40px;
   height: 40px;
