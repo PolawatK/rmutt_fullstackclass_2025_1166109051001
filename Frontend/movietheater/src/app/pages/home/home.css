@@ -1,8 +1,7 @@
 /* landing page  section */
 .landing-page {
   min-height: 100vh;
-  background: url("https://img.freepik.com/premium-photo/many-rows-red-seats-cinema_161149-2461.jpg")
-    center/cover no-repeat;
+  background: url("/rows-red-seats-theater.jpg") center/cover no-repeat;
   position: relative;
 }
 

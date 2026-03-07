@@ -72,6 +72,7 @@ export class AuthService {
       return null;
     }
   }
+  
 
   getUser(): any {
   const token = this.getAccessToken();
