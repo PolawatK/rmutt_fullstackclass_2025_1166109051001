@@ -1,7 +1,7 @@
 /* landing page  section */
 .landing-page {
   min-height: 100vh;
-  background: url('https://img.freepik.com/premium-photo/many-rows-red-seats-cinema_161149-2461.jpg') center/cover no-repeat;
+  background: url("/rows-red-seats-theater.jpg") center/cover no-repeat;
   position: relative;
 }
 
@@ -9,9 +9,9 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(
-      to bottom,
-      rgba(0,0,0,0.7),
-      rgba(0,0,0,0.9)
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.9)
   );
 }
 
@@ -19,9 +19,8 @@
   z-index: 2;
 }
 
-
 /* coming soon card and ongoing  section*/
-.slider-section{
+.slider-section {
   position: relative;
 }
 .movie-wrapper {
@@ -31,22 +30,30 @@
   gap: 1rem;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 0 30px; 
+  padding: 0 30px;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-@media(max-width:992px){
-  .movie-wrapper{
+@media (max-width: 992px) {
+  .movie-wrapper {
     padding: 0 20px;
     max-width: 95%;
   }
 }
-
+.ongoing-box h1 {
+  font-weight: 800;
+  flex-direction: column;
+}
+.bg-darker {
+  background-color: black;
+}
 /* Chrome, Edge, Safari */
 .movie-wrapper::-webkit-scrollbar {
-  display: none;              
+  display: none;
 }
-
+.card-body h6 {
+  font-weight: 600;
+}
 .movie-card {
   min-width: 80px;
   max-width: 220px;
@@ -55,29 +62,31 @@
   border-radius: 15px;
   overflow: hidden;
   background: rgb(17, 17, 17);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   cursor: pointer;
 }
-@media(max-width:768px){
-  .movie-card{
+@media (max-width: 768px) {
+  .movie-card {
     min-width: 160px;
   }
 }
 
-.movie-card:hover{
+.movie-card:hover {
   transform: translateY(-6px);
-  box-shadow: 
-    0 10px 20px rgba(0,0,0,.6),
-    0 0 10px rgba(255,255,255,.05);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.6),
+    0 0 10px rgba(255, 255, 255, 0.05);
 }
 
-.poster{
-  width:100%;
+.poster {
+  width: 100%;
   height: 75%;
   object-fit: cover;
 }
 
-.scroll-btn{
+.scroll-btn {
   width: 40px;
   height: 45px;
   border-radius: 50%;
@@ -90,7 +99,7 @@
   z-index: 999;
   top: 50%;
   transform: none;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   border: none;
   color: whitesmoke;
   font-size: 35px;
@@ -99,52 +108,69 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease;
 }
 .scroll-btn:hover {
-  background: rgba(0,0,0,0.9);
+  background: rgba(0, 0, 0, 0.9);
   transform: translateY(-1%) scale(1.05);
 }
 
-
-.scroll-btn.left{
+.scroll-btn.left {
   left: 0px;
 }
-.scroll-btn.right{
+.scroll-btn.right {
   right: 0px;
 }
-
+.theater h1 {
+  font-weight: 600;
+}
+.slider-section {
+  border-bottom: 1px solid rgba(81, 81, 81, 0.539);
+}
+.text-descript {
+  display: flex;
+  text-align: end;
+  color: rgb(126, 126, 126);
+  font-family: Kanits;
+}
+.text-descript i {
+  position: absolute;
+}
 /* card theaher */
-.theater-card{
-  background: rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.06);
+.theater-card {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(6px);
   border-radius: 15px;
   overflow: hidden;
-  transition: transform .3s ease, box-shadow .3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.theater-card:hover{
+.theater-card:hover {
   transform: translateY(-6px);
-  box-shadow: 
-    0 20px 40px rgba(0,0,0,.6),
-    0 0 20px rgba(255,255,255,.05);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(255, 255, 255, 0.05);
 }
 
-.theater-img{
-  height:140px;
-  background:black;
+.theater-img {
+  height: 140px;
+  background: black;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  border-top-left-radius:15px;
-  border-top-right-radius:15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
-.theater-img img{
-  max-height:100%;
-  max-width:100%;
-  object-fit:contain;
+.theater-img img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }

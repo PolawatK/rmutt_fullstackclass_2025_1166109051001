@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 
 export interface ShowtimeDetail {
   id: string;
@@ -8,12 +9,21 @@ export interface ShowtimeDetail {
   screen_name: string;
   start_time: Date;
   price: number;
+  image_url: string;
 }
 export interface Seat {
   id: string;
   row_label: string;
   seat_number: number;
   seat_type: 'Normal' | 'Premium' | 'VIP';
+}
+export interface MyBooking {
+  title: string;
+  image_url: string;
+  seats: string;
+  total_price: number;
+  show_date: string;
+  start_time: string;
 }
 
 @Injectable({
@@ -35,7 +45,12 @@ export class BookingService {
   getBookedSeats(showtimeId: string) {
     return this.http.get<string[]>(`${this.apiUrl}/showtimes/${showtimeId}/booked-seats`);
   }
+
   createBooking(data: {showtime_id: string; seats: string[];}) {
   return this.http.post(`${this.apiUrl}/bookings`, data);
+  }
+
+  getMyBookings(): Observable<any>{
+    return this.http.get<MyBooking[]>(`${this.apiUrl}/bookings/my-bookings`);
   }
 }

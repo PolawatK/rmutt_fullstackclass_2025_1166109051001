@@ -1,33 +1,80 @@
-<div class="container py-5">
-    @if (showtime) {
-    <h2>{{ showtime.movie_title }}</h2>
-    <p>
-        {{ showtime.screen_name }} |
-        {{ showtime.start_time | date:'shortTime' }}
-    </p>
-    <div class="seat-grid-wrapper">
-        @for (group of groupedSeats; track group.row) {
-        <div class="seat-row">
-            <div class="row-label">
-                {{ group.row }}
-            </div>
-            @for (seat of group.seats; track seat.id) {
-            <div class="seat" (click)="toggleSeat(seat)" [class.booked]="isBooked(seat.id)"
-                [class.selected]="isSelected(seat.id)">
-                {{ seat.seat_number }}
-            </div>
-            }
+<app-navbar></app-navbar>
+<br>
+<br>
+<br>
+<div class="page">
+    <div class="header">
+        <h2>{{ showtime?.movie_title }}</h2>
+        <p>
+            {{ showtime?.screen_name }} •
+            {{ showtime?.start_time | date:'shortTime' }}
+        </p>
+    </div>
+    <div class="steps">
+        <div class="step active">
+            <span class="circle">1</span>
+            <span class="text">Select Seats</span>
         </div>
-        }
+        <div class="line"></div>
+        <div class="step">
+            <span class="circle">2</span>
+            <span class="text">Payment</span>
+        </div>
     </div>
-
-    <div class="summary mt-4">
-        <p>Selected: {{ selectedSeats.length }}</p>
-        <p>Total: {{ getTotal() }} THB</p>
+    <div class="layout">
+        <div class="seat-container">
+            <div class="screen"></div>
+            <p class="screen-label">SCREEN</p>
+            <div class="seat-grid-wrapper">
+                @for (group of groupedSeats; track group.row) {
+                <div class="seat-row">
+                    <div class="row-label">
+                        {{ group.row }}
+                    </div>
+                    @for (seat of group.seats; track seat.id) {
+                    <div class="seat" (click)="toggleSeat(seat)" [class.booked]="isBooked(seat.id)"
+                        [class.selected]="isSelected(seat.id)">
+                        {{ seat.seat_number }}
+                    </div>
+                    }
+                    <div class="row-label">
+                        {{ group.row }}
+                    </div>
+                </div>
+                }
+            </div>
+            <div class="legend">
+                <div><span class="box normal"></span> Normal</div>
+                <div><span class="box selected"></span> Selected</div>
+                <div><span class="box booked"></span> Booked</div>
+            </div>
+        </div>
+        <div class="summary-card">
+            <h4>{{ showtime?.movie_title }}</h4>
+            <div class="info">
+                <div>Screen</div>
+                <div>{{ showtime?.screen_name }}</div>
+            </div>
+            <div class="info d-flex align-items-center justify-content-center image-box">
+                <img style="border-radius: 5px;" [src]="showtime?.image_url">
+            </div>
+            <div class="info">
+                <div>Time</div>
+                <div>{{ showtime?.start_time | date:'shortTime' }}</div>
+            </div>
+            <div class="info">
+                <div>Price per seat</div>
+                <div>{{ showtime?.price }} THB</div>
+            </div>
+            <hr>
+            <div class="total">
+                Total
+                <span>{{ getTotal() }} THB</span>
+            </div>
+            <button class="continue-btn" [disabled]="selectedSeats.length === 0" (click)="goToPayment()">
+                Continue to Payment
+            </button>
+        </div>
     </div>
-
-    }
-    <button class="btn btn-primary" [disabled]="selectedSeats.length === 0" (click)="goToPayment()">
-        Confirm
-    </button>
 </div>
+<app-footer></app-footer>

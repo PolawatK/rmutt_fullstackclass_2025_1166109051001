@@ -1,25 +1,102 @@
-<h2>Payment</h2>
-@if (showtime) {
-<div>
-    <p>Movie: {{ showtime.movie_title }}</p>
-    <p>Screen: {{ showtime.screen_name }}</p>
-    <p>Time: {{ showtime.start_time | date:'short' }}</p>
+<app-navbar></app-navbar>
+<br>
+<br>
+<br>
+<div class="page">
+    <div class="header">
+        <h2>{{ showtime?.movie_title }}</h2>
+        <p>
+            {{ showtime?.screen_name }} •
+            {{ showtime?.start_time | date:'shortTime' }}
+        </p>
+    </div>
+    <div class="steps">
+        <div class="step">
+            <span class="circle">1</span>
+            <span class="text">Select Seats</span>
+        </div>
+        <div class="line"></div>
+        <div class="step active">
+            <span class="circle">2</span>
+            <span class="text">Payment</span>
+        </div>
+    </div>
+    <div class="layout">
+        <div class="seat-container">
+            <div class="payment-card">
+                <h2>Choose Payment Method</h2>
+                <label class="card">
+                    <div class="left">
+                        <img src="credit-card.png" class="icon">
+                        <span>Creditcard <br> <span class="text-label"> Visa,Mastercard,JCB</span></span>
+                    </div>
+                    <input type="radio" name="paymentMethod" value="credit_card" [(ngModel)]="payment">
+                </label>
+
+                <label class="card">
+                    <div class="left">
+                        <img src="paypal.png" class="icon">
+                        <span>Paypal <br> <span class="text-label"> Scan QR code to pay</span></span>
+                    </div>
+                    <input type="radio" name="paymentMethod" value="paypal" [(ngModel)]="payment">
+                </label>
+
+                <label class="card">
+                    <div class="left">
+                        <img src="icon-thaiqr.png" class="icon">
+                        <span>PromptPay <br> <span class="text-label"> Scan QR code to pay</span></span>
+                    </div>
+                    <input type="radio" name="paymentMethod" value="promptpay" [(ngModel)]="payment">
+                </label>
+            </div>
+        </div>
+        <div class="summary-card">
+            <h4>{{ showtime?.movie_title }}</h4>
+            <div class="info">
+                <div>Screen</div>
+                <div>{{ showtime?.screen_name }}</div>
+            </div>
+            <div class="info d-flex align-items-center justify-content-center image-box">
+                <img [src]="showtime?.image_url">
+            </div>
+            <div class="info">
+                <div>Time</div>
+                <div>{{ showtime?.start_time | date:'shortTime' }}</div>
+            </div>
+            <div class="info">
+                <div>Price per seat</div>
+                <div>{{ showtime?.price }} THB</div>
+            </div>
+            <hr>
+            <div class="total">
+                Total
+                <span>{{ getTotal() }} THB</span>
+            </div>
+            <div class="seats">
+                <div class="seats-box">
+                    <span>Seats </span>
+                    <div class="row">
+                        @for (seat of seats; track $index) {
+                        <div class="col-1 mx-2 mb-3 col-md-2">
+                            <div class="seats-value">
+                                <span style="background-color:#d4a017; padding: 5px; border-radius: 5px;">{{
+                                    seat.row_label }}{{
+                                    seat.seat_number
+                                    }}</span>
+                            </div>
+
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button (click)="confirmBooking()" [disabled]="payment === ''" class="btn btn-primary confirmbtn"
+                    type="button">Confirm
+                    Booking</button>
+            </div>
+        </div>
+    </div>
 </div>
-}
-
-<div>
-    <p>Seats:</p>
-    <ul>
-        @for (seat of seats; track $index) {
-        <li>
-            {{ seat.row_label }}{{ seat.seat_number }}
-        </li>
-        }
-    </ul>
-</div>
-
-<p>Total: {{ getTotal() }} THB</p>
-
-<button (click)="confirmBooking()">
-    Confirm Booking
-</button>
+<app-footer></app-footer>

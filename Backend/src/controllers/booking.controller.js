@@ -4,7 +4,7 @@ exports.createBooking = async (req, res) => {
   try {
     const userId = req.user.sub; 
 
-    const { showtime_id, seats } = req.body;
+    const { showtime_id, seats, paymentMethod } = req.body;
     if (!showtime_id || !Array.isArray(seats) || seats.length === 0) {
       return res.status(400).json({
         message: 'showtime_id, total_price and seats are required'
@@ -13,11 +13,12 @@ exports.createBooking = async (req, res) => {
     const bookingId = await bookingModel.createBooking(
       userId,
       showtime_id,
-      seats
+      seats,
+      paymentMethod
     );
     return res.status(201).json({
       message: 'Booking created successfully',
-      booking_id: bookingId
+      booking_id: bookingId 
     });
 
   } catch (err) {
@@ -37,3 +38,18 @@ exports.createBooking = async (req, res) => {
     });
   }
 };
+
+exports.getMyBookings = async (req, res) => {
+  
+  try{
+    const userId = req.user.sub;
+
+    const bookings = await bookingModel.getMyBookings(userId);
+
+    res.json(bookings);
+
+  } catch(error){
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+}

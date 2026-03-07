@@ -4,12 +4,7 @@
     <p class="text-muted">Manage screens, seats and amenities</p>
   </div>
 
-  <button
-    class="btn btn-warning"
-    data-bs-toggle="modal"
-    data-bs-target="#addScreenModal"
-  >
-    <i class="bx bx-plus"></i>
+  <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addScreenModal">
     Add Screen
   </button>
 </nav>
@@ -19,17 +14,15 @@
     @for (screen of screens; track screen.id) {
       <div class="col-lg-6 col-12">
         <div class="cinema-card p-3">
-          <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between align-items-start">
             <div class="d-flex gap-3">
               <div class="screen-icon">
                 <i class="bx bx-tv"></i>
               </div>
-
               <div>
                 <div class="fw-bold fs-5">
                   {{ screen.name }}
                 </div>
-
                 <div class="text-muted">
                   <i class="bx bx-map"></i>
                   {{ screen.location }}
@@ -41,11 +34,7 @@
               <button class="btn btn-sm btn-primary" (click)="openEdit(screen)">
                 Edit
               </button>
-
-              <button
-                class="btn btn-sm btn-danger"
-                (click)="deleteScreen(screen.id)"
-              >
+              <button class="btn btn-sm btn-danger" (click)="deleteScreen(screen.id)">
                 Delete
               </button>
             </div>
@@ -54,11 +43,11 @@
           <p class="mt-3 text-muted">
             {{ screen.amenities }}
           </p>
-          <hr />
+
+          <hr/>
 
           <div class="d-flex gap-3 flex-wrap">
-            <span class="badge-total">
-              <i class="bx bx-chair"></i>
+            <span class="badge-total"><i class="bx bx-chair"></i>
               Total {{ screen.total_seats }}
             </span>
 
@@ -93,6 +82,7 @@
           <div class="mb-3">
             <label>Screen Name</label>
             <input class="form-control" formControlName="name" />
+
             @if (addForm.get("name")?.touched && addForm.get("name")?.invalid) {
               <div class="text-danger">Screen name is required</div>
             }
@@ -101,6 +91,7 @@
           <div class="mb-3">
             <label>Location</label>
             <input class="form-control" formControlName="location" />
+
             @if (
               addForm.get("location")?.touched &&
               addForm.get("location")?.invalid
@@ -117,13 +108,7 @@
           <div class="row">
             <div class="col">
               <label>Rows</label>
-              <input
-                type="number"
-                class="form-control"
-                formControlName="rows"
-                min="1"
-                max="26"
-              />
+              <input type="number" class="form-control" formControlName="rows" min="1" max="26"/>
 
               @if (
                 addForm.get("rows")?.invalid && addForm.get("rows")?.touched
@@ -134,14 +119,7 @@
 
             <div class="col">
               <label>Seats per Row</label>
-              <input
-                type="number"
-                class="form-control"
-                formControlName="seatsPerRow"
-                min="1"
-                max="10"
-              />
-
+              <input type="number" class="form-control" formControlName="seatsPerRow" min="1"max="10"/>
               @if (
                 addForm.get("seatsPerRow")?.invalid &&
                 addForm.get("seatsPerRow")?.touched
@@ -151,13 +129,10 @@
             </div>
           </div>
 
-          <button
-            class="btn btn-warning mt-4"
-            type="submit"
-            [disabled]="addForm.invalid"
-          >
+          <button class="btn btn-warning mt-4" type="submit" [disabled]="addForm.invalid">
             Create Screen
           </button>
+
         </form>
       </div>
     </div>
@@ -191,13 +166,10 @@
             <input class="form-control" formControlName="amenities" />
           </div>
 
-          <button
-            class="btn btn-warning"
-            type="submit"
-            [disabled]="editForm.invalid"
-          >
+          <button class="btn btn-warning" type="submit" [disabled]="editForm.invalid">
             Update Screen
           </button>
+          
         </form>
       </div>
     </div>

@@ -91,21 +91,52 @@ body.menu-open {
 }
 
 
-.profile-img {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ffc107;
-    cursor: pointer;
-    transition: 0.3s ease;
+.mobile-profile-box{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  padding:20px;
 }
 
-.profile-name {
-    color: white;
-    font-weight: 500;
-    cursor: pointer;
-    margin-right: 10px;
+.user-name{
+  font-size:18px;
+  font-weight:600;
+  color:white;
+}
+
+.logout-btn{
+  background:#ff3b3b;;
+  border:none;
+  padding:8px 18px;
+  border-radius:6px;
+  color:white;
+  font-size:14px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.logout-btn:hover{
+  background:#ff1f1f;
+}
+
+
+.login-btn{
+  display:inline-block;
+  background:linear-gradient(135deg,#ffc107,#ff9800);
+  color:black;
+  padding:10px 24px;
+  border-radius:25px;
+  font-weight:600;
+  text-decoration:none;
+  transition:all 0.3s ease;
+  box-shadow:0 4px 10px rgba(255,193,7,0.4);
+}
+
+.login-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 15px rgba(255,193,7,0.6);
+  background:linear-gradient(135deg,#ffd54f,#ffb300);
 }
 
 .profile-icon {
@@ -132,12 +163,62 @@ body.menu-open {
     display: none;
 }
 
+.desktop-menu ul li a button{
+    display: none;
+}
+
+.account-box{
+  position:relative;
+  cursor:pointer;
+}
+
+.profile-name{
+  color:white;
+  font-weight:500;
+}
+
+.logout-dropdown{
+  position:absolute;
+  top:35px;
+  right:0;
+  background:#111;
+  border:1px solid #333;
+  border-radius:8px;
+  padding:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.4);
+  animation:dropdown 0.2s ease;
+}
+
+.logout-dropdown button{
+  background:#ff3b3b;
+  border:none;
+  padding:8px 18px;
+  border-radius:6px;
+  color:white;
+  cursor:pointer;
+}
+
+.logout-dropdown button:hover{
+  background:#ff1f1f;
+}
+
+@keyframes dropdown{
+  from{
+    opacity:0;
+    transform:translateY(-10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
 @media (max-width: 768px) {
 
   .menu {
       display: block;
   }
-
+  
   .desktop-menu {
     position: fixed;
     top: 70px;     
@@ -162,9 +243,9 @@ body.menu-open {
     border-bottom: 1px solid #1e293b;
   }
 
-  .profile-link {
-    display: none;
-  }
+  .profile-section{
+  display:none;
+}
 
   .mobile-profile {
     display: block;
@@ -177,4 +258,5 @@ body.menu-open {
     align-items: center;
     gap: 10px;
   }
+  
 }

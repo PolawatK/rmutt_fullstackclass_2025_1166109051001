@@ -3,9 +3,11 @@
 }
 
 #sidebar {
+  left: 0;
+  top: 0;
   width: 90px;
-  min-width: 90px;
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
   background: linear-gradient(180deg, #0b0f17, #0d111a);
   transition: all 0.25s ease-in-out;
   display: flex;
@@ -15,7 +17,6 @@
 
 #sidebar.expand {
   width: 260px;
-  min-width: 260px;
 }
 
 .sidebar-header {

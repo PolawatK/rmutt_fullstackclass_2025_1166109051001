@@ -8,31 +8,68 @@
       <div class="desktop-menu" [class.mobile-open]="menuValue">
         <ul>
           <li class="mobile-profile">
+
+            @if (authService.isLoggedIn()) {
+
             <div class="mobile-profile-box">
-              <img src="https://i.pravatar.cc/100" alt="Profile" class="profile-img">
-              <span class="profile-name">Fulke น้อง</span>
+              <div class="user-name">
+                {{userName}}
+              </div>
+
+              <button class="logout-btn" (click)="logout()">
+                Logout
+              </button>
             </div>
+
+            } @else {
+
+            <div class="mobile-profile-box">
+              <a routerLink="/regislog" class="login-btn">
+                Login
+              </a>
+            </div>
+
+            }
+
           </li>
           <li><a routerLink="/">Home</a></li>
           <li><a routerLink="/movies">Movies</a></li>
           <li><a routerLink="/theaters">Theaters</a></li>
-          <li><a routerLink="/mybook">My Bookings</a></li>
+          <li><a routerLink="/mybooking">My Bookings</a></li>
         </ul>
       </div>
 
       <div class="profile-section">
-        <div class="profile-link">
-          <div class="grid-icon"></div>
-          <span class="profile-name">Fulke น้อง</span>
-          <img src="https://i.pravatar.cc/100" alt="Profile" class="profile-img">
+
+        @if (authService.isLoggedIn()) {
+
+        <div class="account-box">
+
+          <span class="profile-name" (click)="toggleLogout()">
+            {{userName}}
+          </span>
+
+          @if(showLogout){
+          <div class="logout-dropdown">
+            <button (click)="logout()">Logout</button>
+          </div>
+          }
+
         </div>
 
-        <div class="menu" (click)="toggle()">
-          ☰
-        </div>
+        } @else {
+
+        <a class="login-btn" routerLink="/regislog">Login</a>
+
+        }
 
       </div>
 
+      <div class="menu" (click)="toggle()">
+        ☰
+      </div>
+
     </div>
+
   </div>
 </header>
