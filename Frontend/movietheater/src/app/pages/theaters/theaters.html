@@ -1,16 +1,15 @@
 <app-navbar></app-navbar>
 <br>
 <br>
-<div class="container py-5">
-
-    <h2 class="fw-bold mb-2">Our Theaters</h2>
-    <p class="text-muted-custom mb-4">
-        Explore all screens and their current showtimes
-    </p>
+<br>
+<br>
+<div class="container-fluid p-5">
+    <h1>Our Theaters</h1>
+    <h6 style="color: rgb(126, 126, 126);">Explore all screens and their current showtimes</h6>
 
     @for (screen of groupedScreensShowtimes; track $index) {
 
-    <div class="theater-card mb-4">
+    <div class="theater-card mb-4 mt-4">
 
         <div class="theater-header">
             <div class="d-flex align-items-start">
@@ -29,9 +28,9 @@
 
         <div class="p-4">
             <div class="row g-3">
-                <div class="col-md-6 col-lg-4">
                 @for (showtime of screen.showtimes; track showtime.showtimes_id) {
-                <div class="show-card m-2" (click)="gotoBooking(showtime.showtimes_id)">
+                <div class="col-md-6 col-lg-4">
+                    <div class="show-card m-2" (click)="gotoBooking(showtime.showtimes_id)">
                         <h6 class="mb-1">{{ showtime.movie_title }}</h6>
                         <small class="text-muted-custom d-block mb-2">
                             {{ showtime.start_time | date:'hh:mm a' }}
@@ -42,8 +41,8 @@
                             {{ showtime.price }} THB
                         </div>
                     </div>
-                    }
                 </div>
+                }
             </div>
         </div>
 

@@ -22,7 +22,7 @@ module.exports = {
         const passwordHash = crypto.createHash('md5').update(password).digest('hex');
 
         const result = await pool.query('insert into users (name, email, password_hash, phone, role_id) values ($1, $2, $3, $4, $5) returning *',
-            [name, email, passwordHash, phone, 1]
+            [name, email, passwordHash, phone, 2]
         );
 
         return result.rows[0];
