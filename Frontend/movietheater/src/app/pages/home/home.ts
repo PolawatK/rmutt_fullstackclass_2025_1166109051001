@@ -8,7 +8,7 @@ import { HomeService,MovieShowtime,MovieOngoing,Theater } from '../../services/h
 
 @Component({
   selector: 'app-home',
-  imports: [Footer, Navbar,RouterLink],
+  imports: [Footer, Navbar, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
