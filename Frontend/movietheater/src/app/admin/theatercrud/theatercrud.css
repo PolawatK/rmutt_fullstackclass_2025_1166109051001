@@ -130,3 +130,62 @@ body {
   background: #1f2a44;
   border-radius: 10px;
 }
+
+/* ===== FIX MODAL COLOR ===== */
+
+.modal-content {
+  background: #0b1220;
+  color: white;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.modal-title {
+  color: white;
+}
+
+.modal-body label {
+  color: #aeb6c2;
+  font-size: 14px;
+}
+
+/* input style */
+.modal-body .form-control {
+  background: #05080f;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: white;
+}
+
+/* placeholder color */
+.modal-body .form-control::placeholder {
+  color: #7b8595;
+}
+
+/* focus effect */
+.modal-body .form-control:focus {
+  border-color: #f5b942;
+  box-shadow: none;
+  background: #05080f;
+  color: white;
+}
+
+/* close button color */
+.btn-close {
+  filter: invert(1);
+}
+
+.create-screen-btn{
+background:#f5b942;
+border:none;
+font-weight:600;
+padding:12px;
+border-radius:8px;
+}
+
+.create-screen-btn:hover{
+background:#ffcc5c;
+}

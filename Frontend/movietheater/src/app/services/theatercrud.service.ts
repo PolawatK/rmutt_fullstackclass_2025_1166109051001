@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
-import { Observable} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 
@@ -20,26 +20,31 @@ export interface TheaterScreenCreate {
   name: string;
   location: string;
   amenities: string;
+  rows: number;
+  seatsPerRow: number;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class theatercrudService {
-
-  // ตรง theater ยังไม่แก้ 
+  // ตรง theater ยังไม่แก้
   private apiUrl = `${environment.apiUrl}/theatercrud`;
 
-  constructor(private http: HttpClient,private router: Router) {}
-
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   getAllTheaterScreens(): Observable<TheaterScreen[]> {
     return this.http.get<TheaterScreen[]>(this.apiUrl);
   }
 
-  
-  AddTheaterScreen(screenData: any): Observable<TheaterScreen> {
-    return this.http.post<TheaterScreen>(`${this.apiUrl}/add`, screenData);
+  createScreen(screenData: TheaterScreenCreate): Observable<any> {
+    return this.http.post(`${this.apiUrl}/add`, screenData);
+  }
+
+  updateScreen(id: number, data: any) {
+    return this.http.put(`${this.apiUrl}/update/${id}`, data);
   }
 }

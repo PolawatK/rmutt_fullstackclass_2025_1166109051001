@@ -12,10 +12,7 @@ const customerRoutes = require('./routes/customers-routes');
 const bookingRoutes = require('./routes/booking.routes');
 const bookingRoute = require('./routes/bookingcrud.route');
 const theatercrudRoutes = require('./routes/theatercrud.route');
-
 const homeRoutes = require('./routes/home.routes')
-const bookingRoutes = require('./routes/booking.routes');
-const bookingRoute = require('./routes/bookingcrud.route');
 
 app.use(cors());
 app.use(express.json());
