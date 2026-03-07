@@ -36,7 +36,7 @@ body {
 }
 
 .btn-addscreen button {
-  background: #f5b942;
+  background: var(--highlight-color);
   border: none;
   padding: 10px 18px;
   border-radius: 8px;
@@ -167,7 +167,7 @@ body {
 
 /* focus effect */
 .modal-body .form-control:focus {
-  border-color: #f5b942;
+  border-color: var(--highlight-color);
   box-shadow: none;
   background: #05080f;
   color: white;
@@ -188,4 +188,8 @@ border-radius:8px;
 
 .create-screen-btn:hover{
 background:#ffcc5c;
+}
+
+.btn btn-primary{
+  background-color: var(--highlight-color);
 }
