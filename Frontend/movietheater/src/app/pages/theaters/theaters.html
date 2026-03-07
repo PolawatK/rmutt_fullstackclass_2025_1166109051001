@@ -18,7 +18,7 @@
                     <i class="bx bx-movie-play"></i>
                 </div>
                 <div>
-                    <h5 class="mb-1">{{ screen.name}}</h5>
+                    <h5 class="mb-1">{{ screen.screen_}}</h5>
                     <small class="text-muted-custom">
                         {{ screen.location }} <br>
                         {{ screen.amenities }}
@@ -30,8 +30,8 @@
         <div class="p-4">
             <div class="row g-3">
                 <div class="col-md-6 col-lg-4">
-                    @for (showtime of screen.showtimes; track showtime.showtimes_id) {
-                    <div class="show-card m-2" (click)="gotoBooking(showtime.showtimes_id)">
+                @for (showtime of screen.showtimes; track showtime.showtimes_id) {
+                <div class="show-card m-2" (click)="gotoBooking(showtime.showtimes_id)">
                         <h6 class="mb-1">{{ showtime.movie_title }}</h6>
                         <small class="text-muted-custom d-block mb-2">
                             {{ showtime.start_time | date:'hh:mm a' }}

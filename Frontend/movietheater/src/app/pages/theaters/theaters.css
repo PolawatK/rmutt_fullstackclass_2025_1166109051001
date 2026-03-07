@@ -23,6 +23,7 @@
 .show-card:hover {
   border-color: #facc15;
   transform: translateY(-3px);
+  cursor: pointer;
 }
 
 /* Text styles */

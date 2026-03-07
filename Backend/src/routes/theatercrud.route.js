@@ -1,8 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const theaterController = require('../controllers/theatercrud.controller');
+const theatercrudController = require("../controllers/theatercrud.controller");
 
-
-router.get('/', theaterController.getTheaterScreen);
+router.post("/add", theatercrudController.addScreen);
+router.put("/update/:id", theatercrudController.updateScreen);
+router.get("/", theatercrudController.getTheaterScreen);
+router.delete("/:id", theatercrudController.deleteScreen);
 
 module.exports = router;

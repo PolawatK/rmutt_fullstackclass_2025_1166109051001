@@ -3,9 +3,10 @@ import { ScreenWithShowtimes, theatersService } from '../../services/theaters.se
 import { Router } from '@angular/router';
 import { Navbar } from "../../share/navbar/navbar";
 import { DatePipe } from '@angular/common';
+import { Footer } from "../../share/footer/footer";
 @Component({
   selector: 'app-theaters',
-  imports: [Navbar,DatePipe],
+  imports: [Navbar, DatePipe, Footer],
   templateUrl: './theaters.html',
   styleUrl: './theaters.css',
 })

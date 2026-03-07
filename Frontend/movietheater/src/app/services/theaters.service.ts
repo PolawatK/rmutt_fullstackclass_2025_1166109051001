@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 export interface showtimes {
   showtimes_id: string;
   screen_id: string;
-  name: string;
+  screen_name: string;
   location: string;
   amenities: string;
   movie_title:string;
@@ -15,7 +15,7 @@ export interface showtimes {
 }
 export interface ScreenWithShowtimes {
   screen_id: string;
-  name: string;
+  screen_name: string;
   location: string;
   amenities: string;
   showtimes: showtimes[];

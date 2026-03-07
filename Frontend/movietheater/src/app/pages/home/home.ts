@@ -29,6 +29,7 @@ loaddata(){
   this.hService.getAllMoviesShowtime().subscribe({
       next : (data) => {
           this.MovieShowtimes = data;
+          console.log(data);
       },
       error : (err) => {
           

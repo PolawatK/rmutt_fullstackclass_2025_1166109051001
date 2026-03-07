@@ -9,12 +9,13 @@ import { Authentication } from './authentication/authentication';
 import { ReviewComponent } from './admin/review/review';
 import { Bookingcrud} from './admin/bookingcrud/bookingcrud';
 import { Moviecrud } from './admin/moviecrud/moviecrud';
+import { Movies } from './pages/movies/movies';
+import { Mybooking } from './pages/mybooking/mybooking';
 export const routes: Routes = [
     {
         path: '',
         component: Home
     },
-
     {
         path: 'theaters',
         component: Theaters
@@ -22,6 +23,14 @@ export const routes: Routes = [
     {
         path: 'regislog',
         component: Authentication
+    },
+    {
+        path: 'mybooking',
+        component: Mybooking
+    },
+    {
+        path: 'movies',
+        component: Movies
     },
     {
         path: 'admin',
@@ -37,7 +46,6 @@ export const routes: Routes = [
         { path: 'movies', component: Moviecrud},//moviecrud
         ],
     },
-    
     {
         path: 'booking/:id', 
         loadChildren: () => import('./booking/booking-module').then(m => m.BookingModule)

@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+
+<br><br><br><br><br>
+
+<div class="container">
+
+  <h1 class="title">My Bookings</h1>
+  <p class="subtitle">View and manage your movie ticket bookings</p>
+
+  <div *ngIf="loading">Loading...</div>
+
+  <div *ngFor="let b of bookings" class="booking-card">
+
+    <img [src]="b.image_url" class="poster">
+
+    <div class="booking-info">
+
+      <div class="top-row">
+        <h2>{{b.title}}</h2>
+
+        <span 
+        class="status"
+        [ngClass]="{
+          'paid': b.status === 'PAID',
+          'cancelled': b.status === 'CANCELLED'
+        }">
+
+          {{b.status}}
+
+        </span>
+      </div>
+
+      <p class="duration">
+        {{b.duration_minutes}} min
+      </p>
+
+      <div class="details">
+
+        <p>🎥 Screen {{b.screen_id}}</p>
+
+        <p>💺 Seats: {{b.seats}}</p>
+
+        <p>🕒 {{b.start_time | date:'medium'}}</p>
+
+        <p>💳 {{b.payment_method}}</p>
+
+      </div>
+
+      <div class="bottom">
+
+        <p class="booked">
+          Booked on {{b.created_at | date:'mediumDate'}}
+        </p>
+
+        <p class="price">
+          {{b.total_price}} THB
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
