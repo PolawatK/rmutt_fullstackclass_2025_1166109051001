@@ -76,12 +76,14 @@ exports.createMovieCRUD = async (req, res) => {
 // update
 
 exports.updateMovieCRUD = async (req, res) => {
-
   try {
 
     const { id } = req.params;
 
-    let imageUrl = req.body.image_url || null;
+    // ดึงข้อมูล movie เดิม
+    const existingMovie = await Moviemodel.getMovieById(id);
+
+    let imageUrl = existingMovie.image_url;
 
     if (req.file) {
 
@@ -135,7 +137,6 @@ exports.updateMovieCRUD = async (req, res) => {
     });
 
   }
-
 };
 
 // delete

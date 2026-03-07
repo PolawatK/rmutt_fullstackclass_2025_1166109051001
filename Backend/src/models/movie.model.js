@@ -12,7 +12,7 @@ exports.getMovieDataCRUD = async (req, res) => {
         m.director,
         m.created_at,
         m.image_url,
-        AVG(r.rating) as avg_rating
+        COALESCE(AVG(r.rating),0) avg_rating
       from movies m
       left join reviews r 
       on m.id = r.movie_id
@@ -74,6 +74,16 @@ exports.updateMovieCRUD = async (
     RETURNING *
     `,
     [title, description, duration_minutes, release_date, director, image_url, id]
+  );
+
+  return rows[0];
+};
+
+exports.getMovieById = async (id) => {
+
+  const { rows } = await pool.query(
+    `SELECT * FROM movies WHERE id = $1`,
+    [id]
   );
 
   return rows[0];

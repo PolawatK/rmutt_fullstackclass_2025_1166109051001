@@ -5,13 +5,10 @@
             <p class="h3 fw-bold mb-0">Movies</p>
             <p class="text-muted mb-0">Manage Movies in database.</p>
         </div>
-        <button 
-            class="btn btn-outline-light col-auto"
-            data-bs-toggle="modal"
-            data-bs-target="#addMovieModal">
+        <button class="btn btn-outline-light col-auto" data-bs-toggle="modal" data-bs-target="#addMovieModal">
             Add Movie
         </button>
-        
+
     </section>
 
     <!-- table section -->
@@ -37,20 +34,21 @@
                     <tbody class="text-light">
                         @for (item of movieCRUD; track $index) {
                         <tr>
-                        <th class="col text-center">{{item.id}}</th>
-                        <td class="col text-center">{{item.title}}</td>
-                        <td class="col text-center">{{item.description}}</td>
-                        <td class="col text-center">{{item.duration_minutes}}</td>
-                        <td class="col text-center">{{item.release_date | date:'short' }}</td>
-                        <td class="col text-center">{{item.director}}</td>
-                        <td class="col text-center">{{item.avg_rating | number:'1.1-1' }}/5 ⭐</td>
-                        <td class="col text-center"><img [src]="item.image_url" width="60"></td>
-                        <td class="col text-center"><button type="button" class="btn btn btn-warning" (click)="openEditModal(item)"
-                            data-bs-toggle="modal"
-                            data-bs-target="#editMovieModal">Edit</button></td>
-                        <td class="col text-center"><button type="button" class="btn btn-outline-danger" (click)="deleteMovie(item.id)">Delete</button></td>
+                            <th class="col text-center">{{item.id}}</th>
+                            <td class="col text-center">{{item.title}}</td>
+                            <td class="col text-center">{{item.description | slice:0:30}}</td>
+                            <td class="col text-center">{{item.duration_minutes}}</td>
+                            <td class="col text-center">{{item.release_date | date:'short' }}</td>
+                            <td class="col text-center">{{item.director}}</td>
+                            <td class="col text-center">{{item.avg_rating | number:'1.1-1' }}/5 ⭐</td>
+                            <td class="col text-center"><img [src]="item.image_url" width="60"></td>
+                            <td class="col text-center"><button type="button" class="btn btn btn-warning"
+                                    (click)="openEditModal(item)" data-bs-toggle="modal"
+                                    data-bs-target="#editMovieModal">Edit</button></td>
+                            <td class="col text-center"><button type="button" class="btn btn-outline-danger"
+                                    (click)="deleteMovie(item.id)">Delete</button></td>
                         </tr>
-                    }
+                        }
                     </tbody>
                 </table>
             </div>
@@ -61,132 +59,170 @@
 
 <!-- ADD MOVIE MODAL -->
 <div class="modal fade" id="addMovieModal" tabindex="-1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content bg-dark text-light">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content modal-theme">
 
-      <div class="modal-header">
-        <h5 class="modal-title">Add Movie</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-
-        <form (submit)="createMovie($event)">
-
-          <div class="row g-3">
-
-            <div class="col-md-6">
-              <label class="form-label">Title</label>
-              <input class="form-control" [(ngModel)]="newMovie.title" name="title" required>
+            <div class="modal-header">
+                <h5 class="modal-title">Add Movie</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
 
-            <div class="col-md-6">
-              <label class="form-label">Director</label>
-              <input class="form-control" [(ngModel)]="newMovie.director" name="director">
+            <div class="modal-body">
+
+                <form (submit)="createMovie($event)">
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                    <label class="form-label">Title</label>
+                    <input
+                        class="form-control"
+                        [(ngModel)]="newMovie.title"
+                        name="title"
+                        required>
+                    </div>
+
+                    <div class="col-md-6">
+                    <label class="form-label">Director</label>
+                    <input
+                        class="form-control"
+                        [(ngModel)]="newMovie.director"
+                        name="director">
+                    </div>
+
+                    <div class="col-md-6">
+                    <label class="form-label">Duration (minutes)</label>
+                    <input
+                        type="number"
+                        class="form-control"
+                        [(ngModel)]="newMovie.duration_minutes"
+                        name="duration">
+                    </div>
+
+                    <div class="col-md-6">
+                    <label class="form-label">Release Date</label>
+                    <input
+                        type="date"
+                        class="form-control"
+                        [(ngModel)]="newMovie.release_date"
+                        name="release">
+                    </div>
+
+                    <div class="col-12">
+                    <label class="form-label">Description</label>
+                    <textarea
+                        class="form-control"
+                        rows="3"
+                        [(ngModel)]="newMovie.description"
+                        name="description">
+                    </textarea>
+                    </div>
+
+                    <!-- Poster Upload -->
+                    <div class="col-md-6">
+                    <label class="form-label">Poster</label>
+                    <input
+                        type="file"
+                        class="form-control"
+                        accept="image/*"
+                        (change)="onFileSelected($event)">
+                    </div>
+
+                    <!-- Preview -->
+                    <div class="col-md-6 text-center" *ngIf="imagePreview">
+                    <img
+                        [src]="imagePreview"
+                        class="poster-preview">
+                    </div>
+
+                    <!-- Button -->
+                    <div class="col-12 text-end mt-4">
+                    <button
+                        type="submit"
+                        class="btn btn-warning px-4">
+                        Create Movie
+                    </button>
+                    </div>
+
+                </div>
+
+                </form>
+
             </div>
 
-            <div class="col-md-6">
-              <label class="form-label">Duration (minutes)</label>
-              <input type="number" class="form-control" [(ngModel)]="newMovie.duration_minutes" name="duration">
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label">Release Date</label>
-              <input type="date" class="form-control" [(ngModel)]="newMovie.release_date" name="release">
-            </div>
-
-            <div class="col-12">
-              <label class="form-label">Description</label>
-              <textarea class="form-control" rows="3" [(ngModel)]="newMovie.description" name="description"></textarea>
-            </div>
-
-            <!-- Poster Upload -->
-            <div class="col-md-6">
-              <label class="form-label">Poster</label>
-              <input type="file" class="form-control" (change)="onFileSelected($event)">
-            </div>
-
-            <!-- Preview -->
-            <div class="col-md-6 text-center" *ngIf="imagePreview">
-              <img 
-                [src]="imagePreview"
-                style="height:150px;border-radius:6px">
-            </div>
-
-          </div>
-
-            <button type="submit" class="btn btn-warning">
-                Create Movie
-            </button>
-
-        </form>
-
-      </div>
-
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- edit modal -->
- <div class="modal fade" id="editMovieModal" tabindex="-1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content bg-dark text-light">
+<div class="modal fade" id="editMovieModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content modal-theme">
 
-      <div class="modal-header">
-        <h5>Edit Movie</h5>
-        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-
-        <form (submit)="updateMovie($event)">
-
-          <div class="row g-3">
-
-            <div class="col-md-6">
-              <label>Title</label>
-              <input class="form-control" [(ngModel)]="editMovie.title" name="title">
+            <div class="modal-header">
+                <h5>Edit Movie</h5>
+                <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
 
-            <div class="col-md-6">
-              <label>Director</label>
-              <input class="form-control" [(ngModel)]="editMovie.director" name="director">
+            <div class="modal-body">
+
+                <form (submit)="updateMovie($event)">
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label>Title</label>
+                            <input class="form-control" [(ngModel)]="editMovie.title" name="title">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Director</label>
+                            <input class="form-control" [(ngModel)]="editMovie.director" name="director">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Duration</label>
+                            <input type="number" class="form-control" [(ngModel)]="editMovie.duration_minutes"
+                                name="duration">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Release Date</label>
+                            <input type="date" class="form-control" [(ngModel)]="editMovie.release_date" name="release">
+                        </div>
+
+                        <div class="col-12">
+                            <label>Description</label>
+                            <textarea class="form-control" [(ngModel)]="editMovie.description" name="description">
+                        </textarea>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Poster</label>
+                            <input type="file" class="form-control" accept="image/*" (change)="onFileSelected($event)">
+                        </div>
+
+
+                        <div class="col-md-6 text-center" *ngIf="imagePreview">
+
+                            <img [src]="imagePreview" class="poster-preview">
+
+                        </div>
+
+                        <div class="col-12 text-end mt-4">
+                        <button
+                            type="submit"
+                            class="btn btn-warning px-4">
+                            Update Movie
+                        </button>
+                        </div>
+
+                    </div>
+
+                </form>
+
             </div>
 
-            <div class="col-md-6">
-              <label>Duration</label>
-              <input type="number" class="form-control" [(ngModel)]="editMovie.duration_minutes" name="duration">
-            </div>
-
-            <div class="col-md-6">
-              <label>Release Date</label>
-              <input type="date" class="form-control" [(ngModel)]="editMovie.release_date" name="release">
-            </div>
-
-            <div class="col-12">
-              <label>Description</label>
-              <textarea class="form-control" [(ngModel)]="editMovie.description" name="description"></textarea>
-            </div>
-
-            <div class="col-md-6">
-              <label>Poster</label>
-              <input type="file" class="form-control" (change)="onFileSelected($event)">
-            </div>
-
-            <div class="col-md-6 text-center" *ngIf="imagePreview">
-              <img [src]="imagePreview" style="height:150px">
-            </div>
-
-          </div>
-
-          <div class="mt-4 text-end">
-            <button class="btn btn-warning">Update Movie</button>
-          </div>
-
-        </form>
-
-      </div>
-
+        </div>
     </div>
-  </div>
 </div>
