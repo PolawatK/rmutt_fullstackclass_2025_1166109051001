@@ -45,5 +45,6 @@ tbody td {
   font-size: 14px;
   color: #e5e7eb;
   text-align: center;
+  white-space: nowrap;
 }
 

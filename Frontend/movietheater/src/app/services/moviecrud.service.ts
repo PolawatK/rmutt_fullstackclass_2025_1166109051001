@@ -7,12 +7,12 @@ export interface MovieCRUD {
   id: string;
   title: string;
   description: string;
-  duration_minutes: string;
+  duration_minutes: number;
   release_date: string;
   director: string;
   created_at: string;
   image_url: string;
-  avg_rating : string;
+  avg_rating : number;
 }
 
 
@@ -27,5 +27,17 @@ export class MovieCRUDService {
 
   getAllMoviesCRUD(): Observable<MovieCRUD[]> {
     return this.http.get<MovieCRUD[]>(`${this.apiUrl}`);
+  }
+
+  createMovieCRUD(data: FormData): Observable<any> {
+    return this.http.post(this.apiUrl, data);
+  }
+
+  updateMovieCRUD(id: string, data: FormData): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
+  }
+
+  deleteMovieCRUD(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }
