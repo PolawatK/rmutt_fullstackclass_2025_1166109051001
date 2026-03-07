@@ -1,19 +1,15 @@
-
-    <div class="container-fluid px-3 px-md-4 py-4">
-    <div class="mb-4">
-        <h2 class="text-light">Reviews</h2>
-        <small class="text-secondary">
-                {{ totalReviews }} reviews - Average:
-                <span class="text-warning fw-semibold">
-                {{ averageRating | number:'1.1-1' }} / 5
-        </span>
-</small>
+<div class="container-fluid py-4 p-4">
+    <h2>Customers & Staff</h2>
+    <div class="subtitle">{{ totalReviews }} reviews - Average:
+        <span class="text-warning fw-semibold">{{ averageRating | number:'1.1-1' }} / 5</span>
     </div>
+
     @for (r of reviews; track $index){
-    <div class="card bgcard border-secondary p-3">
+    <div class="card bgcard p-3">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start">
             <div class="d-flex">
-                <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-3"style="width:50px;height:50px;">
+                <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-3"
+                    style="width:50px;height:50px;">
                     icon
                 </div>
                 <div>
@@ -30,14 +26,12 @@
 
             </div>
             <div class="text-warning fs-5 mt-3 mt-md-0">
-            @for (star of getStars(r.rating); track $index) {
-                ⭐    
-            }
+                @for (star of getStars(r.rating); track $index) {
+                ⭐
+                }
+
             </div>
         </div>
     </div>
-}
-
+    }
 </div>
-<h1></h1>
-

@@ -36,6 +36,13 @@
           <li><a routerLink="/movies">Movies</a></li>
           <li><a routerLink="/theaters">Theaters</a></li>
           <li><a routerLink="/mybooking">My Bookings</a></li>
+          @if (authService.isLoggedIn() && authService.getRoleId() === 1) {
+<li>
+  <a routerLink="/admin" class="admin-link">
+    Admin Dashboard
+  </a>
+</li>
+}
         </ul>
       </div>
 

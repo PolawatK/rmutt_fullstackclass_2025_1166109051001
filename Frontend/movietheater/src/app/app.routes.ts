@@ -13,6 +13,7 @@ import { Movies } from './pages/movies/movies';
 import { Mybooking } from './pages/mybooking/mybooking';
 import { Showtime } from './admin/showtime/showtime';
 import { MovieDetail } from './pages/movie-detail/movie-detail';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -51,9 +52,11 @@ export const routes: Routes = [
         ],
     },
     {
-        path: 'booking/:id', 
-        loadChildren: () => import('./booking/booking-module').then(m => m.BookingModule)
-    },{
+  path: 'booking/:id',
+  loadChildren: () =>
+    import('./booking/booking-module').then(m => m.BookingModule),
+  canActivate: [AuthGuard]
+},{
         path: 'moviedetail/:id',
         component: MovieDetail
     },
