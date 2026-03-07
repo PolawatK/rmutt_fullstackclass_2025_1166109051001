@@ -47,4 +47,8 @@ export class theatercrudService {
   updateScreen(id: number, data: any) {
     return this.http.put(`${this.apiUrl}/update/${id}`, data);
   }
+
+  deleteScreen(id: number) {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }
