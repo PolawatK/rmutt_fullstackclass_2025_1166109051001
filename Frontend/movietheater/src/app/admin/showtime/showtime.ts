@@ -7,20 +7,21 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-showtime',
-  imports: [ CommonModule ],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './showtime.html',
   styleUrl: './showtime.css',
 })
 export class Showtime {
 
-  showtimes:any[] = [];
-  movies:any[] = [];
-  screens:any[] = [];
+  showtimes: any[] = [];
+  movies: any[] = [];
+  screens: any[] = [];
 
   constructor(
-    private showtimeService:ShowtimeService,
-    private http:HttpClient
-  ){}
+    private showtimeService: ShowtimeService,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(){
     this.loadShowtimes();
@@ -29,158 +30,144 @@ export class Showtime {
   }
 
   loadShowtimes(){
-
     this.http.get<any>(`${environment.apiUrl}/showtimes`)
     .subscribe({
-
       next:(res)=>{
         this.showtimes = res;
       },
-
       error:(err)=>{
         console.error("Load showtimes failed", err);
       }
-
     });
-
   }
 
   loadMovies(){
-
-    this.http.get<any>(`${environment.apiUrl}/movies`)
+    this.http.get<any>(`${environment.apiUrl}/moviecrud`)
     .subscribe({
-
       next:(res)=>{
         this.movies = res;
       },
-
       error:(err)=>{
         console.error("Load movies failed", err);
       }
-
     });
-
   }
 
   loadScreens(){
-
     this.http.get<any>(`${environment.apiUrl}/screens`)
     .subscribe({
-
       next:(res)=>{
         this.screens = res;
       },
-
       error:(err)=>{
         console.error("Load screens failed", err);
       }
-
     });
-
   }
 
- openShowtimeModal(){
+  openShowtimeModal(){
+    const movieOptions = this.movies.map(m =>
+      `<option value="${m?.id}">${m?.title}</option>`
+    ).join('');
 
-  console.log("movies", this.movies);
-console.log("screens", this.screens);
+    const screenOptions = this.screens.map(s =>
+      `<option value="${s.id}">${s.name}</option>`
+    ).join('');
 
-  const movieOptions = this.movies.map(m =>
-    `<option value="${m.id}">${m.title}</option>`
-  ).join('');
+    Swal.fire({
 
-  const screenOptions = this.screens.map(s =>
-    `<option value="${s.id}">${s.name}</option>`
-  ).join('');
+      title: "Add New Showtime",
+      background: "#0f172a",
+      color: "#fff",
 
-  Swal.fire({
+      confirmButtonColor: "#f59e0b",
+      cancelButtonColor: "#374151",
 
-    title: "Add New Showtime",
+      showCancelButton: true,
+      confirmButtonText: "✓ Add Showtime",
+      cancelButtonText: "Cancel",
 
-    background: "#0f172a",
-    color: "#fff",
+      html: `
 
-    confirmButtonColor: "#f59e0b",
-    cancelButtonColor: "#374151",
+      <label style="display:block;text-align:left;margin-top:10px">Movie</label>
+      <select id="movie" class="swal2-input">
+        <option value="">Select Movie</option>
+        ${movieOptions}
+      </select>
 
-    showCancelButton: true,
-    confirmButtonText: "✓ Add Showtime",
-    cancelButtonText: "Cancel",
+      <label style="display:block;text-align:left;margin-top:10px">Screen</label>
+      <select id="screen" class="swal2-input">
+        <option value="">Select Screen</option>
+        ${screenOptions}
+      </select>
 
-    html: `
+      <label style="display:block;text-align:left;margin-top:10px">Start Time</label>
+      <input id="start"
+      type="datetime-local"
+      class="swal2-input">
 
-    <label style="display:block;text-align:left;margin-top:10px">Movie</label>
-    <select id="movie" class="swal2-input">
-      <option value="">Select Movie</option>
-      ${movieOptions}
-    </select>
+      <label style="display:block;text-align:left;margin-top:10px">Price (THB)</label>
+      <input id="price"
+      type="number"
+      class="swal2-input"
+      placeholder="250">
 
-    <label style="display:block;text-align:left;margin-top:10px">Screen</label>
-    <select id="screen" class="swal2-input">
-      <option value="">Select Screen</option>
-      ${screenOptions}
-    </select>
+      `,
 
-    <label style="display:block;text-align:left;margin-top:10px">Start Time</label>
-    <input id="start"
-    type="datetime-local"
-    class="swal2-input">
+      preConfirm:()=>{
 
-    <label style="display:block;text-align:left;margin-top:10px">Price (THB)</label>
-    <input id="price"
-    type="number"
-    class="swal2-input"
-    placeholder="250">
+        const movie = (document.getElementById("movie") as HTMLSelectElement).value;
+        const screen = (document.getElementById("screen") as HTMLSelectElement).value;
+        const start = (document.getElementById("start") as HTMLInputElement).value;
+        const price = (document.getElementById("price") as HTMLInputElement).value;
 
-    `,
+        if(!movie || !screen || !start || !price){
+          Swal.showValidationMessage("Please fill all fields");
+          return false;
+        }
 
-    preConfirm:()=>{
-
-      return{
-
-        movie_id:(document.getElementById("movie") as HTMLSelectElement).value,
-
-        screen_id:(document.getElementById("screen") as HTMLSelectElement).value,
-
-        start_time:(document.getElementById("start") as HTMLInputElement).value,
-
-        price:(document.getElementById("price") as HTMLInputElement).value
+        return{
+          movie_id: movie,
+          screen_id: Number(screen),
+          start_time: start,
+          price: Number(price)
+        }
 
       }
 
-    }
+    }).then(result=>{
 
-  }).then(result=>{
+      if(result.isConfirmed){
 
-    if(result.isConfirmed){
+        this.showtimeService.createShowtime(result.value)
+        .subscribe({
 
-      this.showtimeService.createShowtime(result.value)
-      .subscribe({
+          next:()=>{
 
-        next:()=>{
+            Swal.fire({
+              icon:"success",
+              title:"Showtime Added",
+              background:"#0f172a",
+              color:"#fff"
+            });
 
-          Swal.fire({
-            icon:"success",
-            title:"Showtime Added",
-            background:"#0f172a",
-            color:"#fff"
-          });
+            this.loadShowtimes();
 
-          this.loadShowtimes();
+          },
 
-        },
+          error:(err)=>{
 
-        error:(err)=>{
+            Swal.fire({
+              icon:"error",
+              title:"Error",
+              text:err.error.message,
+              background:"#0f172a",
+              color:"#fff"
+            });
 
-          Swal.fire({
-            icon:"error",
-            title:"Error",
-            text:err.error.message,
-            background:"#0f172a",
-            color:"#fff"
-          });
-        }
-      });
-    }
-  });
-}
+          }
+        });
+      }
+    });
+  }
 }
