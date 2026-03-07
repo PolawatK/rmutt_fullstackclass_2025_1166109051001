@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 
 export interface ShowtimeDetail {
   id: string;
@@ -35,7 +36,12 @@ export class BookingService {
   getBookedSeats(showtimeId: string) {
     return this.http.get<string[]>(`${this.apiUrl}/showtimes/${showtimeId}/booked-seats`);
   }
+
   createBooking(data: {showtime_id: string; seats: string[];}) {
   return this.http.post(`${this.apiUrl}/bookings`, data);
+  }
+
+  getMyBookings(): Observable<any>{
+    return this.http.get(`${this.apiUrl}/my-bookings`);
   }
 }
