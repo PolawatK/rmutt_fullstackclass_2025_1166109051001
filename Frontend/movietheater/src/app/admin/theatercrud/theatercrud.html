@@ -1,268 +1,173 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Theatercrud</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theatercrud</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="./theatercrud.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<body>
+  <nav class="nav-bar container">
+    <div class="text-nav">
+      <h1>Theaters & Screens</h1>
+      <h3>Manage screens, seats, and amenities</h3>
+    </div>
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    />
+    <div class="btn-addscreen">
+      <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addScreenModal">
+        Add Screen
+      </button>
+    </div>
+  </nav>
 
-    <link rel="stylesheet" href="./theatercrud.css" />
+  <div class="container-fluid mt-4 px-5">
+    <div class="screen-scroll">
+      <div class="row g-4">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
-
-  <body>
-    <!-- NAVBAR -->
-
-    <nav class="nav-bar container">
-      <div class="text-nav">
-        <h1>Theaters & Screens</h1>
-        <h3>Manage screens, seats, and amenities</h3>
-      </div>
-
-      <div class="btn-addscreen">
-        <button
-          class="btn btn-warning"
-          data-bs-toggle="modal"
-          data-bs-target="#addScreenModal"
-        >
-          Add Screen
-        </button>
-      </div>
-    </nav>
-
-    <!-- SCREEN LIST -->
-
-    <div class="container-fluid mt-4 px-5">
-      <div class="screen-scroll">
-        <div class="row g-4">
-          @for (screen of GroupTheaterScreens; track screen.id) {
-            <div class="col-lg-6 col-12">
-              <div class="cinema-card">
-                <!-- HEADER -->
-
-                <div class="d-flex justify-content-between align-items-start">
-                  <div class="d-flex gap-3">
-                    <div class="screen-icon">
-                      <i class="bi bi-display"></i>
-                    </div>
-
-                    <div>
-                      <div class="screen-title">
-                        {{ screen.name }}
-                      </div>
-
-                      <div class="location">
-                        <i class="bi bi-geo-alt"></i>
-                        {{ screen.location }}
-                      </div>
-                    </div>
+        @for (screen of GroupTheaterScreens; track screen.id) {
+        <div class="col-lg-6 col-12">
+          <div class="cinema-card">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="d-flex gap-3">
+                <div class="screen-icon">
+                  <i class="bi bi-display"></i>
+                </div>
+                <div>
+                  <div class="screen-title">
+                    {{ screen.name }}
                   </div>
-
-                  <button
-                    class="btn btn-sm btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#editScreenModal"
-                    (click)="openEdit(screen)"
-                  >
-                    Edit
-                  </button>
+                  <div class="location">
+                    <i class="bi bi-geo-alt"></i>
+                    {{ screen.location }}
+                  </div>
                 </div>
+              </div>
 
-                <!-- AMENITIES -->
-
-                <div class="feature mt-3">
-                  {{ screen.amenities }}
-                </div>
-
-                <div class="divider"></div>
-
-                <!-- SEAT INFO -->
-
-                <div class="d-flex align-items-center gap-2 flex-wrap">
-                  <span class="total-text">
-                    <i class="bi bi-couch"></i>
-                    Total: {{ screen.total_seats }}
-                  </span>
-
-                  <span class="badge-seat badge-normal">
-                    Normal: {{ screen.normal_count }}
-                  </span>
-
-                  <span class="badge-seat badge-premium">
-                    Premium: {{ screen.premium_count }}
-                  </span>
-
-                  <span class="badge-seat badge-vip">
-                    VIP: {{ screen.vip_count }}
-                  </span>
-                </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editScreenModal"
+                  (click)="openEdit(screen)">
+                  Edit
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="deleteScreen(screen.id)">
+                  Delete
+                </button>
               </div>
             </div>
-          }
+
+            <div class="feature mt-3">
+              {{ screen.amenities }}
+            </div>
+            <div class="divider"></div>
+
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+              <span class="total-text">
+                <i class="bi bi-couch"></i>
+                Total: {{ screen.total_seats }}
+              </span>
+              <span class="badge-seat badge-normal">
+                Normal: {{ screen.normal_count }}
+              </span>
+              <span class="badge-seat badge-premium">
+                Premium: {{ screen.premium_count }}
+              </span>
+              <span class="badge-seat badge-vip">
+                VIP: {{ screen.vip_count }}
+              </span>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addScreenModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Screen</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <form (ngSubmit)="addScreen()">
+            <div class="mb-3">
+              <label class="form-label"> Screen Name </label>
+              <input type="text" class="form-control" [(ngModel)]="newScreen.name" name="name" required />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label"> Location </label>
+              <input type="text" class="form-control" [(ngModel)]="newScreen.location" name="location" required />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label"> Amenities </label>
+              <input type="text" class="form-control" [(ngModel)]="newScreen.amenities" name="amenities" />
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label class="form-label"> Rows </label>
+                <input type="number" class="form-control" [(ngModel)]="newScreen.rows" name="rows" required />
+              </div>
+
+              <div class="col">
+                <label class="form-label"> Seats per Row </label>
+                <input type="number" class="form-control" [(ngModel)]="newScreen.seatsPerRow" name="seatsPerRow"
+                  required />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-warning w-100 mt-4 create-screen-btn">
+              Create Screen
+            </button>
+          </form>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ADD SCREEN MODAL -->
+  <div class="modal fade" id="editScreenModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Screen</h5>
 
-    <div class="modal fade" id="addScreenModal" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Add Screen</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
 
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-            ></button>
-          </div>
+        <div class="modal-body">
+          <form (ngSubmit)="updateScreen()">
+            <input type="hidden" [(ngModel)]="editScreen.id" name="id" />
+            <div class="mb-3">
+              <label class="form-label"> Screen Name </label>
+              <input type="text" class="form-control" [(ngModel)]="editScreen.name" name="name" />
+            </div>
 
-          <div class="modal-body">
-            <form (ngSubmit)="addScreen()">
-              <div class="mb-3">
-                <label class="form-label"> Screen Name </label>
+            <div class="mb-3">
+              <label class="form-label"> Location </label>
+              <input type="text" class="form-control" [(ngModel)]="editScreen.location" name="location" />
+            </div>
 
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="newScreen.name"
-                  name="name"
-                  required
-                />
-              </div>
+            <div class="mb-3">
+              <label class="form-label"> Amenities </label>
+              <input type="text" class="form-control" [(ngModel)]="editScreen.amenities" name="amenities" />
+            </div>
 
-              <div class="mb-3">
-                <label class="form-label"> Location </label>
-
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="newScreen.location"
-                  name="location"
-                  required
-                />
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label"> Amenities </label>
-
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="newScreen.amenities"
-                  name="amenities"
-                />
-              </div>
-
-              <div class="row">
-                <div class="col">
-                  <label class="form-label"> Rows </label>
-
-                  <input
-                    type="number"
-                    class="form-control"
-                    [(ngModel)]="newScreen.rows"
-                    name="rows"
-                    required
-                  />
-                </div>
-
-                <div class="col">
-                  <label class="form-label"> Seats per Row </label>
-
-                  <input
-                    type="number"
-                    class="form-control"
-                    [(ngModel)]="newScreen.seatsPerRow"
-                    name="seatsPerRow"
-                    required
-                  />
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                class="btn btn-warning w-100 mt-4 create-screen-btn"
-              >
-                Create Screen
-              </button>
-            </form>
-          </div>
+            <button type="submit" class="btn btn-primary">
+              Update Screen
+            </button>
+          </form>
         </div>
       </div>
     </div>
+  </div>
+</body>
 
-    <!-- EDIT SCREEN MODAL -->
-
-    <div class="modal fade" id="editScreenModal" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Edit Screen</h5>
-
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-            ></button>
-          </div>
-
-          <div class="modal-body">
-            <form (ngSubmit)="updateScreen()">
-              <input type="hidden" [(ngModel)]="editScreen.id" name="id" />
-
-              <div class="mb-3">
-                <label class="form-label"> Screen Name </label>
-
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="editScreen.name"
-                  name="name"
-                />
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label"> Location </label>
-
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="editScreen.location"
-                  name="location"
-                />
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label"> Amenities </label>
-
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="editScreen.amenities"
-                  name="amenities"
-                />
-              </div>
-
-              <button type="submit" class="btn btn-primary w-100">
-                Update Screen
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
 </html>

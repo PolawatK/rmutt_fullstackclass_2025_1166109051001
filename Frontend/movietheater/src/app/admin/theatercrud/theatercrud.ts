@@ -5,6 +5,7 @@ import {
   TheaterScreen,
 } from '../../services/theatercrud.service';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-theatercrud',
@@ -49,18 +50,17 @@ export class Theatercrud implements OnInit {
   addScreen() {
     this.TCRUDService.createScreen(this.newScreen).subscribe({
       next: (res) => {
-        console.log('screen created', res);
-
         this.loadScreens();
 
-        this.newScreen = {
-          name: '',
-          location: '',
-          amenities: '',
-          rows: 0,
-          seatsPerRow: 0,
-        };
+        Swal.fire({
+          icon: 'success',
+          title: 'Created!',
+          text: 'Screen created successfully',
+          timer: 1500,
+          showConfirmButton: false,
+        });
       },
+
       error: (err) => {
         console.error(err);
       },
@@ -75,8 +75,57 @@ export class Theatercrud implements OnInit {
     this.TCRUDService.updateScreen(
       this.editScreen.id,
       this.editScreen,
-    ).subscribe(() => {
-      this.loadScreens();
+    ).subscribe({
+      next: () => {
+        this.loadScreens();
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Updated!',
+          text: 'Screen updated successfully',
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      },
+
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
+
+  deleteScreen(id: number) {
+    Swal.fire({
+      title: 'Delete this screen?',
+      text: 'This action cannot be undone.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Yes, delete it',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.TCRUDService.deleteScreen(id).subscribe({
+          next: () => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Deleted!',
+              text: 'Screen deleted successfully',
+            });
+
+            this.loadScreens();
+          },
+
+          error: (err) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Cannot delete',
+              text: err.error?.message || 'Delete failed',
+            });
+          },
+        });
+      }
     });
   }
 }

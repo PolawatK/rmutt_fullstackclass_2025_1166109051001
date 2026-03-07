@@ -29,10 +29,40 @@ exports.updateScreen = async (id, name, location, amenities) => {
      RETURNING *`,
     [name, location, amenities, id],
   );
+
   return rows[0];
 };
 
-exports.getTheaterScreen = async (req, res) => {
+exports.deleteSeatsByScreen = async (screenId) => {
+  await pool.query(
+    `DELETE FROM seats
+     WHERE screen_id = $1`,
+    [screenId],
+  );
+};
+
+exports.deleteScreen = async (id) => {
+  await pool.query(
+    `DELETE FROM screens
+     WHERE id = $1`,
+    [id],
+  );
+};
+
+exports.checkShowtime = async (screenId) => {
+  const { rows } = await pool.query(
+    `SELECT EXISTS (
+        SELECT 1
+        FROM showtimes
+        WHERE screen_id = $1
+     )`,
+    [screenId],
+  );
+
+  return rows[0].exists;
+};
+
+exports.getTheaterScreen = async () => {
   const { rows } = await pool.query(`
       SELECT
         s.id,
@@ -51,5 +81,6 @@ exports.getTheaterScreen = async (req, res) => {
         GROUP BY s.id, s.name, s.location, s.amenities
         ORDER BY s.id;
     `);
+
   return rows;
 };
