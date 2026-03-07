@@ -10,6 +10,7 @@ exports.getshowtime = async (req, res) =>  {
         sc.location,
         sc.amenities,
         m.title AS movie_title,
+        m.image_url,
         s.start_time,
         s.price
         FROM showtimes s

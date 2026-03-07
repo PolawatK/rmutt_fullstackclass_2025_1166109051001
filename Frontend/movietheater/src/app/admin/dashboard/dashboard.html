@@ -1,8 +1,8 @@
-<div class="container-fluid  py-4">
+<div class="container-fluid py-4">
     <div class="main p-4">
         <div class="title mb-3">
             <h2>Dashboard Overview</h2>
-            <h6 class="text-title">All ticket bookings across CineVault</h6>
+            <div class="subtitle">Welcome back. Here is what is happening at CineVault.</div>
         </div>
         <div class="row mb-4">
             <br>
@@ -95,7 +95,7 @@
                 </thead>
 
                 <tbody>
-                    @for (b of bookingscurd.slice(0,10);; track b.id) {
+                    @for (b of bookingscurd; track b.id) {
                     <tr>
                         <td>{{ b.customer }}</td>
                         <td>{{ b.movie }}</td>
@@ -117,7 +117,6 @@
     </div>
 
 </div>
-
 
 
 <!-- @for (item of movies; track $index) {
