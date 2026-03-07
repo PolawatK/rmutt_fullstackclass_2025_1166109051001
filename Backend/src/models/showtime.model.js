@@ -51,6 +51,7 @@ exports.findById = async (id) => {
       st.screen_id,
       st.start_time,
       st.price,
+      m.image_url,
       m.title AS movie_title,
       s.name AS screen_name
     FROM showtimes st
