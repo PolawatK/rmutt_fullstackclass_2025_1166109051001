@@ -10,13 +10,13 @@ import { ReviewComponent } from './admin/review/review';
 import { Bookingcrud} from './admin/bookingcrud/bookingcrud';
 import { Moviecrud } from './admin/moviecrud/moviecrud';
 import { Movies } from './pages/movies/movies';
+import { Mybooking } from './pages/mybooking/mybooking';
 import { MovieDetail } from './pages/movie-detail/movie-detail';
 export const routes: Routes = [
     {
         path: '',
         component: Home
     },
-
     {
         path: 'theaters',
         component: Theaters
@@ -24,6 +24,10 @@ export const routes: Routes = [
     {
         path: 'regislog',
         component: Authentication
+    },
+    {
+        path: 'mybooking',
+        component: Mybooking
     },
     {
         path: 'movies',

@@ -63,6 +63,48 @@ const createBooking = async (userId, showtimeId, seats, paymentMethod) => {
   }
 };
 
+const getMyBookings = async (userId) => {
+  const result = await pool.query(`
+    SELECT
+      b.id AS booking_id,
+      m.title,
+      m.image_url,
+      m.duration_minutes,
+      s.start_time,
+      s.screen_id,
+      b.total_price,
+      b.status,
+      b.created_at,
+      p.method AS payment_method,
+        COALESCE(STRING_AGG(bs.seat_id::text, ', '),'') AS seats
+    FROM bookings b
+    JOIN showtimes s ON b.showtime_id = s.id
+    JOIN movies m on s.movie_id = m.id
+    
+    LEFT JOIN booking_seats bs ON bs.booking_id = b.id
+    LEFT JOIN seats se ON se.id = bs.seat_id
+
+    LEFT JOIN payments p ON p.booking_id = b.id
+    
+    WHERE b.user_id = $1
+    GROUP BY
+      b.id,
+      m.title,
+      m.image_url,
+      m.duration_minutes,
+      s.start_time,
+      s.screen_id,
+      b.total_price,
+      b.status,
+      b.created_at,
+      p.method
+      ORDER BY b.created_at DESC 
+    `,[userId]);
+
+    return result.rows;
+}; 
+
 module.exports = {
-  createBooking
+  createBooking,
+  getMyBookings
 };

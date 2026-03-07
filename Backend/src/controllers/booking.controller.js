@@ -38,3 +38,18 @@ exports.createBooking = async (req, res) => {
     });
   }
 };
+
+exports.getMyBookings = async (req, res) => {
+  
+  try{
+    const userId = req.user.sub;
+
+    const bookings = await bookingModel.getMyBookings(userId);
+
+    res.json(bookings);
+
+  } catch(error){
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+}
