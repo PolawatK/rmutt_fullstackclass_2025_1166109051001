@@ -28,15 +28,15 @@ export class Authentication {
     if (form.invalid) {
       Swal.fire({
         icon: 'warning',
-        title: 'กรอกข้อมูลไม่ครบ',
-        text: 'กรุณากรอกอีเมลและรหัสผ่านให้ครบถ้วน'
+        title: 'Incomplete Information',
+        text: 'Please enter both your email and password'
       });
       return;
     }
 
     // แสดง loading
     Swal.fire({
-      title: 'กำลังเข้าสู่ระบบ...',
+      title: 'Logging in...',
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
@@ -51,20 +51,22 @@ export class Authentication {
 
         Swal.fire({
           icon: 'success',
-          title: 'เข้าสู่ระบบสำเร็จ',
+          title: 'Login Success',
           timer: 1500,
           showConfirmButton: false
         }).then(() => {
-          this.router.navigate(['/']);
+        this.router.navigate(['/']).then(() => {
+        window.location.reload();   
         });
+     });
       },
       error: (err) => {
         console.error(err);
 
         Swal.fire({
           icon: 'error',
-          title: 'เข้าสู่ระบบไม่สำเร็จ',
-          text: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง'
+          title: 'Login failed',
+          text: 'Incorrect email or password'
         });
       }
     });
@@ -74,14 +76,14 @@ export class Authentication {
     if (form.invalid) {
       Swal.fire({
         icon: 'warning',
-        title: 'กรอกข้อมูลไม่ครบ',
-        text: 'กรุณากรอกข้อมูลให้ครบถ้วน'
+        title: 'Incomplete Information',
+        text: 'Please fill in all the information'
       });
       return;
     }
 
     Swal.fire({
-      title: 'กำลังสมัครสมาชิก...',
+      title: 'Signing up...',
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
@@ -93,9 +95,9 @@ export class Authentication {
 
         Swal.fire({
           icon: 'success',
-          title: 'สมัครสมาชิกสำเร็จ',
-          text: 'กรุณาเข้าสู่ระบบ',
-          confirmButtonText: 'ไปหน้า Login'
+          title: 'Registration Successful',
+          text: 'Please log in',
+          confirmButtonText: 'Go to Login'
         }).then(() => {
           this.activeTab = 'login';
         });

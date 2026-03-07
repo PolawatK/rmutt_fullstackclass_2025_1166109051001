@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 export class SelectSeats implements OnInit {
 
   showtimeId!: string;
-  showtime!: ShowtimeDetail;
+  showtime?: ShowtimeDetail;
   seats: Seat[] = [];
   bookedSeats: string[] = [];
   selectedSeats: Seat[] = [];
@@ -67,9 +67,13 @@ isSelected(seatId: string) {
 }
 
 getTotal() {
-    return this.selectedSeats.length * this.showtime?.price;
+    return this.selectedSeats.length * (this.showtime?.price ?? 0);
   }
 
+  //เอาข้อมูลมา ละก็ลูปจัดกรุ๊ป รอบเเรก !A เลยได้  A = [] ละก็ดัน 1เข้าไป ก็เลยได้ป็น A =[{id:uuid row_label:'A',seat_number 1 หรือ A1}]
+  //เสร็จเเล้วก็จะทำการmap ก็คือเเปลงจาก Object {row:'A' ,seats:[{id:uuid row_label:'A',seat_number 1 หรือ A1}]} 
+  //โดยการนำ ตัวเเปร row มา = key หลักก็คือ row = A ละ groups[A] ก็คือ seats:[{id:uuid row_label:'A',seat_number 1 หรือ A1}]
+  //มันก็เลยกลายเป็น {row: "A",seats:[{id:uuid row_label:'A',seat_number 1}]}
 get groupedSeats(): { row: string; seats: Seat[] }[] {
   const groups: { [key: string]: Seat[] } = {};
   for (const seat of this.seats) {
