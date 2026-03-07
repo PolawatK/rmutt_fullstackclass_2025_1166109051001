@@ -3,13 +3,14 @@ import { HttpClient} from '@angular/common/http';
 import { Observable} from 'rxjs';
 import { environment } from '../../environments/environment';
 
-export interface Movie {
-  id: string;
-  title: string;
-  description: string;
-  imageUrl: string;
+export interface DashboardStats {
+  totalMovies: number
+  totalBookings: number
+  totalPayments: number
+  totalcustomers: number
+  totalscreens: number
+  totalreviews: number
 }
-
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +20,7 @@ export class DashboardService {
 
   constructor(private http: HttpClient) {}
 
-  getAllMovies(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(this.apiUrl);
+  getAllStats(): Observable<DashboardStats> {
+    return this.http.get<DashboardStats>(this.apiUrl);
   }
 }
