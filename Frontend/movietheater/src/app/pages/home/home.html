@@ -58,7 +58,7 @@
             <div #scrollContainer1 class="movie-wrapper">
 
                 @for (item of MovieShowtimes; track $index) {
-                <div class="movie-card card">
+                <div class="movie-card card" (click)="gotoMoviedetail(item.id)">
                     <img [src]="item.image_url" class="poster">
 
                     <div class="card-body">
