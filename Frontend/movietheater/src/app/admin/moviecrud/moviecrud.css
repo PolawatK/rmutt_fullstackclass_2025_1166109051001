@@ -15,8 +15,6 @@ table {
 .table-container{
   width:100%;
   overflow-x:auto;
-  overflow-y:auto;
-  max-height:500px;
 }
 thead {
   background: #111827;
@@ -49,10 +47,15 @@ tbody td {
 }
 
 .poster-preview{
-  height:160px;
-  border-radius:8px;
+  width:180px;
+  border-radius:12px;
   object-fit:cover;
-  box-shadow:0 4px 10px rgba(0,0,0,0.4);
+  box-shadow:0 8px 25px rgba(0,0,0,0.6);
+  transition:0.2s;
+}
+
+.poster-preview:hover{
+  transform:scale(1.05);
 }
 
 .modal-theme{
