@@ -55,8 +55,10 @@ export class Authentication {
           timer: 1500,
           showConfirmButton: false
         }).then(() => {
-          this.router.navigate(['/']);
+        this.router.navigate(['/']).then(() => {
+        window.location.reload();   
         });
+     });
       },
       error: (err) => {
         console.error(err);
