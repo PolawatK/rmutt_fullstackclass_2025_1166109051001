@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dashboard.css',
 })
 export class Dashboard {
-  stats!: DashboardStats;
+  stats?: DashboardStats;
   bookingscurd: Booking[] = [];
 
   constructor(private DbService: DashboardService,private bookingService: BookingService) {}
@@ -18,7 +18,6 @@ export class Dashboard {
   ngOnInit(): void {
     this.loadalldata();
   }
-
   loadalldata(){
     this.DbService.getAllStats().subscribe({
       next: (data) => {

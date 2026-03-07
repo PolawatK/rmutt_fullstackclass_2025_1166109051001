@@ -27,6 +27,7 @@ ngOnInit(): void {
       },
     })
   }
+  //includes()ตรวจว่า string มีคำนี้อยู่ไหม "avengers".includes("ave") → true filter() คือ function ของ JavaScript ที่ใช้ คัดข้อมูลบางตัวออกมา
 searchMovie() {
   this.filteredMovies = this.Movie.filter(movie =>
     movie.title.toLowerCase().includes(this.searchText.toLowerCase())

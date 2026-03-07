@@ -105,3 +105,8 @@ tbody td {
   background: rgba(16, 185, 129, 0.15);
   color: #10b981;
 }
+.container-fluid {
+  padding: 50px;
+  background-color: #0d111a;
+  width: 100%;
+}
