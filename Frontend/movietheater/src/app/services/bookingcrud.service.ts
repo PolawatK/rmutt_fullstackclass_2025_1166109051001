@@ -18,7 +18,7 @@ export interface Booking {
   providedIn: 'root'
 })
 export class BookingService {
-
+  
   private apiUrl = `${environment.apiUrl}/bookingcrud`;
 
   constructor(private http: HttpClient) {}
