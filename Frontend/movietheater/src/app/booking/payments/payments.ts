@@ -64,9 +64,7 @@ export class Payments {
             icon: 'success',
             confirmButtonText: 'OK'
           });
-          this.router.navigate(['confirmed'], {
-            relativeTo: this.route,
-          });
+          this.router.navigate(['/mybooking']);
         },
         error: (err) => {
           if (err.error?.message) {

@@ -71,12 +71,20 @@
             </div>
             <div class="seats">
                 <div class="seats-box">
-                    <span>Seats : </span>
-                    @for (seat of seats; track $index) {
-                    <div class="seats-value">
-                        {{ seat.row_label }}{{ seat.seat_number }}
+                    <span>Seats </span>
+                    <div class="row">
+                        @for (seat of seats; track $index) {
+                        <div class="col-1 mx-2 mb-3 col-md-2">
+                            <div class="seats-value">
+                                <span style="background-color:#d4a017; padding: 5px; border-radius: 5px;">{{
+                                    seat.row_label }}{{
+                                    seat.seat_number
+                                    }}</span>
+                            </div>
+
+                        </div>
+                        }
                     </div>
-                    }
                 </div>
             </div>
 
