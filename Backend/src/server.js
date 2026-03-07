@@ -13,6 +13,7 @@ const bookingRoutes = require('./routes/booking.routes');
 const bookingRoute = require('./routes/bookingcrud.route');
 const theatercrudRoutes = require('./routes/theatercrud.route');
 const homeRoutes = require('./routes/home.routes')
+const movieRoutes = require('./routes/moviepun.routes');
 
 app.use(cors());
 app.use(express.json());
@@ -34,7 +35,7 @@ app.use('/api/customers', customerRoutes);
 app.use('/api/bookingcrud', bookingRoute);
 app.use('/api/homes',homeRoutes);
 app.use('/api/theatercrud', theatercrudRoutes);
-app.use('/api/homes',homeRoutes)
+app.use('/api/movies', movieRoutes);
 
 pool.query("SELECT 1")
   .then(() => console.log("✅ Database connected"))

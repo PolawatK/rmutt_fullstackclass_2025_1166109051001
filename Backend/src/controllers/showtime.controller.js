@@ -1,5 +1,40 @@
 const showtimeModel = require('../models/showtime.model');
 
+exports.createShowtime = async (req, res) => {
+
+  try{
+    const { movie_id, screen_id, start_time, price } = req.body;
+
+    const showtime = await showtimeModel.createShowtime(
+      movie_id,
+      screen_id,
+      start_time,
+      price
+    );
+
+    res.json(showtime);
+
+  } catch (error){
+    res.status(400).json({message:error.message});
+  }
+};
+
+exports.getAllShowtimes = async (req, res) => {
+
+  try{
+
+    const showtimes = await showtimeModel.getAllShowtimes();
+
+    res.json(showtimes);
+
+  }catch(err){
+
+    res.status(500).json({error:err.message});
+
+  }
+
+};
+
 exports.getShowtimeById = async (req, res) => {
   try {
     const { id } = req.params;
