@@ -55,6 +55,9 @@
                 <div>Screen</div>
                 <div>{{ showtime?.screen_name }}</div>
             </div>
+            <div class="info d-flex align-items-center justify-content-center image-box">
+                <img style="border-radius: 5px;" [src]="showtime?.image_url">
+            </div>
             <div class="info">
                 <div>Time</div>
                 <div>{{ showtime?.start_time | date:'shortTime' }}</div>

@@ -9,6 +9,7 @@ export interface ShowtimeDetail {
   screen_name: string;
   start_time: Date;
   price: number;
+  image_url: string;
 }
 export interface Seat {
   id: string;
@@ -18,7 +19,7 @@ export interface Seat {
 }
 export interface MyBooking {
   title: string;
-  poster_url: string;
+  image_url: string;
   seats: string;
   total_price: number;
   show_date: string;

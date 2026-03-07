@@ -15,9 +15,9 @@ import Swal from 'sweetalert2';
 })
 export class Payments {
 
-  showtime!: ShowtimeDetail;
+  showtime?: ShowtimeDetail;
   seats: Seat[] = [];
-  payment : string = '';
+  payment: string = '';
 
   constructor(
     private router: Router,
@@ -35,7 +35,7 @@ export class Payments {
   }
 
   getTotal() {
-    return this.seats.length * this.showtime.price;
+    return this.seats.length * (this.showtime?.price ?? 0); //เขียนงีเเพราะไม่ได้ล็อคให้เป็น notnull พำอมันเป็ฯ null ได้ต้องมีตัวเเทน
   }
 
   confirmBooking() {
