@@ -1,71 +1,70 @@
-<div class="showtime-container">
+<div class="showtime-wrapper">
 
-  <div class="header">
+  <div class="showtime-header">
     <h2>🎬 Manage Showtimes</h2>
 
-    <button class="add-btn">
+    <button class="btn-add" (click)="openShowtimeModal()">
       + Add Showtime
     </button>
   </div>
 
 
-  <table class="showtime-table">
+  <div class="table-card">
 
-    <thead>
-      <tr>
-        <th>Movie</th>
-        <th>Screen</th>
-        <th>Start Time</th>
-        <th>Duration</th>
-        <th>Price</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
+    <table class="showtime-table">
 
-    <tbody>
+      <thead>
+        <tr>
+          <th>Movie</th>
+          <th>Screen</th>
+          <th>Start Time</th>
+          <th>Duration</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
 
-      <tr *ngFor="let s of showtimes">
+      <tbody>
 
-        <td class="movie">
-          🎬 {{ s.title }}
-        </td>
+        <tr *ngFor="let s of showtimes">
 
-        <td>
-          {{ s.screen }}
-        </td>
+          <td class="movie-title">
+            🎬 {{ s.movie_title }}
+          </td>
 
-        <td>
-          {{ s.start_time  }}
-        </td>
+          <td>
+            <span class="screen-badge">
+              {{ s.screen_name }}
+            </span>
+          </td>
 
-        <td>
-          {{ s.duration_minutes }} min
-        </td>
+          <td>
+            {{ s.start_time | date:'medium' }}
+          </td>
 
-        <td>
-          {{ s.price }} ฿
-        </td>
+          <td>
+            <span class="duration">
+              {{ s.duration_minutes }} min
+            </span>
+          </td>
 
-        <td class="actions">
+          <td class="price">
+            {{ s.price | number:'1.0-2' }} ฿
+          </td>
 
-          <button
-            class="edit-btn"
-            >
-            Edit
-          </button>
+          <td class="actions">
 
-          <button
-            class="delete-btn"
-            >
-            Delete
-          </button>
+            <button class="btn-edit">
+              Edit
+            </button>
 
-        </td>
-
-      </tr>
-
-    </tbody>
-
-  </table>
-
+            <button class="btn-delete">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+

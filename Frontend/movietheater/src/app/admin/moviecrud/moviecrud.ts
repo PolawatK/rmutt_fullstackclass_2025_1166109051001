@@ -124,20 +124,51 @@ createMovie(event: Event){
 }
 
 // delete
-deleteMovie(id:string){
+deleteMovie(id: string) {
 
-  if(!confirm("Delete this movie?")) return;
+  Swal.fire({
+    title: 'Delete this movie?',
+    text: 'This action cannot be undone.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#6c757d',
+    confirmButtonText: 'Yes, delete it',
+    cancelButtonText: 'Cancel',
+  }).then((result) => {
 
-  this.MService.deleteMovieCRUD(id).subscribe(()=>{
-    this.loadMovies();
+    if (result.isConfirmed) {
 
-    Swal.fire({
-          icon: 'success',
-          title: 'Deleted!',
-          text: 'Movie has been deleted',
-          timer: 1500,
-          showConfirmButton:false
-        });
+      this.MService.deleteMovieCRUD(id).subscribe({
+
+        next: () => {
+
+          Swal.fire({
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'Movie deleted successfully',
+            timer: 1500,
+            showConfirmButton: false
+          });
+
+          this.loadMovies();
+
+        },
+
+        error: (err) => {
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Cannot delete',
+            text: err.error?.message || 'Delete failed',
+          });
+
+        }
+
+      });
+
+    }
+
   });
 
 }

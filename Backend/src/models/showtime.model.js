@@ -3,10 +3,10 @@ const  pool  = require('../config/db');
 exports.createShowtime = async(movie_id, screen_id, start_time, price) =>{
   
   const movie = await pool.query(
-    `SELECT duration_minute FROM movies WHERE id=$1`,[movie_id]
+    `SELECT duration_minutes FROM movies WHERE id=$1`,[movie_id]
   );
 
-  const duration = movie.row[0].duration_minutes;
+  const duration = movie.rows[0].duration_minutes;
 
   const start = new Date(start_time);
 
@@ -40,6 +40,25 @@ exports.createShowtime = async(movie_id, screen_id, start_time, price) =>{
     `, [movie_id, screen_id, start_time, price]);
 
     return result.rows[0];
+};
+
+exports.getAllShowtimes = async () => {
+
+  const { rows } = await pool.query(`
+    SELECT
+      st.id,
+      st.start_time,
+      st.price,
+      m.title AS movie_title,
+      m.duration_minutes,
+      s.name AS screen_name
+    FROM showtimes st
+    JOIN movies m ON st.movie_id = m.id
+    JOIN screens s ON st.screen_id = s.id
+    ORDER BY st.start_time
+  `);
+
+  return rows;
 };
 
 exports.findById = async (id) => {
