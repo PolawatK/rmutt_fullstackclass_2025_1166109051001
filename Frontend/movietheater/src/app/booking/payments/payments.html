@@ -4,10 +4,10 @@
 <br>
 <div class="page">
     <div class="header">
-        <h2>{{ showtime.movie_title }}</h2>
+        <h2>{{ showtime?.movie_title }}</h2>
         <p>
-            {{ showtime.screen_name }} •
-            {{ showtime.start_time | date:'shortTime' }}
+            {{ showtime?.screen_name }} •
+            {{ showtime?.start_time | date:'shortTime' }}
         </p>
     </div>
     <div class="steps">
@@ -51,18 +51,21 @@
             </div>
         </div>
         <div class="summary-card">
-            <h4>{{ showtime.movie_title }}</h4>
+            <h4>{{ showtime?.movie_title }}</h4>
             <div class="info">
                 <div>Screen</div>
-                <div>{{ showtime.screen_name }}</div>
+                <div>{{ showtime?.screen_name }}</div>
+            </div>
+            <div class="info d-flex align-items-center justify-content-center image-box">
+                <img [src]="showtime?.image_url">
             </div>
             <div class="info">
                 <div>Time</div>
-                <div>{{ showtime.start_time | date:'shortTime' }}</div>
+                <div>{{ showtime?.start_time | date:'shortTime' }}</div>
             </div>
             <div class="info">
                 <div>Price per seat</div>
-                <div>{{ showtime.price }} THB</div>
+                <div>{{ showtime?.price }} THB</div>
             </div>
             <hr>
             <div class="total">
