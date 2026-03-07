@@ -10,6 +10,7 @@ import { ReviewComponent } from './admin/review/review';
 import { Bookingcrud} from './admin/bookingcrud/bookingcrud';
 import { Moviecrud } from './admin/moviecrud/moviecrud';
 import { Movies } from './pages/movies/movies';
+import { MovieDetail } from './pages/movie-detail/movie-detail';
 export const routes: Routes = [
     {
         path: '',
@@ -45,6 +46,9 @@ export const routes: Routes = [
     {
         path: 'booking/:id', 
         loadChildren: () => import('./booking/booking-module').then(m => m.BookingModule)
+    },{
+        path: 'moviedetail/:id',
+        component: MovieDetail
     },
     {
         path: 'reviews', component: ReviewComponent

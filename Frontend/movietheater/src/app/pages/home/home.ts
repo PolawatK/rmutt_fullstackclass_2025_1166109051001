@@ -1,7 +1,7 @@
 import { Component , ViewChild,ElementRef,OnInit } from '@angular/core';
 import { Footer } from '../../share/footer/footer';
 import { Navbar } from '../../share/navbar/navbar';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { HomeService,MovieShowtime,MovieOngoing,Theater } from '../../services/home.service';
 
 
@@ -17,7 +17,7 @@ import { HomeService,MovieShowtime,MovieOngoing,Theater } from '../../services/h
 
 
 export class Home implements OnInit{
-constructor(private hService: HomeService) {}
+constructor(private hService: HomeService,private router: Router) {}
   MovieShowtimes: MovieShowtime[] = [];
   MovieOngoings: MovieOngoing[] = [];
   theater: Theater[] = [];
@@ -101,5 +101,8 @@ getAmenityImage(type: string): string {
 
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }
-
+gotoMoviedetail(id: string){
+    console.log(id);
+    this.router.navigate(['/moviedetail', id]);
+}
 }
