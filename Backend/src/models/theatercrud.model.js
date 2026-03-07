@@ -1,7 +1,9 @@
 const pool = require("../config/db");
 
-exports.createScreen = async (name, location, amenities) => {
-  const { rows } = await pool.query(
+exports.createScreen = async (client, name, location, amenities) => {
+  const db = client || pool;
+
+  const { rows } = await db.query(
     `INSERT INTO screens (name, location, amenities)
      VALUES ($1,$2,$3)
      RETURNING id`,
@@ -11,8 +13,9 @@ exports.createScreen = async (name, location, amenities) => {
   return rows[0];
 };
 
-exports.createSeat = async (screenId, rowLabel, seatNumber, seatType) => {
-  await pool.query(
+exports.createSeat = async (client,screenId,rowLabel,seatNumber,seatType,) => {
+  const db = client || pool;
+  await db.query(
     `INSERT INTO seats (screen_id, row_label, seat_number, seat_type)
      VALUES ($1,$2,$3,$4)`,
     [screenId, rowLabel, seatNumber, seatType],
@@ -29,7 +32,6 @@ exports.updateScreen = async (id, name, location, amenities) => {
      RETURNING *`,
     [name, location, amenities, id],
   );
-
   return rows[0];
 };
 
@@ -58,7 +60,6 @@ exports.checkShowtime = async (screenId) => {
      )`,
     [screenId],
   );
-
   return rows[0].exists;
 };
 
@@ -81,6 +82,5 @@ exports.getTheaterScreen = async () => {
         GROUP BY s.id, s.name, s.location, s.amenities
         ORDER BY s.id;
     `);
-
   return rows;
 };
