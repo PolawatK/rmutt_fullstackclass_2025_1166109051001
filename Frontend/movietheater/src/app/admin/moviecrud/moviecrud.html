@@ -15,7 +15,39 @@
     <section class="data-table mt-4">
         <div class="card bg-dark border-0 shadow">
             <div class="card-body">
-                
+                <!-- head table -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col text-light text-center">ID</th>
+                            <th class="col text-light text-center">Title</th>
+                            <th class="col text-light text-center">Description</th>
+                            <th class="col text-light text-center">Duration-minutes</th>
+                            <th class="col text-light text-center">Release-date</th>
+                            <th class="col text-light text-center">Director</th>
+                            <th class="col text-light text-center">Created-at</th>
+                            <th class="col text-light text-center">Image-url</th>
+                            <th colspan="2" class="col text-light text-center">Manage</th>
+                        </tr>
+                    </thead>
+                    <!-- body table -->
+                    <tbody class="text-light">
+                        @for (item of movie; track $index) {
+                        <tr>
+                        <th scope="row">1</th>
+                        <td class="col text-center">acb </td>
+                        <td class="col text-center">Otto</td>
+                        <td class="col text-center">@mdo</td>
+                        <td class="col text-center">Mark</td>
+                        <td class="col text-center">Otto</td>
+                        <td class="col text-center">@mdo</td>
+                        <td class="col text-center">@mdo</td>
+                        <td class="col text-center"><button type="button" class="btn btn-outline-light">Edit</button></td>
+                        <td class="col text-center"><button type="button" class="btn btn-outline-danger">Delete</button></td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
             </div>
         </div>
 

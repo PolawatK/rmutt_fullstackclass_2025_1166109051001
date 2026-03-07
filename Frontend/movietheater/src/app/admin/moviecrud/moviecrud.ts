@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class Moviecrud {
 
+  movie=[
+    {id:1},
+    {id:1},
+    {id:1},
+      ];
 }
