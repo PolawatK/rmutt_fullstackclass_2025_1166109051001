@@ -1,8 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {theatercrudService,TheaterScreen,} from '../../services/theatercrud.service';
+import {
+  theatercrudService,
+  TheaterScreen,
+} from '../../services/theatercrud.service';
 import Swal from 'sweetalert2';
-import {FormGroup,FormBuilder,Validators,ReactiveFormsModule,FormsModule,} from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  ReactiveFormsModule,
+  FormsModule,
+} from '@angular/forms';
 declare var bootstrap: any;
 
 @Component({
@@ -11,7 +20,6 @@ declare var bootstrap: any;
   templateUrl: './theatercrud.html',
   styleUrl: './theatercrud.css',
 })
-
 export class Theatercrud implements OnInit {
   screens: TheaterScreen[] = [];
   addForm!: FormGroup;
@@ -25,7 +33,7 @@ export class Theatercrud implements OnInit {
 
   ngOnInit(): void {
     this.loadScreens();
-   
+
     /* ADD FORM */
     this.addForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
@@ -44,9 +52,9 @@ export class Theatercrud implements OnInit {
     /* EDIT FORM */
     this.editForm = this.fb.group({
       id: [''],
-      name: ['', Validators.required],
-      location: ['', Validators.required],
-      amenities: [''],
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      location: ['', [Validators.required, Validators.minLength(2)]],
+      amenities: ['', [Validators.required, Validators.minLength(2)]],
     });
   }
 

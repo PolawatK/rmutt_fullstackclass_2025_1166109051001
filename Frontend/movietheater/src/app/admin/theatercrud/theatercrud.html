@@ -4,7 +4,11 @@
     <p class="text-muted">Manage screens, seats and amenities</p>
   </div>
 
-  <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addScreenModal">
+  <button
+    class="btn btn-warning"
+    data-bs-toggle="modal"
+    data-bs-target="#addScreenModal"
+  >
     Add Screen
   </button>
 </nav>
@@ -34,7 +38,10 @@
               <button class="btn btn-sm btn-primary" (click)="openEdit(screen)">
                 Edit
               </button>
-              <button class="btn btn-sm btn-danger" (click)="deleteScreen(screen.id)">
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="deleteScreen(screen.id)"
+              >
                 Delete
               </button>
             </div>
@@ -44,11 +51,11 @@
             {{ screen.amenities }}
           </p>
 
-          <hr/>
+          <hr />
 
           <div class="d-flex gap-3 flex-wrap">
-            <span class="badge-total"><i class="bx bx-chair"></i>
-              Total {{ screen.total_seats }}
+            <span class="badge-total"
+              ><i class="bx bx-chair"></i> Total {{ screen.total_seats }}
             </span>
 
             <span class="badge bg-secondary">
@@ -108,7 +115,13 @@
           <div class="row">
             <div class="col">
               <label>Rows</label>
-              <input type="number" class="form-control" formControlName="rows" min="1" max="26"/>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="rows"
+                min="1"
+                max="26"
+              />
 
               @if (
                 addForm.get("rows")?.invalid && addForm.get("rows")?.touched
@@ -119,7 +132,13 @@
 
             <div class="col">
               <label>Seats per Row</label>
-              <input type="number" class="form-control" formControlName="seatsPerRow" min="1"max="10"/>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="seatsPerRow"
+                min="1"
+                max="10"
+              />
               @if (
                 addForm.get("seatsPerRow")?.invalid &&
                 addForm.get("seatsPerRow")?.touched
@@ -129,10 +148,13 @@
             </div>
           </div>
 
-          <button class="btn btn-warning mt-4" type="submit" [disabled]="addForm.invalid">
+          <button
+            class="btn btn-warning mt-4"
+            type="submit"
+            [disabled]="addForm.invalid"
+          >
             Create Screen
           </button>
-
         </form>
       </div>
     </div>
@@ -154,22 +176,45 @@
           <div class="mb-3">
             <label>Screen Name</label>
             <input class="form-control" formControlName="name" />
+
+            @if (
+              editForm.get("name")?.touched && editForm.get("name")?.invalid
+            ) {
+              <div class="text-danger">
+                Screen name must be at least 2 characters
+              </div>
+            }
           </div>
 
           <div class="mb-3">
             <label>Location</label>
             <input class="form-control" formControlName="location" />
+            @if (
+              editForm.get("location")?.touched &&
+              editForm.get("location")?.invalid
+            ) {
+              <div class="text-danger">
+                Location must be at least 2 characters
+              </div>
+            }
           </div>
 
           <div class="mb-3">
             <label>Amenities</label>
             <input class="form-control" formControlName="amenities" />
+            @if (
+              editForm.get("amenities")?.touched &&
+              editForm.get("amenities")?.invalid
+            ) {
+              <div class="text-danger">
+                Amenities must be at least 2 characters
+              </div>
+            }
           </div>
 
-          <button class="btn btn-warning" type="submit" [disabled]="editForm.invalid">
-            Update Screen
+          <button class="btn btn-warning "type="submit"[disabled]="editForm.invalid">
+              Update Screen
           </button>
-          
         </form>
       </div>
     </div>
