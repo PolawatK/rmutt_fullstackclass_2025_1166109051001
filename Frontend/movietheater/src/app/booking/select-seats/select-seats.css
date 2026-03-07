@@ -133,16 +133,25 @@
   margin: 20px 0;
 }
 .continue-btn {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin-top: 20px;
+  padding: 10px 0px 10px 0px;
   text-align: center;
   width: 100%;
   border: none;
   border-radius: 10px;
-  background: #d4a017;
+  background-color: #d4a017;
+  border: 1px solid #d4a017;
+  color: rgb(255, 255, 255);
   font-weight: 600;
   cursor: pointer;
+  transition: 0.2s;
 }
+.continue-btn:hover {
+  color: rgba(255, 255, 255, 0.466);
+  border: 1px solid #d4a017;
+  background-color: transparent;
+}
+
 .continue-btn:disabled {
   opacity: 0.5;
 }
