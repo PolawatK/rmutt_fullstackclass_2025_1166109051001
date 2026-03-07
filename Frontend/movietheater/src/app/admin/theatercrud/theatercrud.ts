@@ -73,9 +73,13 @@ export class Theatercrud implements OnInit {
   /* CLOSE MODAL */
   closeModal(modalId: string) {
     const modalElement = document.getElementById(modalId);
-    if (!modalElement) return;
-    const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
-    modalInstance.hide();
+    const modalInstance = bootstrap.Modal.getInstance(modalElement);
+    if (modalInstance) {
+      modalInstance.hide();
+    }
+    document.body.classList.remove('modal-open');
+    const backdrops = document.querySelectorAll('.modal-backdrop');
+    backdrops.forEach((backdrop) => backdrop.remove());
   }
 
   /* ADD SCREEN */

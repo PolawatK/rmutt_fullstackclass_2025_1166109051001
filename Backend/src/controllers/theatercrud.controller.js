@@ -18,19 +18,20 @@ exports.addScreen = async (req, res) => {
       });
     }
     await client.query("BEGIN");
-    const screen = await theatercrudmodel.createScreen(client,name,location,amenities,);
+    const screen = await theatercrudmodel.createScreen(
+      client,
+      name,
+      location,
+      amenities,
+    );
 
     const screenId = screen.id;
     for (let r = 0; r < rows; r++) {
       const row = rowLabels[r];
+
       for (let s = 1; s <= seatsPerRow; s++) {
-        let type = "Normal";
-        if (r >= rows - 2) {
-          type = "VIP";
-        } else if (r >= rows - 4) {
-          type = "Premium";
-        }
-        await theatercrudmodel.createSeat(client, screenId, row, s, type);
+        console.log("Seat type:", "Normal");
+        await theatercrudmodel.createSeat(client, screenId, row, s, "Normal");
       }
     }
     await client.query("COMMIT");
@@ -55,7 +56,12 @@ exports.updateScreen = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, location, amenities } = req.body;
-    const updated = await theatercrudmodel.updateScreen(id,name,location,amenities,);
+    const updated = await theatercrudmodel.updateScreen(
+      id,
+      name,
+      location,
+      amenities,
+    );
     res.json(updated);
   } catch (err) {
     console.error(err);
