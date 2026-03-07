@@ -76,12 +76,16 @@ const getMyBookings = async (userId) => {
       b.status,
       b.created_at,
       p.method AS payment_method,
-      STRING_AGG(bs.seat_id::text, ', ') AS seats
+        COALESCE(STRING_AGG(bs.seat_id::text, ', '),'') AS seats
     FROM bookings b
     JOIN showtimes s ON b.showtime_id = s.id
     JOIN movies m on s.movie_id = m.id
+    
     LEFT JOIN booking_seats bs ON bs.booking_id = b.id
+    LEFT JOIN seats se ON se.id = bs.seat_id
+
     LEFT JOIN payments p ON p.booking_id = b.id
+    
     WHERE b.user_id = $1
     GROUP BY
       b.id,

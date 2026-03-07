@@ -44,7 +44,7 @@ exports.getMyBookings = async (req, res) => {
   try{
     const userId = req.user.sub;
 
-    const bookings = await bookingModel.getMyBooking(userId);
+    const bookings = await bookingModel.getMyBookings(userId);
 
     res.json(bookings);
 

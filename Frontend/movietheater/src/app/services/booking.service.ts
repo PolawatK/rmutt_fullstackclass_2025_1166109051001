@@ -16,6 +16,14 @@ export interface Seat {
   seat_number: number;
   seat_type: 'Normal' | 'Premium' | 'VIP';
 }
+export interface MyBooking {
+  title: string;
+  poster_url: string;
+  seats: string;
+  total_price: number;
+  show_date: string;
+  start_time: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +50,6 @@ export class BookingService {
   }
 
   getMyBookings(): Observable<any>{
-    return this.http.get(`${this.apiUrl}/my-bookings`);
+    return this.http.get<MyBooking[]>(`${this.apiUrl}/bookings/my-bookings`);
   }
 }
