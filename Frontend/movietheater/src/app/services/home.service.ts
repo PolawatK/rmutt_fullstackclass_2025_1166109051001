@@ -8,6 +8,8 @@ export interface MovieShowtime {
   title: string;
   description: string;
   image_url: string;
+  duration_minutes: number;
+
 }
 
 export interface MovieOngoing {
@@ -15,6 +17,7 @@ export interface MovieOngoing {
   title: string;
   description: string;
   image_url: string;
+  duration_minutes: number;
 }
 
 export interface Theater{

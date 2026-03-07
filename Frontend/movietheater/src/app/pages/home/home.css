@@ -43,6 +43,7 @@
 }
 .ongoing-box h1 {
   font-weight: 800;
+  flex-direction: column;
 }
 .bg-darker {
   background-color: black;
@@ -51,7 +52,9 @@
 .movie-wrapper::-webkit-scrollbar {
   display: none;
 }
-
+.card-body h6 {
+  font-weight: 600;
+}
 .movie-card {
   min-width: 80px;
   max-width: 220px;
@@ -121,7 +124,21 @@
 .scroll-btn.right {
   right: 0px;
 }
-
+.theater h1 {
+  font-weight: 600;
+}
+.slider-section {
+  border-bottom: 1px solid rgba(81, 81, 81, 0.539);
+}
+.text-descript {
+  display: flex;
+  text-align: end;
+  color: rgb(126, 126, 126);
+  font-family: Kanits;
+}
+.text-descript i {
+  position: absolute;
+}
 /* card theaher */
 .theater-card {
   background: rgba(0, 0, 0, 0.6);
