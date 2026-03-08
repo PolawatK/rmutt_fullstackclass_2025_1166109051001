@@ -48,6 +48,11 @@ tbody td {
 .crud-btn {
   margin-right: 10px;
 }
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
 .poster-preview {
   width: 180px;
   border-radius: 12px;
