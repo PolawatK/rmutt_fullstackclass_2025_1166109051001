@@ -108,8 +108,8 @@ export class Authentication {
 
         Swal.fire({
           icon: 'error',
-          title: 'สมัครสมาชิกไม่สำเร็จ',
-          text: 'อีเมลนี้ถูกใช้งานแล้ว'
+          title: 'Register Fail',
+          text: 'Email already in use'
         });
       }
     });
