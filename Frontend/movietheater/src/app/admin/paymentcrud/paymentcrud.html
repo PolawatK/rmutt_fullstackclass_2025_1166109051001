@@ -1,0 +1,61 @@
+<div class="container-fluid py-4 p-4">
+    <h2>Payments</h2>
+    <div class="subtitle">All payments across CineVault</div>
+
+    <div class="table-card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Payment ID</th>
+                    <th>Customer</th>
+                    <th>Method</th>
+                    <th>Amount</th>
+                    <th>Paid At</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (p of paymentscrud; track p.id) {
+                <tr>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.customer }}</td>
+                    <td>
+
+                        @if (p.method === 'CREDIT_CARD') {
+                        <span class="method">
+                            <img src="credit-card.png" class="icon">
+                            Credit Card
+                        </span>
+                        }
+
+                        @if (p.method === 'THAIQR') {
+                        <span class="method">
+                            <img src="icon-thaiqr.png" class="icon">
+                            Thai QR
+                        </span>
+                        }
+
+                        @if (p.method === 'PAYPAL') {
+                        <span class="method">
+                            <img src="paypal.png" class="icon">
+                            PayPal
+                        </span>
+                        }
+
+                    </td>
+                    <td class="price">
+                        {{ p.amount | currency:'THB' }}
+                    </td>
+                    <td>{{ p.paid_at | date:'short' }}</td>
+                    <td>
+                        <span class="badge paid">
+                            Paid
+                        </span>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

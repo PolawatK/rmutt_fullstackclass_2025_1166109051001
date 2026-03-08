@@ -1,7 +1,7 @@
 const showtimeModel = require('../models/showtime.model');
 
 exports.createShowtime = async (req, res) => {
-
+  
   try{
     const { movie_id, screen_id, start_time, price } = req.body;
 
