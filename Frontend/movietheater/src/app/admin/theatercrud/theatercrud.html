@@ -1,120 +1,141 @@
-<nav class="container d-flex justify-content-between align-items-center mt-4">
-  <div>
-    <h1 class="fw-bold">Theaters & Screens</h1>
-    <p class="text-muted">Manage screens, seats and amenities</p>
-  </div>
+<div class="container-fluid" style="padding: 40px">
+  <!-- HEADER -->
+  <section class="Header-Page row align-items-center">
+    <div class="mx-1 col">
+      <p class="h3 fw-bold mb-0">Theaters & Screens</p>
+      <p class="text-muted mb-0">Manage screens, seats and amenities</p>
+    </div>
 
-  <button
-    class="btn btn-warning"
-    data-bs-toggle="modal"
-    data-bs-target="#addScreenModal"
-  >
-    Add Screen
-  </button>
-</nav>
+    <button
+      class="btn btn-outline-light col-auto"
+      style="margin-right: 30px"
+      data-bs-toggle="modal"
+      data-bs-target="#addScreenModal"
+    >
+      Add Screen
+    </button>
+  </section>
 
-<div class="container-fluid mt-4 px-5">
-  <div class="row g-4">
-    @for (screen of screens; track screen.id) {
-      <div class="col-lg-6 col-12">
-        <div class="cinema-card p-3">
-          <div class="d-flex justify-content-between align-items-start">
-            <div class="d-flex gap-3">
-              <div class="screen-icon">
-                <i class="bx bx-tv"></i>
-              </div>
-              <div>
-                <div class="fw-bold fs-5">
-                  {{ screen.name }}
+  <!-- SCREEN CARD SECTION -->
+  <section class="data-table mt-4">
+    <div class="table-container border-0 shadow">
+      <div class="card-body">
+        <div class="row g-4">
+          @for (screen of screens; track screen.id) {
+            <div class="col-lg-6 col-12">
+              <div class="cinema-card p-3">
+                <div class="d-flex justify-content-between align-items-start">
+                  <!-- SCREEN INFO -->
+                  <div class="d-flex gap-3">
+                    <div class="screen-icon">
+                      <i class="bx bx-tv"></i>
+                    </div>
+
+                    <div>
+                      <div class="fw-bold fs-5">
+                        {{ screen.name }}
+                      </div>
+
+                      <div class="text-muted">
+                        <i class="bx bx-map"></i>
+                        {{ screen.location }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- CRUD BUTTON -->
+                  <div class="d-flex gap-2">
+                    <button
+                      class="btn btn-warning crud-btn"
+                      (click)="openEdit(screen)"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editScreenModal"
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      class="btn btn-outline-danger crud-btn"
+                      (click)="deleteScreen(screen.id)"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
-                <div class="text-muted">
-                  <i class="bx bx-map"></i>
-                  {{ screen.location }}
+
+                <!-- AMENITIES -->
+                <p class="mt-3 text-muted">
+                  {{ screen.amenities }}
+                </p>
+
+                <hr />
+
+                <!-- SEAT INFO -->
+                <div class="d-flex gap-3 flex-wrap">
+                  <span class="badge-total">
+                    <i class="bx bx-chair"></i>
+                    Total {{ screen.total_seats }}
+                  </span>
+
+                  <span class="badge bg-secondary">
+                    Normal {{ screen.normal_count }}
+                  </span>
                 </div>
               </div>
             </div>
-
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-primary" (click)="openEdit(screen)">
-                Edit
-              </button>
-              <button
-                class="btn btn-sm btn-danger"
-                (click)="deleteScreen(screen.id)"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-
-          <p class="mt-3 text-muted">
-            {{ screen.amenities }}
-          </p>
-
-          <hr />
-
-          <div class="d-flex gap-3 flex-wrap">
-            <span class="badge-total"
-              ><i class="bx bx-chair"></i> Total {{ screen.total_seats }}
-            </span>
-
-            <span class="badge bg-secondary">
-              Normal {{ screen.normal_count }}
-            </span>
-
-            <span class="badge bg-info text-dark">
-              Premium {{ screen.premium_count }}
-            </span>
-
-            <span class="badge bg-warning text-dark">
-              VIP {{ screen.vip_count }}
-            </span>
-          </div>
+          }
         </div>
       </div>
-    }
-  </div>
+    </div>
+  </section>
 </div>
 
-<div class="modal fade" id="addScreenModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<!-- ADD SCREEN MODAL -->
+<div class="modal fade" id="addScreenModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content modal-theme">
       <div class="modal-header">
-        <h5>Add Screen</h5>
-        <button class="btn-close" data-bs-dismiss="modal"></button>
+        <h5 class="modal-title">Add Screen</h5>
+        <button
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+        ></button>
       </div>
 
       <div class="modal-body">
         <form [formGroup]="addForm" (ngSubmit)="addScreen()">
-          <div class="mb-3">
-            <label>Screen Name</label>
-            <input class="form-control" formControlName="name" />
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Screen Name</label>
+              <input class="form-control" formControlName="name" />
 
-            @if (addForm.get("name")?.touched && addForm.get("name")?.invalid) {
-              <div class="text-danger">Screen name is required</div>
-            }
-          </div>
+              @if (
+                addForm.get("name")?.touched && addForm.get("name")?.invalid
+              ) {
+                <div class="text-danger">Screen name is required</div>
+              }
+            </div>
 
-          <div class="mb-3">
-            <label>Location</label>
-            <input class="form-control" formControlName="location" />
+            <div class="col-md-6">
+              <label class="form-label">Location</label>
+              <input class="form-control" formControlName="location" />
 
-            @if (
-              addForm.get("location")?.touched &&
-              addForm.get("location")?.invalid
-            ) {
-              <div class="text-danger">Location required</div>
-            }
-          </div>
+              @if (
+                addForm.get("location")?.touched &&
+                addForm.get("location")?.invalid
+              ) {
+                <div class="text-danger">Location required</div>
+              }
+            </div>
 
-          <div class="mb-3">
-            <label>Amenities</label>
-            <input class="form-control" formControlName="amenities" />
-          </div>
+            <div class="col-12">
+              <label class="form-label">Amenities</label>
+              <input class="form-control" formControlName="amenities" />
+            </div>
 
-          <div class="row">
-            <div class="col">
-              <label>Rows</label>
+            <div class="col-md-6">
+              <label class="form-label">Rows</label>
+
               <input
                 type="number"
                 class="form-control"
@@ -130,8 +151,9 @@
               }
             </div>
 
-            <div class="col">
-              <label>Seats per Row</label>
+            <div class="col-md-6">
+              <label class="form-label">Seats per Row</label>
+
               <input
                 type="number"
                 class="form-control"
@@ -139,6 +161,7 @@
                 min="1"
                 max="10"
               />
+
               @if (
                 addForm.get("seatsPerRow")?.invalid &&
                 addForm.get("seatsPerRow")?.touched
@@ -148,73 +171,92 @@
             </div>
           </div>
 
-          <button
-            class="btn btn-warning mt-4"
-            type="submit"
-            [disabled]="addForm.invalid"
-          >
-            Create Screen
-          </button>
+          <div class="text-end mt-4">
+            <button
+              class="btn btn-warning px-4"
+              type="submit"
+              [disabled]="addForm.invalid"
+            >
+              Create Screen
+            </button>
+          </div>
         </form>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="editScreenModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<!-- EDIT SCREEN MODAL -->
+<div class="modal fade" id="editScreenModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content modal-theme">
       <div class="modal-header">
         <h5>Edit Screen</h5>
-        <button class="btn-close" data-bs-dismiss="modal"></button>
+        <button
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+        ></button>
       </div>
 
       <div class="modal-body">
         <form [formGroup]="editForm" (ngSubmit)="updateScreen()">
           <input type="hidden" formControlName="id" />
 
-          <div class="mb-3">
-            <label>Screen Name</label>
-            <input class="form-control" formControlName="name" />
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Screen Name</label>
 
-            @if (
-              editForm.get("name")?.touched && editForm.get("name")?.invalid
-            ) {
-              <div class="text-danger">
-                Screen name must be at least 2 characters
-              </div>
-            }
+              <input class="form-control" formControlName="name" />
+
+              @if (
+                editForm.get("name")?.touched && editForm.get("name")?.invalid
+              ) {
+                <div class="text-danger">
+                  Screen name must be at least 2 characters
+                </div>
+              }
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Location</label>
+
+              <input class="form-control" formControlName="location" />
+
+              @if (
+                editForm.get("location")?.touched &&
+                editForm.get("location")?.invalid
+              ) {
+                <div class="text-danger">
+                  Location must be at least 2 characters
+                </div>
+              }
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Amenities</label>
+
+              <input class="form-control" formControlName="amenities" />
+
+              @if (
+                editForm.get("amenities")?.touched &&
+                editForm.get("amenities")?.invalid
+              ) {
+                <div class="text-danger">
+                  Amenities must be at least 2 characters
+                </div>
+              }
+            </div>
           </div>
 
-          <div class="mb-3">
-            <label>Location</label>
-            <input class="form-control" formControlName="location" />
-            @if (
-              editForm.get("location")?.touched &&
-              editForm.get("location")?.invalid
-            ) {
-              <div class="text-danger">
-                Location must be at least 2 characters
-              </div>
-            }
-          </div>
-
-          <div class="mb-3">
-            <label>Amenities</label>
-            <input class="form-control" formControlName="amenities" />
-            @if (
-              editForm.get("amenities")?.touched &&
-              editForm.get("amenities")?.invalid
-            ) {
-              <div class="text-danger">
-                Amenities must be at least 2 characters
-              </div>
-            }
-          </div>
-
-          <button class="btn btn-warning "type="submit"[disabled]="editForm.invalid">
+          <div class="text-end mt-4">
+            <button
+              class="btn btn-warning px-4"
+              type="submit"
+              [disabled]="editForm.invalid"
+            >
               Update Screen
-          </button>
+            </button>
+          </div>
         </form>
       </div>
     </div>

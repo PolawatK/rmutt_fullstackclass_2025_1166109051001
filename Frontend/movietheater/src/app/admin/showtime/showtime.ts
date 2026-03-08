@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ShowtimeService } from '../../services/showtime.service';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment';
+import { ShowtimeService } from '../../services/showtime.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -23,11 +23,11 @@ export class Showtime {
     private http: HttpClient
   ) {}
 
-  ngOnInit(){
-    this.loadShowtimes();
-    this.loadMovies();
-    this.loadScreens();
-  }
+ngOnInit(){
+this.loadShowtimes();
+ this.loadMovies();
+this.loadScreens();
+ }
 
   loadShowtimes(){
     this.http.get<any>(`${environment.apiUrl}/showtimes`)
@@ -133,7 +133,7 @@ export class Showtime {
           price: Number(price)
         }
 
-      }
+}
 
     }).then(result=>{
 
