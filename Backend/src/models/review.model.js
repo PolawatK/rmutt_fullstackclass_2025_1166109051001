@@ -33,6 +33,16 @@ exports.getReviewDataByMovie = async (req, res) => {
 };
 exports.createReview = async (review) => {
 
+  const check = await pool.query(
+    `SELECT * FROM reviews 
+     WHERE user_id = $1 AND movie_id = $2`,
+    [review.user_id, review.movie_id]
+  );
+
+  if (check.rows.length > 0) {
+    throw new Error("You already reviewed this movie");
+  }
+
   const result = await pool.query(
     `INSERT INTO reviews 
      ( movie_id, user_id, rating, comment, created_at)
@@ -46,5 +56,5 @@ exports.createReview = async (review) => {
     ]
   );
 
-  return result;
+  return result.rows[0];
 };
