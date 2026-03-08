@@ -36,10 +36,9 @@ export interface MovieDetails {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MovieDetailService {
-
   private apiUrl = `${environment.apiUrl}/movies`;
 
   constructor(private http: HttpClient) {}
@@ -47,5 +46,4 @@ export class MovieDetailService {
   getMovieDetails(movieId: string): Observable<MovieDetails> {
     return this.http.get<MovieDetails>(`${this.apiUrl}/${movieId}/details`);
   }
-
 }
