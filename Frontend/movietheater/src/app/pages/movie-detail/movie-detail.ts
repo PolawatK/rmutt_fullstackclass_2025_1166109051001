@@ -5,6 +5,7 @@ import { Review, ReviewService } from '../../services/review.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { MovieDetailService } from '../../services/movie-detail.service';
 @Component({
   selector: 'app-movie-detail',
   imports: [Navbar,CommonModule,FormsModule],
@@ -12,18 +13,21 @@ import Swal from 'sweetalert2';
   styleUrl: './movie-detail.css',
 })
 export class MovieDetail implements OnInit {
-  constructor(private router: Router,private routes:ActivatedRoute,private reviewService: ReviewService) {}
+  constructor(private router: Router,private routes:ActivatedRoute,private reviewService: ReviewService, private movieService: MovieDetailService) {}
   reviews: Review[] = [];
   totalReviews = 0;
   averageRating = 0;
   movieId: string = '';
 
-  
+  movie: any;
+  showtimes: any[] = [];
 
   ngOnInit(): void {
+   window.scrollTo({ top: 0, behavior: 'instant' });
    this.movieId = this.routes.snapshot.paramMap.get('id')!; 
    
-   this.loadReviews();
+   this.loadMovieDetails();   
+   this.loadReviews();        
    console.log(this.movieId);
   }
 
@@ -140,4 +144,20 @@ submitReview() {
   });
 }
 
+loadMovieDetails() {
+
+  this.movieService.getMovieDetails(this.movieId).subscribe({
+    next: (data) => {
+      this.movie = data.movie;
+      this.showtimes = data.showtimes;
+    },
+    error: (err) => {
+      console.error('Failed to load movie details:', err);
+    }
+  });
+}
+
+bookShowtime(showtimeId: string) {
+  this.router.navigate(['/booking', showtimeId]);
+}
 }
