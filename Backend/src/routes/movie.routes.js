@@ -5,7 +5,7 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 const { authenticateToken } = require('../middleware/authMiddleware');
-const { body } = require('express-validator');
+const { body, param } = require('express-validator');
 
 router.get('/',authenticateToken, movieController.getMovieDataCRUD);
 
