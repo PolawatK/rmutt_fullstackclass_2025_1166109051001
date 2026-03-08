@@ -86,6 +86,7 @@ get groupedSeats(): { row: string; seats: Seat[] }[] {
     row,
     seats: groups[row]
   }));
+  
 }
 
 goToPayment() {
