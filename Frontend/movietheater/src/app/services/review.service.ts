@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 
 export interface Review {
   id?: string;
-  user_id: string;
+  user_id?: string;
   movie_id: string;
   rating: number;
   comment: string;
@@ -29,8 +29,20 @@ export class ReviewService {
   getReviewsByMovie(movieId: string): Observable<Review[]> {
     return this.http.get<Review[]>(`${this.apiUrl}/movie/${movieId}`);
   }
-  addReview(review: Review) {
-  return this.http.post<Review>(`${this.apiUrl}`, review);
+  addReview(review: any): Observable<Review> {
+
+  const token = localStorage.getItem('access_token');
+
+  return this.http.post<Review>(
+    this.apiUrl,
+    review,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
 }
 }
+
 
