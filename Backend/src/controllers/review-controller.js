@@ -21,20 +21,29 @@ exports.getReviewDataByMovie = async (req, res) => {
   }
 };
 exports.addReview = async (req, res) => {
-
   try {
-
+    console.log(req.user);
     const review = req.body;
 
-    await reviewModel.createReview(review);
+    // เอา user_id จาก token
+    review.user_id = req.user.sub;
 
-    res.json(review);
+    const result = await reviewModel.createReview(review);
+
+    res.json(result);
 
   } catch (err) {
+
+    if (err.message === "You already reviewed this movie") {
+      return res.status(400).json({
+        message: "You already reviewed this movie"
+      });
+    }
+
     console.error(err);
-    res.status(500).json({message: "Add review failed",
+    res.status(500).json({
+      message: "Add review failed",
       error: err
     });
   }
-
 };
