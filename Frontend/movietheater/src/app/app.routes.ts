@@ -11,7 +11,7 @@ import { Bookingcrud} from './admin/bookingcrud/bookingcrud';
 import { Moviecrud } from './admin/moviecrud/moviecrud';
 import { Movies } from './pages/movies/movies';
 import { Mybooking } from './pages/mybooking/mybooking';
-import { Showtime } from './admin/showtime/showtime';
+// import { Showtime } from './admin/showtime/showtime';
 import { MovieDetail } from './pages/movie-detail/movie-detail';
 import { AuthGuard } from './guards/auth.guard';
 
@@ -48,7 +48,7 @@ export const routes: Routes = [
         { path: 'theatercrud', component: Theatercrud},
         { path: 'bookingcrud', component: Bookingcrud},
         { path: 'movies', component: Moviecrud},//moviecrud
-        { path: 'showtime', component: Showtime},
+        // { path: 'showtime', component: Showtime},
         ],
     },
     {
