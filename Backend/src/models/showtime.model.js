@@ -1,15 +1,20 @@
 const  pool  = require('../config/db');
 
 exports.createShowtime = async(movie_id, screen_id, start_time, price) =>{
-  
+
   const movie = await pool.query(
-    `SELECT duration_minutes FROM movies WHERE id=$1`,[movie_id]
+    `SELECT duration_minutes FROM movies WHERE id=$1`,
+    [movie_id]
   );
+
+  // ⭐ เช็คก่อนว่ามี movie จริงไหม
+  if(movie.rows.length === 0){
+    throw new Error("Movie not found");
+  }
 
   const duration = movie.rows[0].duration_minutes;
 
   const start = new Date(start_time);
-
   const end = new Date(start.getTime() + duration * 60000);
 
   const existing = await pool.query(`
@@ -20,14 +25,14 @@ exports.createShowtime = async(movie_id, screen_id, start_time, price) =>{
     `,[screen_id]);
 
   for(const row of existing.rows){
-    const oldStart = new Date(row.start_time);
 
+    const oldStart = new Date(row.start_time);
     const oldEnd = new Date(
       oldStart.getTime() + row.duration_minutes * 60000
     );
 
     if(start < oldEnd && end > oldStart){
-      throw new Error("showtime conflict in this screen");
+      throw new Error("Showtime conflict in this screen");
     }
 
   }
@@ -39,9 +44,8 @@ exports.createShowtime = async(movie_id, screen_id, start_time, price) =>{
       RETURNING *
     `, [movie_id, screen_id, start_time, price]);
 
-    return result.rows[0];
+  return result.rows[0];
 };
-
 exports.getAllShowtimes = async () => {
 
   const { rows } = await pool.query(`
