@@ -1,120 +1,185 @@
-.showtime-wrapper{
-  padding:40px;
-  font-family:system-ui;
-  color:white;
+.showtime-wrapper {
+  padding: 40px;
+  font-family: system-ui;
+  color: #e5e7eb;
+  background: #0d1117; 
+  min-height: 100vh;
 }
 
-.showtime-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:25px;
+.showtime-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
-.showtime-header h2{
-  font-size:26px;
+.showtime-header h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff;
 }
 
-.btn-add{
-  background:#22c55e;
-  border:none;
-  padding:10px 18px;
-  border-radius:8px;
-  color:white;
-  font-weight:600;
-  cursor:pointer;
+.btn-add {
+  background: #22c55e;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-.btn-add:hover{
-  background:#16a34a;
+.btn-add:hover {
+  background: #16a34a;
 }
 
-.table-card{
-  background:#111827;
-  border-radius:12px;
-  overflow:hidden;
-  border:1px solid #1f2937;
+.table-card {
+  background: transparent;
+  border: 1px solid #1f2937;
+  border-radius: 16px;
+  overflow: visible;
+  box-shadow: none;
+  background: #0f172a;
 }
 
-.showtime-table{
-  width:100%;
-  border-collapse:collapse;
+.showtime-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.showtime-table thead{
-  background:#1f2937;
+.showtime-table thead {
+  background: transparent;
 }
 
-.showtime-table th{
-  padding:16px;
-  text-align:left;
-  font-weight:600;
-  color:#cbd5e1;
+.showtime-table thead th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #6b7280; /* สีเทาจาง เหมือนรูป 1 */
+  border-bottom: 1px solid #1f2937;
 }
 
-.showtime-table td{
-  padding:16px;
-  border-bottom:1px solid #1f2937;
+.showtime-table tbody tr {
+  border-bottom: 1px solid #1a2030;
+  transition: background 0.2s ease;
 }
 
-.showtime-table tbody tr{
-  transition:0.2s;
+.showtime-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
 }
 
-.showtime-table tbody tr:hover{
-  background:#1e293b;
+.showtime-table tbody tr:last-child {
+  border-bottom: none;
 }
 
-.movie-title{
-  font-weight:600;
+.showtime-table tbody td {
+  padding: 20px 16px;
+  font-size: 14px;
+  color: #cbd5e1;
 }
 
-.screen-badge{
-  background:#374151;
-  padding:4px 10px;
-  border-radius:6px;
-  font-size:13px;
+.movie-title {
+  font-weight: 400;
+  color: #e2e8f0;
 }
 
-.duration{
-  background:#1d4ed8;
-  padding:4px 10px;
-  border-radius:6px;
-  font-size:13px;
+/* Screen — text ธรรมดา ไม่มี badge */
+.screen-badge {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: #cbd5e1;
+  display: inline;
 }
 
-.price{
-  color:#22c55e;
-  font-weight:600;
+/* Duration — text ธรรมดา ไม่มี badge */
+.duration {
+  background: transparent;
+  color: #cbd5e1;
+  padding: 0;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 400;
+  display: inline;
 }
 
-.actions{
-  display:flex;
-  gap:8px;
+/* Price — text ธรรมดา สีขาว */
+.price {
+  color: #e2e8f0;
+  font-weight: 400;
 }
 
-.btn-edit{
-  background:#3b82f6;
-  border:none;
-  color:white;
-  padding:6px 12px;
-  border-radius:6px;
-  cursor:pointer;
+.actions {
+  display: flex;
+  gap: 8px;
 }
 
-.btn-edit:hover{
-  background:#2563eb;
+.btn-edit {
+  background: #3b82f6;
+  border: none;
+  color: white;
+  padding: 7px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.btn-delete{
-  background:#ef4444;
-  border:none;
-  color:white;
-  padding:6px 12px;
-  border-radius:6px;
-  cursor:pointer;
+.btn-edit:hover {
+  background: #2563eb;
 }
 
-.btn-delete:hover{
-  background:#dc2626;
+.btn-delete {
+  background: #ef4444;
+  border: none;
+  color: white;
+  padding: 7px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+}
+
+.subtitle {
+  color: #9ca3af;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.btn-edit {
+  background: #f59e0b;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 7px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-edit:hover {
+  background: #d97706;
+}
+
+.btn-delete {
+  background: transparent;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  padding: 7px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: rgba(239, 68, 68, 0.1);
 }
