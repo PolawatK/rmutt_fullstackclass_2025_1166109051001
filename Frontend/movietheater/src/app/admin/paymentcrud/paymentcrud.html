@@ -1,4 +1,4 @@
-<div class="container-fluid py-4 p-4">
+<div class="container-fluid" style="padding: 40px">
     <h2>Payments</h2>
     <div class="subtitle">All payments across CineVault</div>
 
@@ -22,21 +22,21 @@
                     <td>{{ p.customer }}</td>
                     <td>
 
-                        @if (p.method === 'CREDIT_CARD') {
+                        @if (p.method === 'credit_card') {
                         <span class="method">
                             <img src="credit-card.png" class="icon">
                             Credit Card
                         </span>
                         }
 
-                        @if (p.method === 'THAIQR') {
+                        @if (p.method === 'promptpay') {
                         <span class="method">
                             <img src="icon-thaiqr.png" class="icon">
                             Thai QR
                         </span>
                         }
 
-                        @if (p.method === 'PAYPAL') {
+                        @if (p.method === 'paypal') {
                         <span class="method">
                             <img src="paypal.png" class="icon">
                             PayPal
