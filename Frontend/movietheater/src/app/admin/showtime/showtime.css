@@ -197,7 +197,7 @@
   align-items: center;
   justify-content: center;
 
-  z-index: 9999;
+  z-index: 20000;
 }
 
 /* ===== MODAL BOX ===== */
@@ -352,4 +352,13 @@
 input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
   cursor: pointer;
+}
+
+.swal2-container{
+  position: fixed !important;
+  z-index: 999999 !important;
+}
+
+.swal2-popup{
+  z-index: 30001 !important;
 }
