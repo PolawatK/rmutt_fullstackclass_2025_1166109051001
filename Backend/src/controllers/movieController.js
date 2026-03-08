@@ -1,5 +1,6 @@
 const Moviemodel = require('../models/movie.model');
 const cloudinary = require('../config/cloudinary');
+const { validationResult } = require('express-validator');
 
 // get
 exports.getMovieDataCRUD = async (req, res) => {
@@ -15,6 +16,14 @@ exports.getMovieDataCRUD = async (req, res) => {
 
 // create
 exports.createMovieCRUD = async (req, res) => {
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      errors: errors.array()
+    });
+  }
 
   try {
 
@@ -78,12 +87,29 @@ exports.createMovieCRUD = async (req, res) => {
 exports.updateMovieCRUD = async (req, res) => {
   try {
 
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array()
+      });
+    }
+
     const { id } = req.params;
 
     // ดึงข้อมูล movie เดิม
     const existingMovie = await Moviemodel.getMovieById(id);
 
+    if (!existingMovie) {
+      return res.status(404).json({
+        message: "Movie not found"
+      });
+    }
+
     let imageUrl = existingMovie.image_url;
+
+
+
 
     if (req.file) {
 
@@ -142,9 +168,25 @@ exports.updateMovieCRUD = async (req, res) => {
 // delete
 exports.deleteMovieCRUD = async (req, res) => {
 
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      errors: errors.array()
+    });
+  }
+
   try {
 
     const { id } = req.params;
+
+    const existingMovie = await Moviemodel.getMovieById(id);
+
+    if (!existingMovie) {
+      return res.status(404).json({
+        message: "Movie not found"
+      });
+    }
 
     await Moviemodel.deleteMovieCRUD(id);
 
