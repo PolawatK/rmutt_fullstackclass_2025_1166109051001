@@ -4,7 +4,7 @@ import { Navbar } from "../../share/navbar/navbar";
 import { Review, ReviewService } from '../../services/review.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-movie-detail',
   imports: [Navbar,CommonModule,FormsModule],
@@ -17,8 +17,12 @@ export class MovieDetail implements OnInit {
   totalReviews = 0;
   averageRating = 0;
   movieId: string = '';
+
+  
+
   ngOnInit(): void {
    this.movieId = this.routes.snapshot.paramMap.get('id')!; 
+   
    this.loadReviews();
    console.log(this.movieId);
   }
@@ -36,6 +40,8 @@ export class MovieDetail implements OnInit {
             this.totalReviews > 0
               ? totalScore / this.totalReviews
               : 0;
+
+            
       },
       error: (err) => {
         console.error('Failed to load reviews:', err);
@@ -60,19 +66,17 @@ setRating(rating: number) {
 submitReview() {
 
   if (!this.selectedRating || !this.comment.trim()) {
-    alert("Please add rating and comment");
+
+    Swal.fire({
+      icon: 'warning',
+      title: 'Incomplete Review',
+      text: 'Please add rating and comment'
+    });
+
     return;
   }
-  const userId = localStorage.getItem("user_id");
-
-  if (!userId) {
-    alert("User not logged in");
-    return;
-  }
-
+  
   const newReview: Review = {
-    
-    user_id: userId,
     movie_id: this.movieId,
     name: "You",
     title: "Avengers Reborn",
@@ -82,9 +86,12 @@ submitReview() {
   };
 
   this.reviewService.addReview(newReview).subscribe({
-    next: (res) => {
+    next: (res: Review) => {
 
-      this.reviews.push(res);
+      this.loadReviews();   
+      this.selectedRating = 0;
+      this.comment = '';
+
 
       this.totalReviews = this.reviews.length;
 
@@ -97,10 +104,38 @@ submitReview() {
 
       this.selectedRating = 0;
       this.comment = '';
+      
+      Swal.fire({
+        icon: 'success',
+        title: 'Review Submitted',
+        text: 'Your review has been added!',
+        timer: 1500,
+        showConfirmButton: false
+      });
+
       console.log("Review added", res);
     },
     error: (err) => {
-      console.error("Add review failed", err);
+
+      if (err.error?.message === "You already reviewed this movie") {
+
+        Swal.fire({
+          icon: 'info',
+          title: 'Already Reviewed',
+          text: 'You already reviewed this movie'
+        });
+
+      } else {
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to submit review'
+        });
+
+        console.error("Add review failed", err);
+      }
+
     }
   });
 }
