@@ -6,6 +6,7 @@
   border-radius: 20px;
   border: 1px solid rgba(81, 81, 81, 0.539);
   transition: 0.5s ease;
+  cursor: pointer;
 }
 .icon-box {
   border-radius: 15px;

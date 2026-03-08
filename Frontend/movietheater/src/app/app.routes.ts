@@ -15,6 +15,7 @@ import { Showtime } from './admin/showtime/showtime';
 import { MovieDetail } from './pages/movie-detail/movie-detail';
 import { AuthGuard } from './guards/auth.guard';
 import { Paymentcrud } from './admin/paymentcrud/paymentcrud';
+import { Roleguard } from './guards/role.guard';
 
 export const routes: Routes = [
     {
@@ -42,6 +43,8 @@ export const routes: Routes = [
     {
         path: 'admin',
         component: AdminLayout,
+        canActivate: [Roleguard],
+        data: { role: 1 },
         children: [
         { path: '', component: Dashboard},
         { path: 'movie', component: Dashboard},

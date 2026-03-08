@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment';
 import { ShowtimeService } from '../../services/showtime.service';
+import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-showtime',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './showtime.html',
   styleUrl: './showtime.css',
 })
@@ -18,16 +19,47 @@ export class Showtime {
   movies: any[] = [];
   screens: any[] = [];
 
+  timeSlots: string[] = [];
+
+  // edit modal
+  editingShowtime: any = null;
+
+  editData = {
+    movie_id: 0,
+    screen_id: 0,
+    start_time: '',
+    price: 0
+  };
+
+  // add modal
+  showAddModal = false;
+
+  addData = {
+    movie_id: '',
+    screen_id: '',
+    start_time: '',
+    price: 0
+  };
+
   constructor(
     private showtimeService: ShowtimeService,
     private http: HttpClient
   ) {}
 
-ngOnInit(){
-this.loadShowtimes();
- this.loadMovies();
-this.loadScreens();
- }
+  ngOnInit(){
+    this.loadShowtimes();
+    this.loadMovies();
+    this.loadScreens();
+
+    for(let h = 8; h <= 24; h++){
+
+      let hour = h.toString().padStart(2,'0');
+
+      this.timeSlots.push(`${hour}:00`);
+
+    }
+
+  }
 
   loadShowtimes(){
     this.http.get<any>(`${environment.apiUrl}/showtimes`)
@@ -65,94 +97,34 @@ this.loadScreens();
     });
   }
 
-  openShowtimeModal(){
-    const movieOptions = this.movies.map(m =>
-      `<option value="${m?.id}">${m?.title}</option>`
-    ).join('');
-
-    const screenOptions = this.screens.map(s =>
-      `<option value="${s.id}">${s.name}</option>`
-    ).join('');
-
+  deleteShowtime(id:string){
     Swal.fire({
-
-      title: "Add New Showtime",
-      background: "#0f172a",
-      color: "#fff",
-
-      confirmButtonColor: "#f59e0b",
-      cancelButtonColor: "#374151",
-
-      showCancelButton: true,
-      confirmButtonText: "✓ Add Showtime",
-      cancelButtonText: "Cancel",
-
-      html: `
-
-      <label style="display:block;text-align:left;margin-top:10px">Movie</label>
-      <select id="movie" class="swal2-input">
-        <option value="">Select Movie</option>
-        ${movieOptions}
-      </select>
-
-      <label style="display:block;text-align:left;margin-top:10px">Screen</label>
-      <select id="screen" class="swal2-input">
-        <option value="">Select Screen</option>
-        ${screenOptions}
-      </select>
-
-      <label style="display:block;text-align:left;margin-top:10px">Start Time</label>
-      <input id="start"
-      type="datetime-local"
-      class="swal2-input">
-
-      <label style="display:block;text-align:left;margin-top:10px">Price (THB)</label>
-      <input id="price"
-      type="number"
-      class="swal2-input"
-      placeholder="250">
-
-      `,
-
-      preConfirm:()=>{
-
-        const movie = (document.getElementById("movie") as HTMLSelectElement).value;
-        const screen = (document.getElementById("screen") as HTMLSelectElement).value;
-        const start = (document.getElementById("start") as HTMLInputElement).value;
-        const price = (document.getElementById("price") as HTMLInputElement).value;
-
-        if(!movie || !screen || !start || !price){
-          Swal.showValidationMessage("Please fill all fields");
-          return false;
-        }
-
-        return{
-          movie_id: movie,
-          screen_id: Number(screen),
-          start_time: start,
-          price: Number(price)
-        }
-
-}
-
+      title:"Delete Showtime?",
+      text:"This action cannot be undone",
+      icon:"warning",
+      showCancelButton:true,
+      confirmButtonText:"Delete",
+      confirmButtonColor:"#ef4444",
+      cancelButtonColor:"#6b7280",
+      background:"#0f172a",
+      color:"#fff"
     }).then(result=>{
 
       if(result.isConfirmed){
 
-        this.showtimeService.createShowtime(result.value)
+        this.showtimeService.deleteShowtime(id)
         .subscribe({
 
           next:()=>{
 
             Swal.fire({
               icon:"success",
-              title:"Showtime Added",
+              title:"Deleted",
               background:"#0f172a",
               color:"#fff"
             });
 
             this.loadShowtimes();
-
           },
 
           error:(err)=>{
@@ -170,4 +142,134 @@ this.loadScreens();
       }
     });
   }
+
+  editShowtime(showtime: any){
+
+    console.log("movies:", this.movies);
+  console.log("screens:", this.screens);
+  console.log("showtime:", showtime);
+
+  console.log(typeof showtime.movie_id);
+console.log(typeof showtime.screen_id);
+
+    const date = new Date(showtime.start_time);
+
+    const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+      .toISOString()
+      .slice(0,16);
+
+    this.editingShowtime = showtime;
+
+    this.editData = {
+      movie_id: showtime.movie_id,
+      screen_id: Number(showtime.screen_id),
+      start_time: local,
+      price: showtime.price
+    };
+
+  }
+
+  updateShowtime(){
+    this.showtimeService.updateShowtime(
+      this.editingShowtime.id,
+      this.editData
+    ).subscribe({
+
+      next:()=>{
+        Swal.fire({
+          icon:"success",
+          title:"Updated",
+          background:"#0f172a",
+          color:"#fff"
+        });
+
+        this.editingShowtime = null;
+        this.loadShowtimes();
+
+      },
+
+      error:(err)=>{
+        Swal.fire({
+          icon:"error",
+          title:"Error",
+          text:err.error.message,
+          background:"#0f172a",
+          color:"#fff"
+        });
+      }
+    });
+  }
+
+  openShowtimeModal(){
+    this.showAddModal = true;
+
+    this.addData = {
+      movie_id: '',
+      screen_id: '',
+      start_time: '',
+      price: 0
+    };
+  }
+
+  createShowtime(){
+    this.showtimeService.createShowtime(this.addData)
+    .subscribe({
+
+      next:()=>{
+
+        Swal.fire({
+          icon:"success",
+          title:"Showtime Added",
+          background:"#0f172a",
+          color:"#fff"
+        });
+
+        this.showAddModal = false;
+        this.loadShowtimes();
+
+      },
+
+      error:(err)=>{
+
+        Swal.fire({
+          icon:"error",
+          title:"Error",
+          text:err.error.message,
+          background:"#0f172a",
+          color:"#fff"
+        });
+      }
+    });
+  }
+
+getStartPosition(time:string){
+
+  const start = new Date(time);
+
+  const minutes =
+    start.getHours()*60 +
+    start.getMinutes();
+
+  const startMinutes = 8*60;
+  const totalMinutes = 16*60;
+
+  return ((minutes - startMinutes)/totalMinutes)*100;
+
 }
+
+  getDurationWidth(duration:number){
+
+  const totalMinutes = 16 * 60;
+
+  return (duration / totalMinutes) * 100;
+
+}
+  getShowtimesForScreen(screenId:number){
+      
+    return this.showtimes.filter(
+      s => s.screen_id === screenId
+    );
+  }
+  
+}
+

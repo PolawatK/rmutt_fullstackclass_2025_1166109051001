@@ -186,6 +186,8 @@ editMovie: any = {
 
 openEditModal(movie:any){
 
+  this.selectedFile = null;
+
   const date = new Date(movie.release_date);
 
   const formattedDate =
