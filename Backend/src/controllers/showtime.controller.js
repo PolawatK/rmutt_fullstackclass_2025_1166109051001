@@ -1,3 +1,4 @@
+const pool = require('../config/db');
 const showtimeModel = require('../models/showtime.model');
 
 exports.createShowtime = async (req, res) => {
@@ -57,5 +58,44 @@ exports.getBookedSeats = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
+  }
+};
+
+exports.deleteShowtime = async (req, res) => {
+
+  try{
+    const { id } = req.params;
+
+    await showtimeModel.deleteShowtime(id);
+    
+    res.json({
+      message: "Showtime deleted"
+    });
+
+  }catch(err){
+    res.status(500).json({
+      message: err.message
+    });
+  }
+};
+
+exports.updateShowtime = async (req, res) => {
+
+  try{
+
+    const { id } = req.params;
+    const { movie_id, screen_id, start_time, price } = req.body;
+
+    const data = await showtimeModel.updateShowtime(
+      id, movie_id, screen_id, start_time, price
+    );
+
+    res.json(data);
+
+  }catch(err){
+
+    res.status(500).json({
+      message: err.message
+    });
   }
 };

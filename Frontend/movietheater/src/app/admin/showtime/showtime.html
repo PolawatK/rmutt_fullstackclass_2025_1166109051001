@@ -1,16 +1,16 @@
 <div class="showtime-wrapper">
 
-  <div class="showtime-header">
-    <h2>🎬 Manage Showtimes</h2>
-
-    <button class="btn-add" (click)="openShowtimeModal()">
-      + Add Showtime
-    </button>
+ <div class="showtime-header">
+  <div>
+    <h2>Manage Showtimes</h2>
+    <p class="subtitle">Manage and schedule movie showtimes across all screens.</p>
   </div>
-
+  <button class="btn-add" (click)="openShowtimeModal()">
+    + Add Showtime
+  </button>
+</div>
 
   <div class="table-card">
-
     <table class="showtime-table">
 
       <thead>
@@ -25,17 +25,14 @@
       </thead>
 
       <tbody>
-
         <tr *ngFor="let s of showtimes">
 
           <td class="movie-title">
-            🎬 {{ s.movie_title }}
+            {{ s.movie_title }}
           </td>
 
           <td>
-            <span class="screen-badge">
-              {{ s.screen_name }}
-            </span>
+            {{ s.screen_name }}
           </td>
 
           <td>
@@ -43,9 +40,7 @@
           </td>
 
           <td>
-            <span class="duration">
-              {{ s.duration_minutes }} min
-            </span>
+            {{ s.duration_minutes }} min
           </td>
 
           <td class="price">
@@ -53,18 +48,14 @@
           </td>
 
           <td class="actions">
-
-            <button class="btn-edit">
-              Edit
-            </button>
-
-            <button class="btn-delete">
-              Delete
-            </button>
+            <button class="btn-edit" (click)="editShowtime(s)">Edit</button>
+            <button class="btn-delete" (click)="deleteShowtime(s.id)">Delete</button>
           </td>
+
         </tr>
       </tbody>
+
     </table>
   </div>
-</div>
 
+</div>
