@@ -47,9 +47,11 @@ exports.createShowtime = async(movie_id, screen_id, start_time, price) =>{
 };
 exports.getAllShowtimes = async () => {
 
-  const { rows } = await pool.query(`
+ const { rows } = await pool.query(`
     SELECT
       st.id,
+      st.movie_id,
+      st.screen_id,
       st.start_time,
       st.price,
       m.title AS movie_title,

@@ -6,7 +6,7 @@
     <p class="subtitle">Manage and schedule movie showtimes across all screens.</p>
   </div>
   <button class="btn-add" (click)="openShowtimeModal()">
-    + Add Showtime
+    Add Showtime
   </button>
 </div>
 
@@ -58,4 +58,45 @@
     </table>
   </div>
 
+</div>
+
+<!-- EDIT SHOWTIME MODAL -->
+<div class="modal-backdrop" *ngIf="editingShowtime">
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <span class="modal-title">Edit Showtime</span>
+      <button class="modal-close" (click)="editingShowtime = null">×</button>
+    </div>
+
+    <div class="field">
+      <label>Movie</label>
+      <select [(ngModel)]="editData.movie_id">
+        <option *ngFor="let m of movies" [ngValue]="m.id">{{ m.title }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Screen</label>
+      <select [(ngModel)]="editData.screen_id">
+        <option *ngFor="let s of screens" [ngValue]="s.id">{{ s.name }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Start Time</label>
+      <input type="datetime-local" [(ngModel)]="editData.start_time">
+    </div>
+
+    <div class="field">
+      <label>Price (THB)</label>
+      <input type="number" [(ngModel)]="editData.price">
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" (click)="editingShowtime = null">Cancel</button>
+      <button class="btn-save" (click)="updateShowtime()">Save Changes</button>
+    </div>
+
+  </div>
 </div>
