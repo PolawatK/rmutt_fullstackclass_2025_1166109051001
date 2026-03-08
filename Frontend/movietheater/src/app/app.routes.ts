@@ -31,7 +31,9 @@ export const routes: Routes = [
     },
     {
         path: 'mybooking',
-        component: Mybooking
+        component: Mybooking,
+        canActivate: [AuthGuard]
+          
     },
     {
         path: 'movies',
