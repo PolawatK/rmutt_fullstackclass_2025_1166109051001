@@ -67,8 +67,8 @@ createMovie(event: Event){
 
   formData.append('title', this.newMovie.title);
   formData.append('description', this.newMovie.description);
-  formData.append('duration_minutes', this.newMovie.duration_minutes);
-  formData.append('release_date', this.newMovie.release_date);
+  formData.append('duration_minutes', String(this.newMovie.duration_minutes));
+  formData.append('release_date', String(this.newMovie.release_date));
   formData.append('director', this.newMovie.director);
 
   if(this.selectedFile){
@@ -217,8 +217,8 @@ updateMovie(event:Event){
 
   formData.append('title', this.editMovie.title);
   formData.append('description', this.editMovie.description);
-  formData.append('duration_minutes', this.editMovie.duration_minutes);
-  formData.append('release_date', this.editMovie.release_date);
+  formData.append('duration_minutes', String(this.editMovie.duration_minutes));
+  formData.append('release_date', String(this.editMovie.release_date));
   formData.append('director', this.editMovie.director);
 
   if(this.selectedFile){

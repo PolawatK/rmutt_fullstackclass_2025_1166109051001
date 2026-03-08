@@ -29,6 +29,14 @@
   transform:translateY(-3px);
   border-color:#f5a623;
 }
+.paid {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.bx{
+  color: #f5a623;
+}
 
 .poster{
   width:160px;

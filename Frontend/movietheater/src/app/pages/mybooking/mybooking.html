@@ -19,11 +19,7 @@
         <h2>{{b.title}}</h2>
 
         <span 
-        class="status"
-        [ngClass]="{
-          'paid': b.status === 'PAID',
-          'cancelled': b.status === 'CANCELLED'
-        }">
+        class="status paid">
 
           {{b.status}}
 
@@ -35,15 +31,10 @@
       </p>
 
       <div class="details">
-
-        <p>🎥 Screen {{b.screen_id}}</p>
-
-        <p>💺 Seats: {{b.seats}}</p>
-
-        <p>🕒 {{b.start_time | date:'medium'}}</p>
-
-        <p>💳 {{b.payment_method}}</p>
-
+        <p><i class='bx bx-desktop'></i> Screen {{b.screen_id}}</p>
+        <p><i class='bx bx-chair'></i> Seats: {{b.seats}}</p>
+        <p><i class='bx bx-time-five'></i> {{b.start_time | date:'medium'}}</p>
+        <p><i class='bx bx-credit-card'></i> {{b.payment_method}}</p>
       </div>
 
       <div class="bottom">
