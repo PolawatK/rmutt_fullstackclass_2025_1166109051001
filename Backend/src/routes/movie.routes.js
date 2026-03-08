@@ -23,7 +23,7 @@ router.post(
   movieController.createMovieCRUD
 );
 
-router.put(
+router.patch(
   '/:id',
   authenticateToken,
   upload.single('image'),

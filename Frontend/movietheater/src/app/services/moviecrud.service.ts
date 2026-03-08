@@ -34,7 +34,7 @@ export class MovieCRUDService {
   }
 
   updateMovieCRUD(id: string, data: FormData): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, data);
+    return this.http.patch(`${this.apiUrl}/${id}`, data);
   }
 
   deleteMovieCRUD(id: string): Observable<any> {
