@@ -5,7 +5,7 @@ import { Review, ReviewService } from '../../services/review.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { MovieDetailService } from '../../services/movie-detail.service';
+import { MovieDetailService ,MovieDetails} from '../../services/movie-detail.service';
 @Component({
   selector: 'app-movie-detail',
   imports: [Navbar,CommonModule,FormsModule],
