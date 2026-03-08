@@ -19,4 +19,12 @@ export class ShowtimeService{
     getShowtimeById(id:number):Observable<any>{
         return this.http.get(`${this.api}/${id}`);
     }
+
+    deleteShowtime(id:string){
+        return this.http.delete(`${environment.apiUrl}/showtimes/${id}`);
+    }
+
+    updateShowtime(id:string,data:any){
+        return this.http.put(`${environment.apiUrl}/showtimes/${id}`,data);
+    }
 }

@@ -7,4 +7,7 @@ router.get("/", showtimeController.getAllShowtimes);
 router.get('/:id', showtimeController.getShowtimeById);
 router.get('/:id/booked-seats', showtimeController.getBookedSeats);
 
+router.delete('/:id', showtimeController.deleteShowtime);
+router.put('/:id', showtimeController.updateShowtime);
+
 module.exports = router;

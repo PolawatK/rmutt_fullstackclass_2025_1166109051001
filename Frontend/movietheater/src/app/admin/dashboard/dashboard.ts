@@ -3,9 +3,10 @@ import { DashboardService,DashboardStats} from '../../services/dashboard.service
 import { AdminRoutingModule } from "../admin-routing";
 import { Booking, BookingService } from '../../services/bookingcrud.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
-  imports: [AdminRoutingModule,CommonModule],
+  imports: [AdminRoutingModule,CommonModule,RouterLink],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
