@@ -76,7 +76,7 @@ export class Showtime {
   loadMovies(){
     this.http.get<any>(`${environment.apiUrl}/moviecrud`)
     .subscribe({
-      next:(res)=>{
+      next:(res)=>{ 
         this.movies = res;
       },
       error:(err)=>{
@@ -231,6 +231,8 @@ console.log(typeof showtime.screen_id);
 
       error:(err)=>{
 
+        this.showAddModal = false;
+
         Swal.fire({
           icon:"error",
           title:"Error",
@@ -242,34 +244,6 @@ console.log(typeof showtime.screen_id);
     });
   }
 
-getStartPosition(time:string){
-
-  const start = new Date(time);
-
-  const minutes =
-    start.getHours()*60 +
-    start.getMinutes();
-
-  const startMinutes = 8*60;
-  const totalMinutes = 16*60;
-
-  return ((minutes - startMinutes)/totalMinutes)*100;
-
-}
-
-  getDurationWidth(duration:number){
-
-  const totalMinutes = 16 * 60;
-
-  return (duration / totalMinutes) * 100;
-
-}
-  getShowtimesForScreen(screenId:number){
-      
-    return this.showtimes.filter(
-      s => s.screen_id === screenId
-    );
-  }
   
 }
 
