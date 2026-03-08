@@ -178,11 +178,19 @@
 
 /*how it work section */
 .step-card{
-  width: 18rem;
+  width: 20rem;
   background: #0b0f16;
   border-radius: 15px;
   border: 1px solid rgba(255,255,255,0.1);
   color: white;
+  padding: 25px;
+  margin-bottom: 10px;
+}
+
+.step-card:hover{
+  background:  rgba(255,255,255,0.1);
+  transform: translateY(-1%) scale(1.05);
+  transition: 0.5s  ;
 }
 
 .icon-box{
@@ -206,3 +214,4 @@
   font-weight: 600;
   margin-bottom: 5px;
 }
+
