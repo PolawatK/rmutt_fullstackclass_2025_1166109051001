@@ -29,7 +29,7 @@ router.patch(
   upload.single('image'),
 
   [
-    param('id').isInt(),
+    param('id').isUUID(),
     body('title').optional().notEmpty(),
     body('duration_minutes').optional().isInt({ min: 1 }),
     body('release_date').optional().isDate()
@@ -42,7 +42,7 @@ router.delete(
   '/:id',
   authenticateToken,
   [
-    param('id').isInt()
+    param('id').isUUID()
   ],
   movieController.deleteMovieCRUD
 );

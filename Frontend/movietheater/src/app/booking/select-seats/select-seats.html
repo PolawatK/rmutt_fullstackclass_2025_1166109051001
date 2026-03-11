@@ -78,3 +78,48 @@
     </div>
 </div>
 <app-footer></app-footer>
+<!-- A
+    @for(item of seats; track $index){
+    @if(item.row_label === 'A'){
+    <button (click)="toggleSeat(item)" style="margin: 20px;padding: 20px;" [class.booked]="isBooked(item.id)"
+        [class.selected]="isSelected(item.id)">
+        {{item.seat_number}}
+    </button>
+    }
+    }
+    A
+    <br>
+    B
+    @for(item of seats; track $index){
+    @if(item.row_label === 'B'){
+    {{item.seat_number}}
+    }
+    }
+    <br>
+    C
+    @for(item of seats; track $index){
+    @if(item.row_label === 'C'){
+    {{item.seat_number}}
+    }
+    }
+    <br>
+    D
+    @for(item of seats; track $index){
+    @if(item.row_label === 'D'){
+    {{item.seat_number}}
+    }
+    }
+    <br>
+    E
+    @for(item of seats; track $index){
+    @if(item.row_label === 'E'){
+    {{item.seat_number}}
+    }
+    }
+    <br>
+    F
+    @for(item of seats; track $index){
+    @if(item.row_label === 'F'){
+    {{item.seat_number}}
+    }
+    } -->
