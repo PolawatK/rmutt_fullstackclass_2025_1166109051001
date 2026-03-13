@@ -4,14 +4,14 @@ const movieController = require('../controllers/movieController');
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
-const { authenticateToken } = require('../middleware/authMiddleware');
+const { authenticateAdmin } = require('../middleware/authMiddleware');
 const { body, param } = require('express-validator');
 
-router.get('/',authenticateToken, movieController.getMovieDataCRUD);
+router.get('/',authenticateAdmin, movieController.getMovieDataCRUD);
 
 router.post(
   '/',
-  authenticateToken,
+  authenticateAdmin,
   upload.single('image'),
 
   [
@@ -25,7 +25,7 @@ router.post(
 
 router.patch(
   '/:id',
-  authenticateToken,
+  authenticateAdmin,
   upload.single('image'),
 
   [
@@ -40,7 +40,7 @@ router.patch(
 
 router.delete(
   '/:id',
-  authenticateToken,
+  authenticateAdmin,
   [
     param('id').isUUID()
   ],
