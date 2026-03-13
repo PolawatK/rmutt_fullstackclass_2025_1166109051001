@@ -14,7 +14,8 @@ function authenticateToken(req, res, next){
 }
 
 function authenticateAdmin(req, res, next){
-    if (!req.user || req.user.role_id !== 1){
+    console.log(req.user);
+    if (!req.user || Number(req.user.role_id) !== 1){
         return res.status(403).json({ error: 'Admin only access' });
     }
     next();
