@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const theatercrudController = require("../controllers/theatercrud.controller");
-const { authenticateAdmin } = require('../middleware/authMiddleware');
+const { authenticateAdmin,authenticateToken } = require('../middleware/authMiddleware');
 
-router.post("/add", authenticateAdmin,theatercrudController.addScreen);
-router.put("/update/:id", authenticateAdmin,theatercrudController.updateScreen);
-router.get("/", authenticateAdmin,theatercrudController.getTheaterScreen);
-router.delete("/:id", authenticateAdmin,theatercrudController.deleteScreen);
+router.post("/add", authenticateToken,authenticateAdmin,theatercrudController.addScreen);
+router.put("/update/:id", authenticateToken,authenticateAdmin,theatercrudController.updateScreen);
+router.get("/", authenticateToken,authenticateAdmin,theatercrudController.getTheaterScreen);
+router.delete("/:id", authenticateToken,authenticateAdmin,theatercrudController.deleteScreen);
 
 module.exports = router;
