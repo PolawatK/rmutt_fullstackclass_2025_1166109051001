@@ -22,20 +22,16 @@ exports.createBooking = async (req, res) => {
     });
 
   } catch (err) {
-    if (err.message === 'Some seats are already booked') {
-      return res.status(400).json({
-        message: err.message
-      });
+    if (err.message === 'Showtime not found') { 
+      return res.status(404).json({ message: err.message });
     }
-    if (err.code === '23505') { 
-      return res.status(400).json({
-        message: 'One or more seats were just booked by someone else'
-      });
+    if (err.message === 'Some seats are already booked') {  
+      return res.status(400).json({ message: err.message });
     }
-    console.error('Booking Controller Error:', err);
-    return res.status(500).json({
-      message: 'Internal server error'
-    });
+    if (err.code === '23505') {                           
+      return res.status(400).json({ message: 'One or more seats were just booked by someone else' });
+    }
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };
 
