@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bookingController = require('../controllers/bookingcrud-controller');
-const { authenticateToken } = require('../middleware/authMiddleware');
+const { authenticateAdmin } = require('../middleware/authMiddleware');
 
-router.get('/', authenticateToken,bookingController.getAll);
+router.get('/', authenticateAdmin,bookingController.getAll);
 
 module.exports = router;
