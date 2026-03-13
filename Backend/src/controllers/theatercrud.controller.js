@@ -30,7 +30,6 @@ exports.addScreen = async (req, res) => {
       const row = rowLabels[r];
 
       for (let s = 1; s <= seatsPerRow; s++) {
-        console.log("Seat type:", "Normal");
         await theatercrudmodel.createSeat(client, screenId, row, s, "Normal");
       }
     }

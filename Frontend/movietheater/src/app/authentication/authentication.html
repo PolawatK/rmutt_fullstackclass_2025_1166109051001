@@ -4,8 +4,8 @@
 
   <!-- Brand Section -->
   <div class="brand">
-    <h1>Welcome<br>to <em>Maprom theater</em></h1>
-    <p>โรงหนังมาพรม</p>
+    <h1>Welcome<br>to <em>Cinevault theater</em></h1>
+    <p>Cinevault</p>
     <div class="brand-line"></div>
   </div>
 
@@ -14,23 +14,19 @@
 
     <!-- Tabs -->
     <div class="tabs">
-        <button type="button" class="tab" [class.active]="activeTab === 'login'" (click)="setTab('login')">
-            Login
-        </button>
+      <button type="button" class="tab" [class.active]="activeTab === 'login'" (click)="setTab('login')">
+        Login
+      </button>
 
-        <button  type="button" class="tab" [class.active]="activeTab === 'register'" (click)="setTab('register')">
-            Register
-        </button>
+      <button type="button" class="tab" [class.active]="activeTab === 'register'" (click)="setTab('register')">
+        Register
+      </button>
     </div>
 
     <div class="form-wrapper">
 
       <!-- LOGIN -->
-      <form
-        #loginForm="ngForm"
-        (ngSubmit)="onLogin(loginForm)"
-        class="form"
-        [class.active]="activeTab === 'login'">
+      <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" class="form" [class.active]="activeTab === 'login'">
 
         <input type="email" name="email" ngModel required placeholder="Email" />
         <input type="password" name="password" ngModel required placeholder="Password" />
@@ -41,10 +37,7 @@
       </form>
 
       <!-- REGISTER -->
-      <form
-        #registerForm="ngForm"
-        (ngSubmit)="onRegister(registerForm)"
-        class="form"
+      <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)" class="form"
         [class.active]="activeTab === 'register'">
 
         <input type="text" name="name" ngModel required placeholder="Full Name" />
